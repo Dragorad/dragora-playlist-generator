@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+// import Navbar from './components/navbar/Navbar'
+// import Routes from './Routes'
+import Footer from './components/footer/Footer'
+import PersistentDrawerLeft from './components/navbar/PersistDrawer'
+import Notifications from 'react-notify-toast'
+import logo from './logo.svg'
+import './App.css'
+// import { from } from 'apollo-boost'
+import { typography, positions } from '@material-ui/system'
+import { Box } from '@material-ui/core'
+import {StyletronProvider, DebugEngine} from 'styletron-react'
+import {Client} from 'styletron-engine-atomic'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <React.Fragment>
+        < Box>
+          <PersistentDrawerLeft />
+          {/* <Routes /> */}
+                    <Notifications
+          // options={notifyOptions}
+          />
+        </Box>
+      </React.Fragment>
+    </BrowserRouter>
+
+
+
+    // <div className="App">
+    //   <header className="App-header">
+    //     <img src={logo} className="App-logo" alt="logo" />
+    //     <p>
+    //       Edit <code>src/App.js</code> and save to reload.
+    //     </p>
+    //     <a
+    //       className="App-link"
+    //       href="https://reactjs.org"
+    //       target="_blank"
+    //       rel="noopener noreferrer"
+    //     >
+    //       Learn React
+    //     </a>
+    //   </header>
+    // </div>
+  )
 }
 
-export default App;
+export default App
