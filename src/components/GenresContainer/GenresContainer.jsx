@@ -15,11 +15,12 @@ import Divider from '@material-ui/core/Divider'
 import Paper from '@material-ui/core/Paper'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
-import Grid from '@material-ui/core/Grid'
+// import Grid from '@material-ui/core/Grid'
 import { CreateMuiTheme } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import GenreButton from './GenreButton'
-import NewSlider from './Slider'
+import SliderCard from './SliderCard'
+import { Grid, Cell } from 'baseui/layout-grid'
 
 // const theme = CreateMuiTheme =>({
 //     palette: 
@@ -39,19 +40,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const StyledToggleButtonGroup = withStyles(theme => ({
-  grouped: {
-    margin: theme.spacing(0.5),
-    border: 'none',
-    padding: theme.spacing(0, 1),
-    '&:not(:first-child)': {
-      borderRadius: theme.shape.borderRadius,
-    },
-    '&:first-child': {
-      borderRadius: theme.shape.borderRadius,
-    },
-  },
-}))(ToggleButtonGroup)
 
 // const DifferentToggleButton = withStyles => ({
 //   root: {
@@ -80,73 +68,31 @@ export default function CustomizedDividers() {
   return (
     <div>
       <Paper elevation={0} className={classes.paper}>
-        <StyledToggleButtonGroup
-          size="small"
-          value={alignment}
-          exclusive
-          onChange={handleAlignment}
-          aria-label="text alignment"
-        >
-          <ToggleButton value="left" aria-label="left aligned">
-            <FormatAlignLeftIcon />
-          </ToggleButton>
-          <ToggleButton value="center" aria-label="centered">
-            <FormatAlignCenterIcon />
-          </ToggleButton>
-          <ToggleButton value="right" aria-label="right aligned">
-            <FormatAlignRightIcon />
-          </ToggleButton>
-          <ToggleButton value="justify" aria-label="justified" disabled>
-            <FormatAlignJustifyIcon />
-          </ToggleButton>
-        </StyledToggleButtonGroup>
+
         <Divider orientation="vertical" className={classes.divider} />
-        <StyledToggleButtonGroup
-          size="small"
-          value={formats}
-          onChange={handleFormat}
-          aria-label="text formatting"
-        >
-          <ToggleButton value="bold" aria-label="bold">
-            <FormatBoldIcon />
-          </ToggleButton>
-          <ToggleButton value="italic" aria-label="italic">
-            <FormatItalicIcon />
-          </ToggleButton>
-          <ToggleButton value="underlined" aria-label="underlined">
-            <FormatUnderlinedIcon />
-          </ToggleButton>
-          <ToggleButton value="color" aria-label="color" disabled>
-            <FormatColorFillIcon />
-            <ArrowDropDownIcon />
-          </ToggleButton>
-        </StyledToggleButtonGroup>
-        <StyledToggleButtonGroup
-          size="small"
-          value={formats}
-          onChange={handleFormat}
-          aria-label="text formatting"
-        >
-        </StyledToggleButtonGroup>
+
       </Paper>
 
       <Paper elevation={2}>
         <ToggleButtonGroup>
 
-          <Grid container spacing={2}>
-            {genresList.map((text) => (<Grid item sx={3} spacing={2} md={6}>
+          <Grid container spacing={1}
+            gridGaps={4}>
+            {genresList.map((text, index) => (<Cell
+              // item sx={3} spacing={2} md={6}>
+              span={1}>
               <GenreButton
-                background='red'
-              // key={index}
-              >
-                {`${text}`}
-              </GenreButton>
-            </Grid>))}
+                text={text}
+                key={index}
+              />
+            </Cell>))}
           </Grid>
 
-          <NewSlider />
-          <NewSlider />
         </ToggleButtonGroup>
+        <SliderCard
+          text="Diversity" />
+        <SliderCard
+          text="RMS" />
       </Paper>
     </div >
   )

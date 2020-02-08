@@ -154,9 +154,14 @@ export default function PersistentDrawerLeft() {
       >
         <div className={classes.drawerHeader} />
         <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tem
+          DrAgora Music Selector <br/>
+          Това е приложение за генериране на плейлисти в които няма да имате усещането, че слушате едно и също парче по много пъти!<br/>
+          Всяка една от композициите е избрана лично от висококласен музикален редактор с доказано добър вкус.<br/>
+          Изберете жанр, средно темпо и средна гръмкост и ще получите първите пет предложения.<br/>
+          С Diversity управлявате колко често да се сменят стила и темпата на траковете вътре в плейлистата.<br/>
+          Можете да харесвате и нехаресвате конкретен трак. <br/>
+          Регистрираните потребители могат да следват хората, които предлагат траковете и да запазват плейлисти<div className=""></div><div className=""></div>
+          <div className=""></div>
         </Typography>
         <GenresList />
       </main>
