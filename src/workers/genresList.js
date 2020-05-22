@@ -1,3 +1,7 @@
 export const genresList = [
-    'pop', 'rock', 'jazz', 'ethno', 'samba', 'trance', 'fusion', 'lounge', 'ballearic'
+    'general rock and pop',
+    'dance, funk, EDM',
+    'lounge, acid jazz',
+    'soul, blues, jazzy',
+    'cinematic and acoust'
 ]

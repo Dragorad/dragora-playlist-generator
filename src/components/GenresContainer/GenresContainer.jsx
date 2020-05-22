@@ -22,6 +22,8 @@ import GenreButton from './GenreButton'
 import SliderCard from './SliderCard'
 import { Grid, Cell } from 'baseui/layout-grid'
 
+import BaseUiButtonGroup from './BaseUiButtonGroup.jsx'
+
 // const theme = CreateMuiTheme =>({
 //     palette: 
 // })
@@ -40,16 +42,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-
-// const DifferentToggleButton = withStyles => ({
-//   root: {
-//     color: 'green',
-//     backgroundColor: 'yellow'
-//   },
-//   selected: {
-//     color: 'red'
-//   }
-// })(ToggleButton)
 
 export default function CustomizedDividers() {
   const [alignment, setAlignment] = React.useState('left')
@@ -89,11 +81,12 @@ export default function CustomizedDividers() {
           </Grid>
 
         </ToggleButtonGroup>
-        <SliderCard
-          text="Diversity" />
-        <SliderCard
-          text="RMS" />
+        <SliderCard text="Diversity" />
+        <SliderCard text="RMS" />
+      <SliderCard text="Brightness" />
       </Paper>
+      <BaseUiButtonGroup/> < br/>
+    
     </div >
   )
 }

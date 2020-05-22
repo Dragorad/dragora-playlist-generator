@@ -7,20 +7,21 @@ import PersistentDrawerLeft from './components/navbar/PersistDrawer'
 import Notifications from 'react-notify-toast'
 import logo from './logo.svg'
 import './App.css'
-// import { from } from 'apollo-boost'
+
 import { typography, positions } from '@material-ui/system'
 import { Box } from '@material-ui/core'
-import {StyletronProvider, DebugEngine} from 'styletron-react'
-import {Client} from 'styletron-engine-atomic'
+import { TitlesArtistQuery } from './components/TitlesArtistQuery'
+
 
 function App() {
   return (
     <BrowserRouter>
       <React.Fragment>
         < Box>
-          <PersistentDrawerLeft />
+          <TitlesArtistQuery />
+          {/* <PersistentDrawerLeft /> */}
           {/* <Routes /> */}
-                    <Notifications
+          <Notifications
           // options={notifyOptions}
           />
         </Box>

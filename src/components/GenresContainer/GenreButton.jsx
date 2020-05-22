@@ -12,7 +12,7 @@ export default function GenreButton(props) {
           style: ({ $theme }) => {
             return {
               outline: 'red',
-              backgroundColor: 'darkblue'
+              backgroundColor: '#3f51b5'
             };
           }
         }

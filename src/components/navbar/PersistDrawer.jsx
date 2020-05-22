@@ -18,14 +18,19 @@ import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
 import GenresList from '../GenresContainer/GenresContainer'
+import Player from '../player/Player'
+import InfoBox from '../navbar/InfoBox'
 
 const drawerWidth = 240
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    justifyContent: 'space-between'
   },
   appBar: {
+    display:'flex',
+    justifyContent: 'space-between',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -95,9 +100,9 @@ export default function PersistentDrawerLeft() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
+      // className={clsx(classes.appBar, {
+      //   [classes.appBarShift]: open,
+      // })}
       >
         <Toolbar>
           <IconButton
@@ -110,8 +115,11 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            DrAgora Music Selector
           </Typography>
+
+          <InfoBox />
+
         </Toolbar>
       </AppBar>
       <Drawer
@@ -153,17 +161,9 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Typography paragraph>
-          DrAgora Music Selector <br/>
-          Това е приложение за генериране на плейлисти в които няма да имате усещането, че слушате едно и също парче по много пъти!<br/>
-          Всяка една от композициите е избрана лично от висококласен музикален редактор с доказано добър вкус.<br/>
-          Изберете жанр, средно темпо и средна гръмкост и ще получите първите пет предложения.<br/>
-          С Diversity управлявате колко често да се сменят стила и темпата на траковете вътре в плейлистата.<br/>
-          Можете да харесвате и нехаресвате конкретен трак. <br/>
-          Регистрираните потребители могат да следват хората, които предлагат траковете и да запазват плейлисти<div className=""></div><div className=""></div>
-          <div className=""></div>
-        </Typography>
+
         <GenresList />
+        <Player />
       </main>
     </div>
   )
