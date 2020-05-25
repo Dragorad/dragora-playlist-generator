@@ -9,22 +9,25 @@ import logo from './logo.svg'
 import './App.css'
 
 import { typography, positions } from '@material-ui/system'
-import { Box } from '@material-ui/core'
-import { TitlesArtistQuery } from './components/TitlesArtistQuery'
+import { Box, Container } from '@material-ui/core'
+import { TitlesArtistQuery } from './components/player/graphql/TitlesArtistQuery'
+// import AddTitleURL from './components/player/graphql/TitleUpdateMutation'
+
 
 
 function App() {
   return (
     <BrowserRouter>
       <React.Fragment>
-        < Box>
+        <Container style={{ backgroundColor: "#f6f9ff" }}>
+          {/* <AddTitleURL /> */}
           <TitlesArtistQuery />
           {/* <PersistentDrawerLeft /> */}
           {/* <Routes /> */}
           <Notifications
           // options={notifyOptions}
           />
-        </Box>
+        </Container>
       </React.Fragment>
     </BrowserRouter>
 
