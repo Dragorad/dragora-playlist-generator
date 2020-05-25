@@ -60,7 +60,7 @@ export function TitlesArtistQuery() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(
     {error.message} </p>;
-  let data1 = (data.title_records).slice(0, 12)
+  let data1 = (data.title_records).slice(81, 90)
   return (
     data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url }) => (
       <div key={_id}>
@@ -75,7 +75,7 @@ export function TitlesArtistQuery() {
         </p>
         <p style={{ color: " rgb(115, 41, 41)" }}>
 
-          {url? <iframe width="240"
+          { url!=null ? <iframe width="240"
             src={`https://www.youtube.com/embed/${url}`}>
           </iframe>
           : <p>No url provided </p>}

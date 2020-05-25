@@ -26,9 +26,13 @@ export default function UrlTitleForm(props) {
   const MBID = props.titleMBID
   const [urlString, setUrlString] = React.useState('url String');
   const handleChange = (event) => {
-    setUrlString(event.target.value);
-  }
+    let urlString = (event.target.value).substring(17)
 
+    // https://youtu.be/3Qf-ZfYtxvA?list=RD3Qf-ZfYtxvA
+
+    setUrlString(urlString)
+  }
+let h4String = 'Handle Title URL'
   return (
 
     <form key={MBID}
@@ -40,9 +44,10 @@ export default function UrlTitleForm(props) {
             titleMBID: MBID
           }
         })
+        h4String +=" url updated"
         setUrlString('')
       }}>
-      <Typography component={"h4"} align={"left"} gutterBottom={true}>Handle Title URL</Typography>
+      <Typography component={"h4"} align={"left"} gutterBottom={true}>{h4String}</Typography>
       <button type="submit">Update Title URL</button>
       <TextField
         id={MBID}

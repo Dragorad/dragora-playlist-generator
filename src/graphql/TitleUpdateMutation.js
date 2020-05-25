@@ -21,7 +21,7 @@ mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
    updateOneTitle_record(
        query: {titleMBID: $titleMBID}, 
     #    skip: !$titleMBID},
-       set: { url: $url}){
+       set: { "url": $url}){
         titleName
         url
     }

@@ -10,7 +10,7 @@ import './App.css'
 
 import { typography, positions } from '@material-ui/system'
 import { Box, Container } from '@material-ui/core'
-import { TitlesArtistQuery } from './components/player/graphql/TitlesArtistQuery'
+import { TitlesArtistQuery } from './graphql/TitlesArtistQuery'
 // import AddTitleURL from './components/player/graphql/TitleUpdateMutation'
 
 
@@ -19,10 +19,11 @@ function App() {
   return (
     <BrowserRouter>
       <React.Fragment>
-        <Container style={{ backgroundColor: "#f6f9ff" }}>
-          {/* <AddTitleURL /> */}
-          <TitlesArtistQuery />
-          {/* <PersistentDrawerLeft /> */}
+        <Container style={{
+           backgroundColor: "#f6f9ff",
+           padding: 1 }}>
+          {/* <TitlesArtistQuery /> */}
+          <PersistentDrawerLeft />
           {/* <Routes /> */}
           <Notifications
           // options={notifyOptions}
