@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles, useTheme, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import AppBar from '@material-ui/core/AppBar'
@@ -17,19 +17,36 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
-import GenresList from '../GenresContainer/GenresContainer'
+// import GenresList from '../GenresContainer/GenresContainer'
 import Player from '../player/Player'
 import InfoBox from '../navbar/InfoBox'
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline'
+import SlidersForm from '../GenresContainer/SlidersForm'
+import { Paper } from '@material-ui/core'
 
 const drawerWidth = 240
+
+
+// const theme = createMuiTheme()
+
+// theme.typography.h6 = {
+//   fontSize: '1.1 rem',
+//   '@media(max-width: 360px)': {
+//     fontSize: '0.6 rem'
+//   },
+//   [theme.breakpoints.up('sm')]: {
+//     fontSize: '1.8 rem'
+//   }
+// }
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-end'
   },
   appBar: {
-    display:'flex',
+    display: 'flex',
+    fontSize: "1rem",
     justifyContent: 'space-between',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -45,7 +62,7 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   hide: {
     display: 'none',
@@ -61,12 +78,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
+    // ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    // paddintLeft: 'none',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -96,15 +114,16 @@ export default function PersistentDrawerLeft() {
   }
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
+    <React.Fragment>
+
+      {/* <ScopedCssBaseline > */}
       <AppBar
         position="fixed"
-      // className={clsx(classes.appBar, {
-      //   [classes.appBarShift]: open,
-      // })}
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
       >
-        <Toolbar>
+        <Toolbar variant='dence'>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -114,10 +133,11 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          {/* <ThemeProvider theme={theme}> */}
+          <Typography variant="h6" noWrap flexShrink='2' >
             DrAgora Music Selector
           </Typography>
-
+          {/* </ThemeProvider> */}
           <InfoBox />
 
         </Toolbar>
@@ -161,10 +181,17 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-
-        <GenresList />
-        <Player />
       </main>
-    </div>
+      <content >
+        {/* <CssBaseline /> */}
+        <Paper elevation={4}>
+          <SlidersForm />
+        </Paper>
+        <Player />
+      </content>
+      {/* </ScopedCssBaseline> */}
+
+    </React.Fragment>
+
   )
 }

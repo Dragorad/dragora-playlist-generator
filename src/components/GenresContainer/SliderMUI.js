@@ -8,9 +8,10 @@ import Tooltip from '@material-ui/core/Tooltip'
 const useStyles = makeStyles((theme) => ({
     root: {
         width: 300 + theme.spacing(3) * 2,
+        maxWidth: "70%",
     },
     margin: {
-        height: theme.spacing(3),
+        height: theme.spacing(  ),
     },
 }))
 
@@ -24,13 +25,6 @@ function ValueLabelComponent(props) {
     )
 }
 
-// ValueLabelComponent.propTypes = {
-//     children: PropTypes.element.isRequired,
-//     open: PropTypes.bool.isRequired,
-//     value: PropTypes.number.isRequired,
-// }
-
-
 
 function AirbnbThumbComponent(props) {
     return (
@@ -42,7 +36,7 @@ function AirbnbThumbComponent(props) {
     )
 }
 
-export default function SliderMUI( props ) {
+export default function SliderMUI(props) {
     const classes = useStyles()
 
     return (
@@ -51,9 +45,7 @@ export default function SliderMUI( props ) {
             <Slider
                 ValueLabelComponent={ValueLabelComponent}
                 aria-label="custom thumb label"
-                defaultValue={20}
-            />
-            <div className={classes.margin} />
-                    </div>
+                defaultValue={20} />
+        </div>
     )
 }
