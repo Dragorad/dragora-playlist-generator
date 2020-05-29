@@ -1,21 +1,20 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import ControlForm from './components/views/controlForm/ControlForm'
-import WorkPaneRedux from './components/views/workArea/WorkPaneRedux'
-import UserForm from './components/views/userForms/SignInScreen'
-import WelcomePage from './components/views/landingPage/WelcomePage'
+import PersistentDrawerLeft from './components/navbar/PersistDrawer'
+import { TitlesArtistQuery } from './graphql/TitlesArtistQuery'
+import UrlTitleForm from './graphql/UrlTitleForm'
 
 const Routes = (props) => (
   <Switch>
-    <Route exact path='/' component={WelcomePage} />
-    <Route exact path='/login' component={UserForm} />
-    <Route exact path='/signedIn' component={ControlForm} />
-    <Route exact path='/signUp' component={UserForm} />
-    <Route exact path='/genres-select' component={ControlForm} />
-    <Redirect from='/index' to='/'/>
-    <Redirect from='/home' to='/'/>
-    <Route path='/work-pane' component={WorkPaneRedux} />
-       <div>404 page not found</div>
+    <Route exact path='/' component={PersistentDrawerLeft} />
+    <Route exact path='/admin' component={TitlesArtistQuery} />
+    {/* <Route exact path='/login' component={UserForm} />
+    <Route exact path='/signedIn' component={ControlForm} /> */}
+    <Route exact path='/genres' component={UrlTitleForm} />
+    <Redirect from='/index' to='/' />
+    <Redirect from='/home' to='/' />
+    {/* <Route path='/work-pane' component={WorkPaneRedux} /> */}
+    <div>404 page not found</div>
   </Switch>
 )
 export default Routes

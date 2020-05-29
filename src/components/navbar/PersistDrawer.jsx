@@ -183,14 +183,11 @@ export default function PersistentDrawerLeft() {
         <div className={classes.drawerHeader} />
       </main>
       <content >
-        {/* <CssBaseline /> */}
         <Paper elevation={4}>
           <SlidersForm />
         </Paper>
         <Player />
       </content>
-      {/* </ScopedCssBaseline> */}
-
     </React.Fragment>
 
   )

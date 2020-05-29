@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 // import Navbar from './components/navbar/Navbar'
-// import Routes from './Routes'
+import Routes from './Routes'
 import Footer from './components/footer/Footer'
 import PersistentDrawerLeft from './components/navbar/PersistDrawer'
 import Notifications from 'react-notify-toast'
@@ -52,11 +52,11 @@ function App() {
         >
 
 
-          <PersistentDrawerLeft />
-          {/* <Routes /> */}
-          <Notifications
-          // options={notifyOptions}
-          />
+          {/* <PersistentDrawerLeft /> */}
+          <Routes />
+          {/* <Notifications
+          options={notifyOptions}
+          /> */}
         </ThemeProvider>
       </React.Fragment>
     </BrowserRouter>

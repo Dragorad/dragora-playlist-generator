@@ -2,6 +2,7 @@ import React from 'react'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { TextField, Typography } from '@material-ui/core';
 import UrlTitleForm from './UrlTitleForm';
+import { genresList } from '../workers/genresList';
 
 
 const TITLE_DATA = gql`
@@ -56,14 +57,17 @@ export function TitlesArtistQuery() {
   const handleChange = (event) => {
     setUrl(event.target.value);
   }
-  
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(
     {error.message} </p>;
   let data1 = (data.title_records).slice(81, 90)
   return (
     data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url }) => (
-      <div key={_id}>
+      <div key={_id} style={{
+        display: 'flex', flexDirection: 'column', paddingLeft: '3%',
+        borderBottom: '1px solid gray', maxWidth: '600 px'
+      }}>
         <p style={{ "color": "blue" }}>
           {artist}: {titleName}
           <p style={{ "color": "red" }} >
@@ -73,14 +77,17 @@ export function TitlesArtistQuery() {
             titleMBID: {titleMBID} <br />
             titleURL: {url} </p>
         </p>
-        <p style={{ color: " rgb(115, 41, 41)" }}>
-
-          { url!=null ? <iframe width="240"
+        <div style={{ color: " rgb(115, 41, 41)", display: 'flex', alignItems: 'space-between' }}>
+          {url != null ? <iframe width="240"
             src={`https://www.youtube.com/embed/${url}`}>
           </iframe>
-          : <p>No url provided </p>}
+            : <p>No url provided </p>}
           <UrlTitleForm titleMBID={titleMBID} />
-        </p>
+          <ul>{genresList.map((genre, index) => (
+            <li key={index}>{genre}</li>
+          ))}
+          </ul>
+        </div>
       </div>
     ))
   )
