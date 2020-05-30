@@ -4,7 +4,7 @@ import {
     Button, Grid,
     Paper, Divider, Box, CssBaseline, AppBar, Toolbar, Container, GridList, GridListTile, makeStyles
 } from '@material-ui/core'
-import { genresList } from '../../workers/genresList'
+import { genresList } from '../../workers/genresAndInstrumentsList'
 import { descriptorsList } from '../../workers/descriptorsList'
 import GenreButton from './GenreButton'
 import { flexbox, sizing } from '@material-ui/system'
@@ -29,18 +29,18 @@ export default function SlidersForm() {
 
     const classes = useStyles()
     return (
-        <Container >
+        <div style={{padding: '1rem', margin:'auto'}}>
             <Grid container direction={'column'}
-                // justifyContent='flex-end'
+                justifyContent='flex-start'
                 // alignItems='center'
                 alignContent='center'>
-                <Grid sx={12}
+                <Grid sx={6}
                     // direction='row-reverse'
                     item container
                     spacing={2}
-                    alignItems='stretch' >
+                    alignItems='flex-start' >
                     {genresList.map((text, index) => (
-                        <Grid item xs={4} sm={4}>
+                        <Grid item xs={4}>
                             <Paper elevation={1}>
                                 <GenreButton flexGrow={1}
                                     key={index} variant='outlined'
@@ -54,41 +54,45 @@ export default function SlidersForm() {
                 <Grid container item sx={5}
                     alignItems='center'
                     justifyContent='center' >
-                    <Paper variant='outlined' >
-                        <Grid item sm={'auto'}
-                            container direction={'column'}>
-                            {descriptorsList.map((descriptor, key) => (
-                                <Grid item mph={4}>
-                                    < SliderMUI key={key}
-                                        sliderText={descriptor} />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </Paper>
+                    {/* <Paper > */}
+                    <Grid item sm={'auto'}
+                        container direction={'column'}>
+                        {descriptorsList.map((descriptor, key) => (
+                            <Grid item mph={4}>
+                                < SliderMUI key={key}
+                                    sliderText={descriptor} />
+                            </Grid>
+                        ))}
+                    <Divider  variant='middle' />
+                    </Grid>
+                    {/* </Paper> */}
+
+
                     <Grid item sm={5} container
                         direction='column'
                         spacing={1}
-                        justifyContent='space-between'
-                        alignItems='stretch' >
+                        justifyContent='flex-end'
+                        alignItems='flex-start' >
                         {/* <Paper elevation={2} > */}
-                        <SliderMUI height='10%' sliderText='Diversity' />
-                        {/* <Toolbar > */}
-                        <Grid sx={'auto'} item
-                            container>
-                            {descriptorsList.map((descriptor, key) => (
-                                <Grid item sx={'auto'} sm={4}> < GenreButton key={key}
-                                    text={descriptor} />
-                                </Grid>
-                            ))}
-                        </Grid>
-                        {/* </Toolbar> */}
-                        <Button size="large"
-                            variant="outlined"
-                            fullWidth >Generate Playlist</Button>
+                            <SliderMUI height='10%' sliderText='Diversity' />
+                            {/* <Toolbar > */}
+                            <Grid sx={'auto'} item
+                                container>
+                                {descriptorsList.map((descriptor, key) => (
+                                    <Grid item sx={'auto'} sm={4}> < GenreButton key={key}
+                                        text={descriptor} />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                            {/* </Toolbar> */}
+                            <Button size="large"
+                                variant="outlined"
+                                fullWidth >Generate Playlist</Button>
                         {/* </Paper> */}
+
                     </Grid>
                 </Grid>
             </Grid>
-        </Container >
+        </div>
     )
 }

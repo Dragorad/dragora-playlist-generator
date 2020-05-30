@@ -5,7 +5,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import GenreButton from '../GenresContainer/GenreButton'
+import GenreButton from '../UserView/GenreButton'
 import Modal from '@material-ui/core/Modal';
 import { Paper, Button } from '@material-ui/core'
 

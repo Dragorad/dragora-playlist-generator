@@ -1,8 +1,8 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import PersistentDrawerLeft from './components/navbar/PersistDrawer'
-import { TitlesArtistQuery } from './graphql/TitlesArtistQuery'
-import UrlTitleForm from './graphql/UrlTitleForm'
+import { TitlesArtistQuery } from './components/adminView/TitlesArtistQuery'
+import UrlTitleForm from './components/adminView/UrlTitleForm'
 
 const Routes = (props) => (
   <Switch>

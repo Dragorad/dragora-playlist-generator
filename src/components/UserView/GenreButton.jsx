@@ -49,7 +49,7 @@ export default function GenreButton(props) {
 
       <ThemeProvider theme={theme}>
 
-<CssBaseline/>
+
         <Button 
         variant='outlined'
         fullWidth

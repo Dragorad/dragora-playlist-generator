@@ -21,7 +21,7 @@ import MailIcon from '@material-ui/icons/Mail'
 import Player from '../player/Player'
 import InfoBox from '../navbar/InfoBox'
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline'
-import SlidersForm from '../GenresContainer/SlidersForm'
+import SlidersForm from '../UserView/SlidersForm'
 import { Paper } from '@material-ui/core'
 
 const drawerWidth = 240

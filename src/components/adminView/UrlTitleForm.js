@@ -1,9 +1,9 @@
 import React, { useReducer, useState } from 'react'
 import { gql, useQuery, useMutation } from '@apollo/client'
-import { TextField, Typography } from '@material-ui/core'
-
-
-
+import { TextField, Typography, div, Divider } from '@material-ui/core'
+import { instrumentsList, genresList } from '../../workers/genresAndInstrumentsList'
+import { ItemsList } from './SelectedList'
+import { from } from 'apollo-boost'
 
 const UPDATE_TITLE = gql`
 mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
@@ -21,7 +21,7 @@ const UPDATE_GENRES = gql`
 mutation UpdateTitleRecord ($titleMBID: String!,$fieldValue: String!){
  updateOneTitle_record(
     query: {titleMBID: $titleMBID}
-    set: { genres: $fieldValue}
+    set: { genres: [$fieldValue]}
     # skip: !$titleMBID
     ){
       titleName
@@ -33,7 +33,7 @@ const UPDATE_INSTRUMENTS = gql`
 mutation UpdateTitleRecord ($titleMBID: String!,$fieldValue: String!){
  updateOneTitle_record(
     query: {titleMBID: $titleMBID}
-    set: { instruments:{ solo: $fieldValue}}
+    set: { instruments:{ soloInstr:[ $fieldValue]}}
     # skip: !$titleMBID
     ){
       titleName
@@ -46,7 +46,7 @@ mutation UpdateTitleRecord ($titleMBID: String!,$fieldValue: String!){
 export default function UrlTitleForm(props) {
 
   const initialState = {}
-  const fieldNames = ['url', ' genres', 'instruments']
+  const fieldNames = ['genres', 'instruments solo', 'instruments oblig']
   //  const {fieldNames} = props
   //   const initialState = {}
 
@@ -78,9 +78,10 @@ export default function UrlTitleForm(props) {
       <form key={nameStr} style={formStyles}
         onSubmit={e => {
           e.preventDefault()
-          handleFieldSubmit(variablesObj)
+          console.log(variablesObj)
+          handleUpdateGenre(variablesObj)
           // h4String = " field updated"
-          setUrlString('')
+          // setUrlString('')
         }}>
         <Typography component={"h4"} align={"left"} gutterBottom={true}>{h4String}</Typography>
         <TextField id={nameStr} label={nameStr} name={nameStr}
@@ -116,7 +117,8 @@ export default function UrlTitleForm(props) {
   const formStyles = {
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: '45%'
+    maxWidth: '90%',
+    margin: '1rem'
   }
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -125,7 +127,8 @@ export default function UrlTitleForm(props) {
   }
   let h4String = ['Handle Title URL', 'Handle Genres']
   return (
-    <div style={{ display: 'flex', maxWidth: '1200 px', justifyContent: 'space-around' }}>
+    <div style={{ display: 'flex', maxWidth: '1200 px',
+     flexDirection: 'row', justifyItems:'space-evently'}}>
       <form key={MBID} style={formStyles}
         onSubmit={e => {
           e.preventDefault()
@@ -147,20 +150,18 @@ export default function UrlTitleForm(props) {
         />
         <button type="submit">Update Title URL</button>
       </form>
-      {fieldNames.map(nameStr => <UpdateFieldForm nameStr={nameStr} />)}
+      {/* <ItemsList arr={genresList} title='Genres' /> */}
+      <UpdateFieldForm nameStr='Genres' style={formStyles} />
+      <Divider orientation='vertical'/>
+      <div style={{ display: 'flex', padding: '1%'}}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {['instruments solo', 'instruments oblig'].map(nameStr => <UpdateFieldForm 
+          nameStr={nameStr}
+          styles={formStyles} />)}
+        </div>
+      </div >
+      {/* <ItemsList arr={instrumentsList} title='Instruments' /> */}
 
-
-
-      {/* <form style={formStyles}>
-        <Typography component={"h4"} align={"left"} gutterBottom={true}>{h4String[1]}</Typography>
-        <TextField id={`genre-${MBID}`} label="genres" name='genres'
-          value={genreString} placeholder={'genres'} onChange={handleChange}
-          // required={true}
-          variant={'outlined'}
-          helperText="Genres"
-        />
-        <button type="submit">Update Title Genres</button>
-      </form> */}
     </div >
   )
 }

@@ -44,11 +44,14 @@ export default function Player() {
     <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            Live From Space
+        <Typography variant="subtitle1" color="textSecondary">
+            Media Player
+          </Typography>
+          <Typography component="h6" variant="subtitle1">
+            Title Name
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Mac Miller
+            Artist Name
           </Typography>
         </CardContent>
         <div className={classes.controls}>
@@ -61,6 +64,7 @@ export default function Player() {
           <IconButton aria-label="next">
             {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
           </IconButton>
+         
         </div>
       </div>
       <CardMedia
@@ -68,6 +72,9 @@ export default function Player() {
         image="/static/images/cards/live-from-space.jpg"
         title="Live from space album cover"
       />
+       <Typography variant="subtitle1" color="textSecondary">
+            Playlist
+          </Typography>
     </Card>
   )
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { gql, useQuery, useMutation } from '@apollo/client'
-import { TextField, Typography } from '@material-ui/core';
-import UrlTitleForm from './UrlTitleForm';
-import { genresList } from '../workers/genresList';
+import { TextField, Typography } from '@material-ui/core'
+import UrlTitleForm from './UrlTitleForm'
+
 
 
 const TITLE_DATA = gql`
@@ -83,10 +83,7 @@ export function TitlesArtistQuery() {
           </iframe>
             : <p>No url provided </p>}
           <UrlTitleForm titleMBID={titleMBID} />
-          <ul>{genresList.map((genre, index) => (
-            <li key={index}>{genre}</li>
-          ))}
-          </ul>
+        
         </div>
       </div>
     ))
