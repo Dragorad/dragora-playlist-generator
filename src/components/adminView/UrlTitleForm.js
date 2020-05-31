@@ -4,8 +4,10 @@ import { TextField, Typography, div, Divider } from '@material-ui/core'
 import { instrumentsList, genresList } from '../../workers/genresAndInstrumentsList'
 import { ItemsList } from './SelectedList'
 import { from } from 'apollo-boost'
+import { UpdateFieldForm } from './UpdateFieldForm'
 
-const UPDATE_TITLE = gql`
+
+const UPDATE_TITLE_URL = gql`
 mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
  updateOneTitle_record(
     query: {titleMBID: $titleMBID}
@@ -55,56 +57,7 @@ export default function UrlTitleForm(props) {
     return initialState
   })
 
-
-
-  function UpdateFieldForm(props) {
-    // const [state, dispatch] = useReducer(reducer, initialState)
-    const [handleUpdateGenre] = useMutation(UPDATE_GENRES)
-    const [handleUpdateInstruments] = useMutation(UPDATE_INSTRUMENTS)
-    const nameStr = props.nameStr
-    const litNameStr = '${nameStr}'
-    const [valueStr, setValueStr] = React.useState('')
-    const h4String = (`Handle ${nameStr}`).toUpperCase()
-    const variablesObj = {
-      variables: {
-        fieldValue: valueStr,
-        titleMBID: MBID,
-      }
-    }
-    const handleFieldSubmit = nameStr == 'genres' ?
-      handleUpdateGenre : handleUpdateInstruments
-
-    return (
-      <form key={nameStr} style={formStyles}
-        onSubmit={e => {
-          e.preventDefault()
-          console.log(variablesObj)
-          handleUpdateGenre(variablesObj)
-          // h4String = " field updated"
-          // setUrlString('')
-        }}>
-        <Typography component={"h4"} align={"left"} gutterBottom={true}>{h4String}</Typography>
-        <TextField id={nameStr} label={nameStr} name={nameStr}
-          value={nameStr} placeholder={nameStr}
-          // onChange={handleChange}
-
-          onChange={event => {
-            event.preventDefault()
-            setValueStr(event.target.value)
-          }}
-          value={valueStr}
-          // required={true}
-          variant={'outlined'}
-          helperText={`Set ${nameStr}`}
-        />
-        <button type="submit">{`update ${nameStr}`}</button>
-      </form>
-    )
-  }
-
-
-
-  const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE,
+  const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE_URL,
     //    {
     //   variables: { titleMBID: props.data.titleMBID },
     //   skip: data == null
@@ -122,7 +75,7 @@ export default function UrlTitleForm(props) {
   }
   const handleChange = (event) => {
     const { name, value } = event.target
-    name === 'url' ? setUrlString(value)
+    name === 'url' ? setUrlString(value.substring(17))
       : setGenres(value)
   }
   let h4String = ['Handle Title URL', 'Handle Genres']
@@ -151,11 +104,12 @@ export default function UrlTitleForm(props) {
         <button type="submit">Update Title URL</button>
       </form>
       {/* <ItemsList arr={genresList} title='Genres' /> */}
-      <UpdateFieldForm nameStr='Genres' style={formStyles} />
+      <UpdateFieldForm nameStr='Genres' style={formStyles} titleMBID={MBID}/>
       <Divider orientation='vertical'/>
       <div style={{ display: 'flex', padding: '1%'}}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {['instruments solo', 'instruments oblig'].map(nameStr => <UpdateFieldForm 
+          {['instruments solo', 'instruments oblig'].map(nameStr => <UpdateFieldForm
+          titleMBID={MBID} 
           nameStr={nameStr}
           styles={formStyles} />)}
         </div>

@@ -30,13 +30,13 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles({
   root: {
-    height: '15 px',
+    height: '10 px',
     minWidth: '6 px',
     fontSize: '0.4 rem',
     width: '3 px'
   },
   label:{
-    textTransform: 'uppercase'
+    // textTransform: 'uppercase'
   }
 })
 

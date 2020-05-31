@@ -61,7 +61,7 @@ export function TitlesArtistQuery() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(
     {error.message} </p>;
-  let data1 = (data.title_records).slice(81, 90)
+  let data1 = (data.title_records).slice(61, 90)
   return (
     data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url }) => (
       <div key={_id} style={{

@@ -4,7 +4,7 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client'
-import { Stitch, AnonymousCredential } from "mongodb-stitch-browser-sdk"
+import { Stitch, AnonymousCredential,RemoteMongoClient } from "mongodb-stitch-browser-sdk"
 import { setContext } from "apollo-link-context"
 
 const APP_ID = "dragoraselectortest-sveyc"
