@@ -13,41 +13,42 @@ const useStyles = makeStyles((theme) => ({
 
     },
     margin: {
-        height: theme.spacing(  ),
+        height: theme.spacing(),
     },
 }))
 
 function ValueLabelComponent(props) {
-    const { children, open, value } = props
+    const { children, open, value: val } = props
 
     return (
-        <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
+        <Tooltip open={open} enterTouchDelay={0} placement="top" title={val}>
             {children}
         </Tooltip>
     )
 }
 
 
-function AirbnbThumbComponent(props) {
-    return (
-        <span {...props}>
-            <span className="bar" />
-            <span className="bar" />
-            <span className="bar" />
-        </span>
-    )
-}
-
 export default function SliderMUI(props) {
     const classes = useStyles()
-
+    // const [value, setValue] = React.useState({ [props.sliderText]: 0 })
+    // const handleChange = (ev, newValue) => {
+    //     setValue(newValue)
+    // }
+    // const handleCommit = (ev, value) => {
+    //     alert(`${props.sliderText} : ${value}`)
+    // }
     return (
         <div className={classes.root}>
             <Typography gutterBottom>{props.sliderText}</Typography>
             <Slider
                 ValueLabelComponent={ValueLabelComponent}
-                aria-label="custom thumb label"
-                defaultValue={20} />
+                aria-label={props.sliderText}
+                defaultValue={props.defaultValue}
+                value={props.value}
+                onChange={props.onChange}
+                onChangeCommitted={props.onChangeCommitted}
+                step={10}
+            />
         </div>
     )
 }

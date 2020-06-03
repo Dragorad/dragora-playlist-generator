@@ -26,8 +26,8 @@ export function UpdateFieldForm(props) {
         handleUpdateGenre : handleUpdateInstruments
     const variablesObj = {
         variables: {
-            [nameStr]: valueStr.split(','),
             titleMBID: MBID,
+            [nameStr]: valueStr.split(','),
         }
     }
 

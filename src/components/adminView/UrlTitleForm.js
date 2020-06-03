@@ -5,44 +5,45 @@ import { instrumentsList, genresList } from '../../workers/genresAndInstrumentsL
 import { ItemsList } from './SelectedList'
 import { from } from 'apollo-boost'
 import { UpdateFieldForm } from './UpdateFieldForm'
+import {UPDATE_TITLE_URL, UPDATE_GENRES, UPDATE_INSTRUMENTS} from '../../graphql/Mutations'
 
 
-const UPDATE_TITLE_URL = gql`
-mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
- updateOneTitle_record(
-    query: {titleMBID: $titleMBID}
-    set: { url: $url}
-    # skip: !$titleMBID
-    ){
-      titleName
-      url
-  }
-}
-`
-const UPDATE_GENRES = gql`
-mutation UpdateTitleRecord ($titleMBID: String!,$fieldValue: String!){
- updateOneTitle_record(
-    query: {titleMBID: $titleMBID}
-    set: { genres: [$fieldValue]}
-    # skip: !$titleMBID
-    ){
-      titleName
-      url
-  }
-}
-`
-const UPDATE_INSTRUMENTS = gql`
-mutation UpdateTitleRecord ($titleMBID: String!,$fieldValue: String!){
- updateOneTitle_record(
-    query: {titleMBID: $titleMBID}
-    set: { instruments:{ soloInstr:[ $fieldValue]}}
-    # skip: !$titleMBID
-    ){
-      titleName
-      url
-  }
-}
-`
+// const UPDATE_TITLE_URL = gql`
+// mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
+//  updateOneTitle_record(
+//     query: {titleMBID: $titleMBID}
+//     set: { url: $url}
+//     # skip: !$titleMBID
+//     ){
+//       titleName
+//       url
+//   }
+// }
+// `
+// const UPDATE_GENRES = gql`
+// mutation UpdateTitleRecord ($titleMBID: String!,$fieldValue: String!){
+//  updateOneTitle_record(
+//     query: {titleMBID: $titleMBID}
+//     set: { genres: $fieldValue}
+//     # skip: !$titleMBID
+//     ){
+//       titleName
+//       url
+//   }
+// }
+// `
+// const UPDATE_INSTRUMENTS = gql`
+// mutation UpdateTitleRecord ($titleMBID: String!,$fieldValue: String!){
+//  updateOneTitle_record(
+//     query: {titleMBID: $titleMBID}
+//     set: { instruments:{ soloInstr:[ $fieldValue]}}
+//     # skip: !$titleMBID
+//     ){
+//       titleName
+//       url
+//   }
+// }
+// `
 
 
 export default function UrlTitleForm(props) {

@@ -17,6 +17,7 @@ const TITLE_DATA = gql`
     titleMBID
     bpm
     url
+    genres
   }
   }
 `
@@ -29,6 +30,7 @@ query GetTitleRecord ($titleMBID: String){
   chords_key
   url
   bpm
+  genres
   titleMBID
   }
 }
@@ -61,9 +63,9 @@ export function TitlesArtistQuery() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(
     {error.message} </p>;
-  let data1 = (data.title_records).slice(61, 90)
+  let data1 = (data.title_records).slice(69, 90)
   return (
-    data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url }) => (
+    data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres }) => (
       <div key={_id} style={{
         display: 'flex', flexDirection: 'column', paddingLeft: '3%',
         borderBottom: '1px solid gray', maxWidth: '600 px'
@@ -76,6 +78,9 @@ export function TitlesArtistQuery() {
           <p style={{ color: "darkblue" }} id={titleMBID}>
             titleMBID: {titleMBID} <br />
             titleURL: {url} </p>
+            <p style={{ color: "darkblue" }} id={titleMBID}>
+            titleMBID: {titleMBID} <br />
+            genres: {genres} </p>
         </p>
         <div style={{ color: " rgb(115, 41, 41)", display: 'flex', alignItems: 'space-between' }}>
           {url != null ? <iframe width="240"
