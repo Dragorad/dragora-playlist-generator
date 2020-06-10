@@ -1,4 +1,4 @@
-import { gql, from } from "apollo-boost"
+import { gql } from "apollo-boost"
 
 export const UPDATE_TITLE_URL = gql`
 mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
@@ -13,15 +13,6 @@ mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
 }
 `
 
-// from Stitch Graphql
-// mutation {
-//   updateOneTitle_record(query: { titleMBID: "7ae60709-bd13-46d5-a9a8-0092e2f2a462" }, set: { genres: ["pop", "jazzy", "rock"] }) {
-//     _id
-//     titleMBID
-//     titleName
-//     genres
-//   }
-// }
 export const UPDATE_GENRES = gql`
 mutation UpdateTitleRecordGenres ($titleMBID: String!,$fieldValue: [String!]){
  updateOneTitle_record(

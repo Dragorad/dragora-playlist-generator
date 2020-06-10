@@ -18,11 +18,13 @@ import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
 // import GenresList from '../GenresContainer/GenresContainer'
-import Player from '../player/Player'
+import PlayerCard from '../player/PlayerCard'
 import InfoBox from '../navbar/InfoBox'
-import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline'
 import SlidersForm from '../UserView/SlidersForm'
-import { Paper } from '@material-ui/core'
+import { Paper, Grid } from '@material-ui/core'
+// import PlayerDr from '../player/Player'
+import ReactPlayer from 'react-player'
+import { demoUrls } from '../player/demoUrls'
 
 const drawerWidth = 240
 
@@ -115,8 +117,6 @@ export default function PersistentDrawerLeft() {
 
   return (
     <React.Fragment>
-
-      {/* <ScopedCssBaseline > */}
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -182,11 +182,33 @@ export default function PersistentDrawerLeft() {
       >
         <div className={classes.drawerHeader} />
       </main>
-      <content >
-        <Paper elevation={4}>
-          <SlidersForm />
-        </Paper>
-        <Player />
+      <content>
+        {/* <div style={{
+          display: 'flex',
+          flexFlow: 'row wrap',
+          alignItems: 'flex-start',
+          justify: 'space-between'
+        }}> */}
+
+        {/* <Paper elevation={4}> */}
+        {/* <div style={{width: '60%'}}> */}
+        <Grid container xs={12} lg={6} spacing={1}>
+          <Grid item xs={12} lg={9}>
+            <SlidersForm />
+            {/* </Paper> */}
+          </Grid>
+          <Grid item xs={12} lg={3}>
+            <PlayerCard />
+            {/* <ReactPlayer 
+            url={['https://youtu.be/uzR5jM9UeJA',
+            'https://youtu.be/oDdOYyGa41Q']}
+            light={true} controls
+            width={'70%'}
+            height={'60%'} /> */}
+
+          </Grid>
+        </Grid>
+        {/* </div> */}
       </content>
     </React.Fragment>
 

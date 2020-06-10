@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: 300 + theme.spacing(3) * 2,
         maxWidth: "75%",
-        maxHeight: '30%'
+        height: '10%'
 
     },
     margin: {
@@ -39,7 +39,8 @@ export default function SliderMUI(props) {
     // }
     return (
         <div className={classes.root}>
-            <Typography gutterBottom>{props.sliderText}</Typography>
+            <Typography gutterBottom
+            style={{height:'30%'}}>{props.sliderText}</Typography>
             <Slider
                 ValueLabelComponent={ValueLabelComponent}
                 aria-label={props.sliderText}

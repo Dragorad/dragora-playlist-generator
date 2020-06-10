@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import SliderMUI from './SliderMUI'
 import {
     Button, Grid, Slider,
-    Paper, Divider, makeStyles, Typography
+    Paper, Divider, makeStyles, Typography, Container
 } from '@material-ui/core'
 import { genresList } from '../../workers/genresAndInstrumentsList'
 import { descriptorsList } from '../../workers/descriptorsList'
-import GenreButton from './GenreButton'
+import { GenreButton, ButtonsGroupMultiple } from './GenreButton'
 import { flexbox, sizing } from '@material-ui/system'
 import { grey } from '@material-ui/core/colors'
 import ContinousSlider from './SliderCopy'
+import { getRandomInt } from '../player/demoUrls'
+import { generatePlaylist } from '../../graphql/Realms'
 
 
 const useStyles = makeStyles(theme => ({
@@ -22,20 +24,41 @@ const useStyles = makeStyles(theme => ({
     gridList: {
         width: 200,
         height: 100
+    },
+    paper: {
+        padding: '2%',
+        margin: 'auto'
     }
 }))
 
+const getRandomBpm = getRandomInt(85, 185)
+const getRandomDelta = getRandomInt(10, 50)
+console.log(`bpm: ${getRandomBpm}  delta: ${getRandomDelta}`)
 
-export default function SlidersForm() {
+const generateRandomInput = () => ({
+    bpm: getRandomInt(85, 185),
+    delta: getRandomInt(10, 50)
+})
+
+// const randomUrls = generatePlaylist(inputObj)
+
+// export default randomUrls
+
+const stateObj = {
+    randomInt: 180,
+    Brightness: 25,
+    Loudness: 45,
+    Tempo: 14,
+    Diversity: 30,
+    diversityStrings: [],
+    genresButtons: {
+
+    }
+}
+export  default function SlidersForm() {
 
     const [state, setState] = useState(
-        {
-            Brightness: 25,
-            Loudness: 45,
-            Tempo: 14,
-            Diversity: 30,
-            temp:13
-        })
+        stateObj)
     // const [value, setValue] = React.useState(30);
 
     const handleChange = name => (event, newValue) => {
@@ -54,17 +77,7 @@ export default function SlidersForm() {
         setState({ ...state, [name]: value })
     }
 
-    // const handleCommit = name => (e, value) => {
 
-    //     setState({
-    //         ...state, [name]:value
-    //     })
-    //     alert(`temp is: ${state.temp}`);
-    //   }
-    // const [value, setValue] = React.useState({ [props.sliderText]: 0 })
-    // const handleChange = (ev, newValue) => {
-    //     setValue(newValue)
-    // }
 
     const handleSliderChange = name => (ev, value) => {
         ev.preventDefault()
@@ -75,106 +88,92 @@ export default function SlidersForm() {
 
     function onSubmit(e) {
         e.preventDefault()
-        alert(JSON.stringify(state))
+        const newInput = generateRandomInput()
+        console.log(newInput)
+        setState({ ...state, randomInt: getRandomInt(90, 190) })
+        // alert(JSON.stringify(state))
     }
     const classes = useStyles()
-    const stName = 'temp'
     return (
         <form style={{ padding: '1rem', margin: 'auto' }}>
-            <Grid container direction={'column'}
-                justifyContent='flex-start'
-                // alignItems='center'
-                alignContent='center'>
-                <Grid sx={6}
-                    // direction='row-reverse'
+            <Grid container
+                xs={12} lg={8}
+                xl={6}
+                spacing={1}
+                direction={'row'}
+                justify={'space-between'}
+                alignItems={'center'}
+            // alignContent='center'
+            >
+                <Grid xs={12} sm={3} //genres'
+                    style={{ padding: '1%', margin: 'auto' }}
                     item container
-                    spacing={2}
+                    spacing={3}
+                    direction={'row'}
+                    justify='center'
                     alignItems='flex-start' >
-                    {genresList.map((text, index) => (
-                        <Grid item xs={4}>
-                            <Paper elevation={1}>
-                                <GenreButton flexGrow={1}
-                                    key={index} variant='outlined'
-                                    // style={{ minHeight: '64px' }}
-                                    text={text}
-                                />
-                            </Paper>
-                        </Grid>
-                    ))}
+                    <ButtonsGroupMultiple sm={6} inputArr={genresList} selected={false} />
                 </Grid>
-                <Grid container item sx={5}
-                    alignItems='center'
-                    justifyContent='center' >
-                    {/* <Paper > */}
-                    <Grid item sm={'auto'}
-                        container direction={'column'}>
 
-                        {/* <Typography id="discrete-slider" gutterBottom>
-                            Temperature
-                        </Typography>
-                        <Slider
-                            defaultValue={state.stName}
-                            value={state[stName]}
-                            // getAriaValueText={valuetext}
-                            // aria-labelledby="discrete-slider"
-                            valueLabelDisplay="auto"
-                            name={stName}
-                            onChange={onSliderChange(stName)}
-                            onChangeCommitted={handleCommit(stName)}
-                            step={10}
-                            marks
-                            min={10}
-                            max={110}
-                        /> */}
+                <Grid item container xs={12} sm={9} //sliders and generate
+                    direction='row'
+                    alignItems={'baseline'}
+                    spacing={1}
+                    // style={{ height: '100%' }}
+                    justify={'space-between'}>
 
+                    <Grid item xs={12} sm={5}//descriptor sliders
+                        container direction={'column'}
+                        alignItems={'center'}
+                        style={{ height: '30%' }}>
+                        {/* <Paper elevation={1}
+                         style={{ padding: '2%', margin: 'auto' }}> */}
+                        {/* //see slideer copy for template */}
                         {descriptorsList.map((descriptor, key) => (
-                            <Grid item mph={4}>
-                                < SliderMUI key={key}
-                                    value={state.descriptor}
-                                    defaultValue={state[descriptor]}
-                                    aria-text={descriptor}
-                                    sliderText={descriptor}
-                                    name={descriptor}
-                                    onChange={onSliderChange(descriptor)}
-                                    onChangeComitted={handleCommit(descriptor)}
-                                />
-                            </Grid>
+                            // <Grid item sx={8}>
+                            < SliderMUI key={key}
+                                value={state.descriptor}
+                                defaultValue={state[descriptor]}
+                                aria-text={descriptor}
+                                sliderText={descriptor}
+                                name={descriptor}
+                                onChange={onSliderChange(descriptor)}
+                                onChangeComitted={handleCommit(descriptor)}
+                            />
+                            // </Grid>
                         ))}
-                        <Divider variant='middle' />
+
+                        {/* <Divider variant='middle' /> */}
+                        {/* </Paper> */}
                     </Grid>
-                    {/* </Paper> */}
-
-
-                    <Grid item sm={5} container
+                    {/* <Divider orientation='vertical' flexItem /> */}
+                    <Grid item xs={12} sm={7} container //diversity
                         direction='column'
                         spacing={1}
-                        justifyContent='flex-end'
-                        alignItems='flex-start' >
-                        {/* <Paper elevation={2} > */}
-                        <SliderMUI height='10%' sliderText='Diversity'
-                        value={state.Diversity}
-                        // aria-text={descriptor}
-                        // sliderText={descriptor}
-                        // name={descriptor}
-                        onChange={onSliderChange('Diversity')}
-                        onChangeComitted={handleCommit('Diversity')} />
-                        {/* <Toolbar > */}
-                        <Grid sx={'auto'} item
-                            container>
-                            {descriptorsList.map((descriptor, key) => (
-                                <Grid item sx={'auto'} sm={4}> < GenreButton key={key}
-                                    text={descriptor} />
-                                </Grid>
-                            ))}
-                        </Grid>
-                        {/* </Toolbar> */}
-                        <Button size="large"
-                            variant="outlined"
-                            onClick={onSubmit}
-                            type='submit'
-                            fullWidth >Generate Playlist</Button>
-                        {/* </Paper> */}
+                        style={{ borderTop: '1px solid #e5e6e8', paddingBottom: '20 px' }}
 
+                        justify={'space-between'}
+                        alignItems={'center'} >
+                        <Container >
+                            <Divider orientation='horizontal' flexItem />
+                            <SliderMUI item
+                                //  height='10%'
+                                sliderText='Diversity'
+                                value={state.Diversity}
+                                // aria-text={descriptor}
+                                // sliderText={descriptor}
+                                // name={descriptor}
+                                onChange={onSliderChange('Diversity')}
+                                onChangeComitted={handleCommit('Diversity')} />
+                            <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected />
+
+                            <Button size={'medium'}
+                                variant="outlined"
+                                onClick={onSubmit}
+                                type='submit'
+                                fullWidth >Generate Playlist</Button>
+
+                        </Container>
                     </Grid>
                 </Grid>
             </Grid>
