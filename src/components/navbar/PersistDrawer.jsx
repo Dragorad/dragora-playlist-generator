@@ -43,6 +43,7 @@ const drawerWidth = 240
 
 const useStyles = makeStyles(theme => ({
   root: {
+    maxWidth: '1200px',
     display: 'flex',
     justifyContent: 'flex-end'
   },
@@ -86,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    // paddintLeft: 'none',
+    maxWidth: '1200px',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -182,7 +183,7 @@ export default function PersistentDrawerLeft() {
       >
         <div className={classes.drawerHeader} />
       </main>
-      <content>
+      {/* <content> */}
         {/* <div style={{
           display: 'flex',
           flexFlow: 'row wrap',
@@ -192,24 +193,32 @@ export default function PersistentDrawerLeft() {
 
         {/* <Paper elevation={4}> */}
         {/* <div style={{width: '60%'}}> */}
-        <Grid container xs={12} lg={6} spacing={1}>
-          <Grid item xs={12} lg={9}>
+        <Grid container xs={12} 
+        lg={10}
+        spacing={1}
+        xl={9}
+        >
+          <Grid item 
+          xs={12} 
+          // lg={6}
+          // xl={4}
+          >
             <SlidersForm />
             {/* </Paper> */}
           </Grid>
-          <Grid item xs={12} lg={3}>
+          <Grid item xs={12} lg={10}>
             <PlayerCard />
             {/* <ReactPlayer 
             url={['https://youtu.be/uzR5jM9UeJA',
             'https://youtu.be/oDdOYyGa41Q']}
             light={true} controls
             width={'70%'}
-            height={'60%'} /> */}
-
+            height={'60%'} />
+ */}
           </Grid>
         </Grid>
         {/* </div> */}
-      </content>
+      {/* </content> */}
     </React.Fragment>
 
   )

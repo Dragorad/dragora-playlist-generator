@@ -97,8 +97,9 @@ export  default function SlidersForm() {
     return (
         <form style={{ padding: '1rem', margin: 'auto' }}>
             <Grid container
-                xs={12} lg={8}
-                xl={6}
+                xs={12} 
+                // lg={8}
+                // xl={6}
                 spacing={1}
                 direction={'row'}
                 justify={'space-between'}
@@ -112,7 +113,7 @@ export  default function SlidersForm() {
                     direction={'row'}
                     justify='center'
                     alignItems='flex-start' >
-                    <ButtonsGroupMultiple sm={6} inputArr={genresList} selected={false} />
+                    <ButtonsGroupMultiple sm={6}  lg={3} inputArr={genresList} selected={false} />
                 </Grid>
 
                 <Grid item container xs={12} sm={9} //sliders and generate

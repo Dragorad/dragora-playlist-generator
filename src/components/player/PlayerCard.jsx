@@ -13,7 +13,7 @@ import { Container, Button } from '@material-ui/core'
 import { demoUrls, GET_FIVE, getRandomInt } from './demoUrls'
 import PlayerDr from './Player'
 import TitlesList from './TitlesList'
-import {generatePlaylist} from '../../graphql/Realms'
+import { generatePlaylist } from '../../graphql/Realms'
 import randomUrls from '../UserView/SlidersForm'
 
 const useStyles = makeStyles(theme => ({
@@ -73,15 +73,15 @@ export default function PlayerCard() {
 
     }
   }
-  const { loading, error, data } = useQuery(GET_FIVE,{
-    variables: { randomBpm: 140},
+  const { loading, error, data } = useQuery(GET_FIVE, {
+    variables: { randomBpm: 140 },
   })
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(
   {error.message} </p>
 
 
-  const randomUrls =  data.title_records.map(elem => `https://youtu.be/${elem.url}`)
+  const randomUrls = data.title_records.map(elem => `https://youtu.be/${elem.url}`)
   console.log(data.title_records)
 
   return (
@@ -123,21 +123,22 @@ export default function PlayerCard() {
           </IconButton>
         </div>
         <CardContent className={classes.content}>
-        </CardContent>
-      </div>
-      <CardMedia
+
+          {/* <CardMedia
         className={classes.cover}
       // image="/static/images/cards/live-from-space.jpg"
       // title="Live from space album cover"
-      >
-        <TitlesList urlIndex={state.urlIndex} dataArr={data.title_records}
-          setIndex={changeUrlIndex} />
-        {/* <ReactPlayer /> */}
+      > */}
+          <TitlesList urlIndex={state.urlIndex} dataArr={data.title_records}
+            setIndex={changeUrlIndex} />
+          {/* <ReactPlayer /> */}
 
-      </CardMedia>
-      <Typography variant="subtitle1" color="textSecondary">
+          {/* </CardMedia> */}
+          <Typography variant="subtitle1" color="textSecondary">
 
-      </Typography>
+          </Typography>
+        </CardContent>
+      </div>
     </Container>
   )
 }

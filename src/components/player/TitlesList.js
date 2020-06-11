@@ -13,7 +13,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayCircleOutline'
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        maxWidth: 360,
+        maxWidth: 460,
         backgroundColor: theme.palette.background.paper,
     },
 }))
