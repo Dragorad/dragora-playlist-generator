@@ -28,7 +28,7 @@ export function getRandomInt(min, max) {
 export const GET_FIVE = gql`
 query getFiveRecords( $randomBpm: Int){
     title_records(
-        query: {bpm_lte: $randomBpm} 
+        query: {bpm_gte: $randomBpm} 
         sortBy: CHORDS_KEY_ASC 
         limit:5
         ) {
