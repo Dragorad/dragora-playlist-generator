@@ -88,9 +88,9 @@ export default function SlidersForm() {
     const {state: appState, actions} = useOvermind()
     function onSubmit(e) {
         e.preventDefault()
-        let newBpm = getRandomInt(85,190)
+        let newBpm = getRandomInt(75,170)
         actions.setRandomBpm(newBpm)
-        alert(`${newBpm}  -  ${appState.playListParams.bpm}`)
+        alert(`random BPM is ${appState.playListParams.bpm}`)
         // randomBpm = getRandomInt(85, 185)
 
 
