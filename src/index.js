@@ -4,8 +4,16 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client'
-import { Stitch, AnonymousCredential,RemoteMongoClient } from "mongodb-stitch-browser-sdk"
+import { Stitch, AnonymousCredential, RemoteMongoClient } from "mongodb-stitch-browser-sdk"
 import { setContext } from "apollo-link-context"
+import { createOvermind } from 'overmind'
+import { Provider as OvermindProvider } from 'overmind-react'
+import { config } from './overmind'
+import { Devtools } from 'overmind/lib/Devtools'
+
+
+const overmind = createOvermind(config,{devtools: true})
+
 
 const APP_ID = "dragoraselectortest-sveyc"
 const app = Stitch.hasAppClient(APP_ID)
@@ -41,10 +49,14 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
 })
 
+
+
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <App />
-    </ApolloProvider>
+    <OvermindProvider value={overmind}>
+        <ApolloProvider client={client}>
+            <App />
+        </ApolloProvider>
+    </OvermindProvider>
     , document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change

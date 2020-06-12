@@ -1,5 +1,5 @@
 {
-  "name": "dr-plsylist-2",
+  "name": "dr-plstylist-2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,9 +10,15 @@
     "@material-ui/lab": "^4.0.0-alpha.40",
     "@material-ui/system": "^4.9.14",
     "apollo-boost": "^0.4.7",
+    "concurrently": "^5.2.0",
+    "gh-pages": "^3.0.0",
     "graphql": "^14.6.0",
     "mongodb-stitch-browser-sdk": "^4.8.0",
     "node-sass": "^4.14.1",
+    "now": "^19.0.1",
+    "overmind": "^24.1.1",
+    "overmind-devtools": "^25.1.1",
+    "overmind-react": "^25.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-md": "^1.14.1",

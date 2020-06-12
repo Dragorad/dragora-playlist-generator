@@ -6,11 +6,12 @@ import PersistentDrawerLeft from './components/navbar/PersistDrawer'
 import Notifications from 'react-notify-toast'
 import logo from './logo.svg'
 import './App.css'
-
 import { typography, positions } from '@material-ui/system'
 import { Box, Container, ThemeProvider, createMuiTheme } from '@material-ui/core'
-// import { TitlesArtistQuery } from './graphql/TitlesArtistQuery'
-// import AddTitleURL from './components/player/graphql/TitleUpdateMutation'
+import { useOvermind } from './overmind/index'
+
+
+
 
 const theme = createMuiTheme({
   breakpoints: {
@@ -43,6 +44,11 @@ const theme = createMuiTheme({
 })
 
 function App() {
+  const { state, actions, effects, reaction } = useOvermind()
+
+  // Or be specific
+  // const { isLoggedIn } = useState().auth
+  // const { login, logout } = useActions().auth
   return (
     <BrowserRouter>
       <React.Fragment>

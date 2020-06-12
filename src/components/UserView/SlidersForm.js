@@ -31,9 +31,9 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const getRandomBpm = getRandomInt(85, 185)
-const getRandomDelta = getRandomInt(10, 50)
-console.log(`bpm: ${getRandomBpm}  delta: ${getRandomDelta}`)
+export const randomBpm = getRandomInt(85, 185)
+const randomDelta = getRandomInt(10, 50)
+console.log(`bpm: ${randomBpm}  delta: ${randomDelta}`)
 
 const generateRandomInput = () => ({
     bpm: getRandomInt(85, 185),
@@ -55,12 +55,11 @@ const stateObj = {
 
     }
 }
-export  default function SlidersForm() {
+
+export default function SlidersForm() {
 
     const [state, setState] = useState(
         stateObj)
-    // const [value, setValue] = React.useState(30);
-
     const handleChange = name => (event, newValue) => {
         setState({ ...state, [name]: newValue })
     }
@@ -88,6 +87,9 @@ export  default function SlidersForm() {
 
     function onSubmit(e) {
         e.preventDefault()
+        randomBpm = getRandomInt(85, 185)
+
+
         const newInput = generateRandomInput()
         console.log(newInput)
         setState({ ...state, randomInt: getRandomInt(90, 190) })
@@ -97,7 +99,7 @@ export  default function SlidersForm() {
     return (
         <form style={{ padding: '1rem', margin: 'auto' }}>
             <Grid container
-                xs={12} 
+                xs={12}
                 // lg={8}
                 // xl={6}
                 spacing={1}
@@ -113,7 +115,9 @@ export  default function SlidersForm() {
                     direction={'row'}
                     justify='center'
                     alignItems='flex-start' >
-                    <ButtonsGroupMultiple sm={6}  lg={3} inputArr={genresList} selected={false} />
+                    <ButtonsGroupMultiple sm={6} lg={3} inputArr={genresList}
+                    // selected={true}
+                    />
                 </Grid>
 
                 <Grid item container xs={12} sm={9} //sliders and generate
@@ -166,7 +170,7 @@ export  default function SlidersForm() {
                                 // name={descriptor}
                                 onChange={onSliderChange('Diversity')}
                                 onChangeComitted={handleCommit('Diversity')} />
-                            <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected />
+                            <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false} />
 
                             <Button size={'medium'}
                                 variant="outlined"

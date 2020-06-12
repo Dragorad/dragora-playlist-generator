@@ -24,6 +24,7 @@ export function getRandomInt(min, max) {
 
 // const randomBpm = getRandomInt(120)
 
+
 export const GET_FIVE = gql`
 query getFiveRecords( $randomBpm: Int){
     title_records(

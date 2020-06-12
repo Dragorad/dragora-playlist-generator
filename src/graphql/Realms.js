@@ -16,7 +16,7 @@ try {
     )
     // `App.currentUser` updates to match the logged in user
 } catch (err) {
-    console.error("Failed to log in", err);
+    console.error("Failed to log in", err)
 }
 
 

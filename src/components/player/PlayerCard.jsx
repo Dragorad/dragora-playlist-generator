@@ -14,7 +14,7 @@ import { demoUrls, GET_FIVE, getRandomInt } from './demoUrls'
 import PlayerDr from './Player'
 import TitlesList from './TitlesList'
 import { generatePlaylist } from '../../graphql/Realms'
-import randomUrls from '../UserView/SlidersForm'
+import randomUrls, { randomBpm } from '../UserView/SlidersForm'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,8 +43,8 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-
-const getRandomBpm = getRandomInt(85, 185)
+// randomBpm
+// const randomBpm = getRandomInt(85, 185)
 // const randomUrls = generatePlaylist(inputObj)
 console.log(randomUrls)
 const initialState = {
@@ -74,7 +74,7 @@ export default function PlayerCard() {
     }
   }
   const { loading, error, data } = useQuery(GET_FIVE, {
-    variables: { randomBpm: 140 },
+    variables: { randomBpm: randomBpm },
   })
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(

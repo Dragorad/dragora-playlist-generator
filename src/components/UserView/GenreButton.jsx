@@ -8,31 +8,10 @@ import { green, blue, red, blueGrey } from '@material-ui/core/colors';
 
 
 
-// const theme = createMuiTheme({
-//   overrides: {
-//     // body:{
-//     //   fontSize: "0.4 rem"
-//     // },
-
-//     typography: {
-//       button: {
-//         fontSize: "0.4 rem"
-//       }
-//     },
-//     MuiButton: {
-//       root: {
-//         fontSize: '0.3 rem',
-//         minWidth: '3 px'
-//       },
-//       label: {
-//         fontSize: '0.3 rem'
-//       }
-//     }
-//   }
-// })
 
 const useStyles = makeStyles({
   root: {
+    // width:'100%',
     height: '100%',
     padding: '4%',
     // minWidth: '6 px',
@@ -42,15 +21,16 @@ const useStyles = makeStyles({
       // backgroundColor: darken 
     },
     '&$:hover': {
-      backgroundColor: blueGrey[50]
+      backgroundColor: red[900]
     },
   },
-  checked: {},
-  hover: {},
+  // checked: {},
+  // hover: {},
   label: {
+    color: 'red',
     padding: '4%',
     fontSize: '0.3 rem',
-    textTransform: 'uppercase',
+    // textTransform: 'uppercase',
     '&$:hover': {
       textTransform: 'lowercase'
     }
@@ -58,18 +38,25 @@ const useStyles = makeStyles({
 })
 
 
+let btnState = {
+  genresArr:[],
+  descriptorsArr:[]
+
+} 
 
 export function ButtonsGroupMultiple(props) {
-
+  const [selected, setSelected] = React.useState(props.selected)
   const inputArr = props.inputArr
-  const [selected, setSelected] = React.useState('false')
-
-
-  const onButtonClick = name => (event, selected) => {
-    event.preventDefault()
+  const onButtonClick = name => (event) => {
     setSelected(!selected)
-    selected ? inputArr.push(name) : inputArr.filter(elem => elem !== name)
-    alert(name)
+    // alert(genresArr.includes(name))
+    
+    const {genresArr, descriptorsArr} = btnState
+    
+    genresArr.includes(name) ?
+      genresArr = genresArr.filter(elem => elem !== name)
+      : genresArr.push(name)
+    alert(genresArr)
   }
   const classes = useStyles()
   return (
@@ -83,6 +70,7 @@ export function ButtonsGroupMultiple(props) {
         <Grid item xs={4} sm={props.sm} spacing={1}>
           <Paper elevation={1}>
             <GenreButton flexGrow={1}
+              value={text}
               key={index} variant='outlined'
               onClick={onButtonClick(text)}
               text={text}
@@ -97,14 +85,17 @@ export function ButtonsGroupMultiple(props) {
 }
 
 export function GenreButton(props) {
-
-  const [isActive, setIsActive] = useState(false)
+  const btnName = props.text
   const classes = useStyles()
   return (
     <Button
       variant='outlined'
+      color='red'
+      selected={props.selected}
       size={'medium'}
+      // name={name}
       fullWidth
+      onClick={props.onClick}
       classNames={{
         root: classes.root,
         active: classes.active,
