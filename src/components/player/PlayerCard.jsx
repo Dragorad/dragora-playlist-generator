@@ -15,6 +15,7 @@ import PlayerDr from './Player'
 import TitlesList from './TitlesList'
 import { generatePlaylist } from '../../graphql/Realms'
 import randomUrls, { randomBpm } from '../UserView/SlidersForm'
+import { useOvermind } from '../../overmind'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,11 +56,9 @@ const initialState = {
 export default function PlayerCard() {
   const classes = useStyles()
   const theme = useTheme()
-  // const urlIndex = 0
   const [state, setState] = useState(initialState)
   const changeUrlIndex = direction => (event) => {
     // alert(` you set direction ${direction}`)
-
     switch (direction) {
       case 'up':
         return state.urlIndex < randomUrls.length - 1 ?
@@ -73,8 +72,9 @@ export default function PlayerCard() {
 
     }
   }
+  const {state: appState} = useOvermind()
   const { loading, error, data } = useQuery(GET_FIVE, {
-    variables: { randomBpm: randomBpm },
+    variables: { randomBpm: appState.playListParams.bpm },
   })
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(

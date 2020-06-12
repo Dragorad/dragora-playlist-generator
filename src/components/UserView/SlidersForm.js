@@ -12,6 +12,7 @@ import { grey } from '@material-ui/core/colors'
 import ContinousSlider from './SliderCopy'
 import { getRandomInt } from '../player/demoUrls'
 import { generatePlaylist } from '../../graphql/Realms'
+import { useOvermind } from '../../overmind/index'
 
 
 const useStyles = makeStyles(theme => ({
@@ -70,24 +71,27 @@ export default function SlidersForm() {
         })
         // alert(state[name])
     }
-
     const handleCommit = name => (ev, value) => {
         alert(`${name} ${value}`)
         setState({ ...state, [name]: value })
     }
-
-
-
+    
+    
+    
     const handleSliderChange = name => (ev, value) => {
         ev.preventDefault()
         setState({
             ...state, [name]: value
         })
     }
-
+    
+    const {state: appState, actions} = useOvermind()
     function onSubmit(e) {
         e.preventDefault()
-        randomBpm = getRandomInt(85, 185)
+        let newBpm = getRandomInt(85,190)
+        actions.setRandomBpm(newBpm)
+        alert(`${newBpm}  -  ${appState.playListParams.bpm}`)
+        // randomBpm = getRandomInt(85, 185)
 
 
         const newInput = generateRandomInput()
