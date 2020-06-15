@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .vercel
+src/overmind
+src/overmind/operators.js

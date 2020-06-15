@@ -2,16 +2,10 @@ import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Routes from './Routes'
 import Footer from './components/footer/Footer'
-import PersistentDrawerLeft from './components/navbar/PersistDrawer'
 import Notifications from 'react-notify-toast'
 import logo from './logo.svg'
 import './App.css'
-import { typography, positions } from '@material-ui/system'
-import { Box, Container, ThemeProvider, createMuiTheme } from '@material-ui/core'
-import { useOvermind } from './overmind/index'
-
-
-
+import { ThemeProvider, createMuiTheme } from '@material-ui/core'
 
 const theme = createMuiTheme({
   breakpoints: {
@@ -44,11 +38,6 @@ const theme = createMuiTheme({
 })
 
 function App() {
-  const { state, actions, effects, reaction } = useOvermind()
-
-  // Or be specific
-  // const { isLoggedIn } = useState().auth
-  // const { login, logout } = useActions().auth
   return (
     <BrowserRouter>
       <React.Fragment>
@@ -60,25 +49,6 @@ function App() {
         </ThemeProvider>
       </React.Fragment>
     </BrowserRouter>
-
-
-
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   )
 }
 

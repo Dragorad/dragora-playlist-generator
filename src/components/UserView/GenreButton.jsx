@@ -5,6 +5,7 @@ import { makeStyles, createMuiTheme, Button, Grid, Paper, darken, capitalize } f
 import { border } from '@material-ui/system'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { green, blue, red, blueGrey } from '@material-ui/core/colors';
+// import {app } from '../../index'
 
 
 
@@ -38,25 +39,27 @@ const useStyles = makeStyles({
 })
 
 
-let btnState = {
-  genresArr:[],
-  descriptorsArr:[]
-
-} 
-
 export function ButtonsGroupMultiple(props) {
-  const [selected, setSelected] = React.useState(props.selected)
+
+
+  // const {state: appState, actions} = useOvermind()
+  
+  // const {btnState} = appState
+  // const {genresArr, descriptorsArr} = btnState
+  
+  // const [selected, setSelected] = React.useState(props.selected)
   const inputArr = props.inputArr
   const onButtonClick = name => (event) => {
-    setSelected(!selected)
+    // setSelected(!selected)
+    // actions.formButtonAction(name)
     // alert(genresArr.includes(name))
     
-    const {genresArr, descriptorsArr} = btnState
+    // const {genresArr, descriptorsArr} = btnState
     
-    genresArr.includes(name) ?
-      genresArr = genresArr.filter(elem => elem !== name)
-      : genresArr.push(name)
-    alert(genresArr)
+    // genresArr.includes(name) ?
+    //   genresArr = genresArr.filter(elem => elem !== name)
+    //   : genresArr.push(name)
+    // alert(genresArr)
   }
   const classes = useStyles()
   return (

@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useReducer, useContext } from 'react'
+import { AppContext } from '../../stateContext/indexContext'
+import * as types from '../../stateContext/types'
 import SliderMUI from './SliderMUI'
 import {
     Button, Grid, Slider,
@@ -9,10 +11,9 @@ import { descriptorsList } from '../../workers/descriptorsList'
 import { GenreButton, ButtonsGroupMultiple } from './GenreButton'
 import { flexbox, sizing } from '@material-ui/system'
 import { grey } from '@material-ui/core/colors'
-import ContinousSlider from './SliderCopy'
+// import ContinousSlider from './SliderCopy'
 import { getRandomInt } from '../player/demoUrls'
-import { generatePlaylist } from '../../graphql/Realms'
-import { useOvermind } from '../../overmind/index'
+import { getNewPlayList } from '../../index'
 
 
 const useStyles = makeStyles(theme => ({
@@ -52,15 +53,21 @@ const stateObj = {
     Tempo: 14,
     Diversity: 30,
     diversityStrings: [],
-    genresButtons: {
-
-    }
+    genresButtons: {}
 }
+
+// const getNewPlayList = async () => {
+//     const playlist = await app.functions.generatePlaylist({ bpm: 169, delta: 20 })
+//     console.log(playlist)
+//     return playlist
+// }
 
 export default function SlidersForm() {
 
-    const [state, setState] = useState(
-        stateObj)
+    const [state, setState] = useState(stateObj)
+
+    const [appState, dispatch] = useContext(AppContext)
+    console.log(appState.playlist)
     const handleChange = name => (event, newValue) => {
         setState({ ...state, [name]: newValue })
     }
@@ -72,32 +79,33 @@ export default function SlidersForm() {
         // alert(state[name])
     }
     const handleCommit = name => (ev, value) => {
-        alert(`${name} ${value}`)
+        // alert(`${name} ${value}`)
         setState({ ...state, [name]: value })
     }
-    
-    
-    
+
+
+
     const handleSliderChange = name => (ev, value) => {
         ev.preventDefault()
         setState({
             ...state, [name]: value
         })
     }
-    
-    const {state: appState, actions} = useOvermind()
-    function onSubmit(e) {
+
+    const  onSubmit = appState => (e) => {
         e.preventDefault()
-        let newBpm = getRandomInt(75,170)
-        actions.setRandomBpm(newBpm)
-        alert(`random BPM is ${appState.playListParams.bpm}`)
-        // randomBpm = getRandomInt(85, 185)
+        // console.log(appState.diversity)
+        getNewPlayList().then(
+            playlist => {
+                console.log(appState)
 
+                dispatch({
+                    type: types.SET_NEW_PLAYLIST,
+                    payload: playlist
+                })
 
-        const newInput = generateRandomInput()
-        console.log(newInput)
-        setState({ ...state, randomInt: getRandomInt(90, 190) })
-        // alert(JSON.stringify(state))
+            }
+        )
     }
     const classes = useStyles()
     return (
@@ -178,7 +186,7 @@ export default function SlidersForm() {
 
                             <Button size={'medium'}
                                 variant="outlined"
-                                onClick={onSubmit}
+                                onClick={onSubmit(appState)}
                                 type='submit'
                                 fullWidth >Generate Playlist</Button>
 

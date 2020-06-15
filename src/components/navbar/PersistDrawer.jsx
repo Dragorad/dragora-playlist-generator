@@ -136,7 +136,7 @@ export default function PersistentDrawerLeft() {
           </IconButton>
           {/* <ThemeProvider theme={theme}> */}
           <Typography variant="h6" noWrap flexShrink='2' >
-            DrAgora Music Selector
+            DrAgora Music Selector Beta  !
           </Typography>
           {/* </ThemeProvider> */}
           <InfoBox />

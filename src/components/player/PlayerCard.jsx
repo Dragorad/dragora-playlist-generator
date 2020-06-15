@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -13,9 +13,9 @@ import { Container, Button } from '@material-ui/core'
 import { demoUrls, GET_FIVE, getRandomInt } from './demoUrls'
 import PlayerDr from './Player'
 import TitlesList from './TitlesList'
-import { generatePlaylist } from '../../graphql/Realms'
-import randomUrls, { randomBpm } from '../UserView/SlidersForm'
-import { useOvermind } from '../../overmind'
+import { AppContext } from '../../stateContext/indexContext'
+import { app } from 'realm-web'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,19 +44,16 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-// randomBpm
-// const randomBpm = getRandomInt(85, 185)
-// const randomUrls = generatePlaylist(inputObj)
-console.log(randomUrls)
-const initialState = {
+const initialStateObj = {
   playing: true,
   urlIndex: 0
 }
 
 export default function PlayerCard() {
+  const [appState, dispatch] = useContext(AppContext)
   const classes = useStyles()
   const theme = useTheme()
-  const [state, setState] = useState(initialState)
+  const [state, setState] = useState(initialStateObj)
   const changeUrlIndex = direction => (event) => {
     // alert(` you set direction ${direction}`)
     switch (direction) {
@@ -72,18 +69,20 @@ export default function PlayerCard() {
 
     }
   }
-  const {state: appState} = useOvermind()
-  const { loading, error, data } = useQuery(GET_FIVE, {
-    variables: { randomBpm: appState.playListParams.bpm },
-  })
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(
-  {error.message} </p>
 
-
-  const randomUrls = data.title_records.map(elem => `https://youtu.be/${elem.url}`)
-  console.log(data.title_records)
-
+  // const { loading, error, data } = useQuery(GET_FIVE, {
+  //   variables: { randomBpm: appState.playListParams.bpm },
+  // })
+  // if (!appState.playlist.length< 5 ) return <p>Loading...</p>;
+  // if (error) return <p>Error :(
+  //  {error.message} </p>
+  if (!appState || appState.default == undefined) return <p>Loading playlist...</p>
+  
+  const playlistArr = appState.default.playlist
+  console.log(playlistArr)
+  
+  const randomUrls = playlistArr.map(elem => `https://youtu.be/${elem.url}`)
+  console.log(randomUrls)
   return (
     <Container className={classes.root}>
       <PlayerDr
@@ -129,7 +128,7 @@ export default function PlayerCard() {
       // image="/static/images/cards/live-from-space.jpg"
       // title="Live from space album cover"
       > */}
-          <TitlesList urlIndex={state.urlIndex} dataArr={data.title_records}
+          <TitlesList urlIndex={state.urlIndex} dataArr={playlistArr}
             setIndex={changeUrlIndex} />
           {/* <ReactPlayer /> */}
 
