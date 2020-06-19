@@ -7,6 +7,9 @@ import logo from './logo.svg'
 import './App.css'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core'
 
+
+
+
 const theme = createMuiTheme({
   breakpoints: {
     values: {
@@ -38,7 +41,9 @@ const theme = createMuiTheme({
 })
 
 function App() {
+  // const [user, setUser] = React.useState(app.currentUser)
   return (
+    
     <BrowserRouter>
       <React.Fragment>
         <ThemeProvider theme={theme}>

@@ -1,4 +1,9 @@
 import { gql } from "apollo-boost"
+import { app } from "realm-web"
+
+// export const updateTitleUrlMongo = url => {
+// app.
+// }
 
 export const UPDATE_TITLE_URL = gql`
 mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){

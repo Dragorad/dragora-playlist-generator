@@ -1,7 +1,7 @@
 // https://www.sitepoint.com/replace-redux-react-hooks-context-api/
 
 import React, { useReducer, createContext} from "react";
-import * as initialState from './initialState'
+import {initialState} from './initialState'
 import {reducer} from './reducers'
 
 

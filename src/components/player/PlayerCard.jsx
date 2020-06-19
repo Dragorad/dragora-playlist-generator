@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
-import { gql, useQuery } from '@apollo/client'
+import gql from 'graphql-tag'
+import {useQuery, useMutation } from '@apollo/react-hooks'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -44,16 +45,16 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const initialStateObj = {
-  playing: true,
-  urlIndex: 0
-}
 
-export default function PlayerCard() {
+
+export default function PlayerCard(props) {
   const [appState, dispatch] = useContext(AppContext)
   const classes = useStyles()
   const theme = useTheme()
-  const [state, setState] = useState(initialStateObj)
+  const [state, setState] = useState({
+    playing: true,
+    urlIndex: 0
+  })
   const changeUrlIndex = direction => (event) => {
     // alert(` you set direction ${direction}`)
     switch (direction) {
@@ -70,15 +71,9 @@ export default function PlayerCard() {
     }
   }
 
-  // const { loading, error, data } = useQuery(GET_FIVE, {
-  //   variables: { randomBpm: appState.playListParams.bpm },
-  // })
-  // if (!appState.playlist.length< 5 ) return <p>Loading...</p>;
-  // if (error) return <p>Error :(
-  //  {error.message} </p>
-  if (!appState || appState.default == undefined) return <p>Loading playlist...</p>
-  
-  const playlistArr = appState.default.playlist
+  if (!appState ) return <p>Loading playlist...</p>
+  console.log (appState)
+  const playlistArr = appState.playlist
   console.log(playlistArr)
   
   const randomUrls = playlistArr.map(elem => `https://youtu.be/${elem.url}`)

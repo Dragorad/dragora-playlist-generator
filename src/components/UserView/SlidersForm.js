@@ -11,9 +11,8 @@ import { descriptorsList } from '../../workers/descriptorsList'
 import { GenreButton, ButtonsGroupMultiple } from './GenreButton'
 import { flexbox, sizing } from '@material-ui/system'
 import { grey } from '@material-ui/core/colors'
-// import ContinousSlider from './SliderCopy'
+import { app, getNewPlayList } from '../../index'
 import { getRandomInt } from '../player/demoUrls'
-import { getNewPlayList } from '../../index'
 
 
 const useStyles = makeStyles(theme => ({
@@ -37,53 +36,59 @@ export const randomBpm = getRandomInt(85, 185)
 const randomDelta = getRandomInt(10, 50)
 console.log(`bpm: ${randomBpm}  delta: ${randomDelta}`)
 
+
 const generateRandomInput = () => ({
     bpm: getRandomInt(85, 185),
     delta: getRandomInt(10, 50)
 })
 
-// const randomUrls = generatePlaylist(inputObj)
-
-// export default randomUrls
-
 const stateObj = {
-    randomInt: 180,
-    Brightness: 25,
-    Loudness: 45,
-    Tempo: 14,
-    Diversity: 30,
+    randomInt: { min: 120, max: 180, step: 5, value: 180 },
+    Brightness: { min: 0, max: 100, step: 5, value: 65 },
+    Loudness: {
+        min: 1, max: 100, step: 5, value: 45,
+        valueLabelFormat: (x) => x + 60
+    },
+    Tempo: { min: 60, max: 180, step: 5, value: 95 },
+    Diversity: { min: 10, max: 50, step: 10, value: 20 },
     diversityStrings: [],
     genresButtons: {}
 }
 
-// const getNewPlayList = async () => {
-//     const playlist = await app.functions.generatePlaylist({ bpm: 169, delta: 20 })
-//     console.log(playlist)
-//     return playlist
-// }
-
 export default function SlidersForm() {
 
     const [state, setState] = useState(stateObj)
-
+    // console.log(state)
     const [appState, dispatch] = useContext(AppContext)
-    console.log(appState.playlist)
-    const handleChange = name => (event, newValue) => {
-        setState({ ...state, [name]: newValue })
+
+    const customInput = {
+        bpm: state.Tempo.value + 70,
+        delta: state.Diversity.value
+    }
+    const randomInput = generateRandomInput()
+    const setNewPlaylist = customInput => {
+        console.log(customInput)
+        getNewPlayList(customInput)
+            .then(playlist => {
+                dispatch({
+                    type: types.SET_NEW_PLAYLIST,
+                    payload: playlist
+                })
+                console.log(appState.playlist)
+            })
     }
 
     const onSliderChange = name => (ev, value) => {
-        setState({
-            ...state, [name]: value
-        })
+        setState({ ...state, [name]: { ...state[name], value: value } })
+        // setState({
+        //     ...state, [name]: value
+        // })
         // alert(state[name])
     }
     const handleCommit = name => (ev, value) => {
-        // alert(`${name} ${value}`)
-        setState({ ...state, [name]: value })
+        setState({ ...state, [name]: { ...state[name], value: value } })
+
     }
-
-
 
     const handleSliderChange = name => (ev, value) => {
         ev.preventDefault()
@@ -92,21 +97,13 @@ export default function SlidersForm() {
         })
     }
 
-    const  onSubmit = appState => (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
-        // console.log(appState.diversity)
-        getNewPlayList().then(
-            playlist => {
-                console.log(appState)
-
-                dispatch({
-                    type: types.SET_NEW_PLAYLIST,
-                    payload: playlist
-                })
-
-            }
-        )
+        setNewPlaylist(customInput)
+        // .then (res => {console.log(res)})
+        // console.log(appState.default)
     }
+
     const classes = useStyles()
     return (
         <form style={{ padding: '1rem', margin: 'auto' }}>
@@ -149,13 +146,18 @@ export default function SlidersForm() {
                         {descriptorsList.map((descriptor, key) => (
                             // <Grid item sx={8}>
                             < SliderMUI key={key}
-                                value={state.descriptor}
-                                defaultValue={state[descriptor]}
+                                value={state[descriptor].value}
+                                defaultValue={state[descriptor].value}
+                                min={state[descriptor].min}
+                                max={state[descriptor].max}
+                                step={state[descriptor].step}
                                 aria-text={descriptor}
                                 sliderText={descriptor}
                                 name={descriptor}
                                 onChange={onSliderChange(descriptor)}
                                 onChangeComitted={handleCommit(descriptor)}
+                                valueLabelFormat={descriptor === "Tempo" ?
+                                    state.Tempo.valueLabelFormat : (x) => x = x}
                             />
                             // </Grid>
                         ))}
@@ -176,17 +178,21 @@ export default function SlidersForm() {
                             <SliderMUI item
                                 //  height='10%'
                                 sliderText='Diversity'
-                                value={state.Diversity}
+                                value={state.Diversity.value}
+                                defaultValue={state.Diversity.value}
+                                min={state.Diversity.min}
+                                max={state.Diversity.max}
+                                step={state.Diversity.step}
                                 // aria-text={descriptor}
                                 // sliderText={descriptor}
-                                // name={descriptor}
+                                name={'Diversity'}
                                 onChange={onSliderChange('Diversity')}
                                 onChangeComitted={handleCommit('Diversity')} />
                             <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false} />
 
                             <Button size={'medium'}
                                 variant="outlined"
-                                onClick={onSubmit(appState)}
+                                onClick={onSubmit}
                                 type='submit'
                                 fullWidth >Generate Playlist</Button>
 

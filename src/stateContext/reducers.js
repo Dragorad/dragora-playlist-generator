@@ -18,11 +18,19 @@ export const reducer = (state, action) => {
                 sliderFormValues: { ...state.sliderFormValues, [name]: value }
             }
         }
-        case types.SET_NEW_PLAYLIST: {
+        case types.SET_URL_IDX: {
+            
             return {
-                playList: { ...state.playlist, playList: action.payload }
+                urlIdx: action.payload
             }
         }
+        case types.SET_NEW_PLAYLIST: {
+            
+            console.log(action.payload)
+            return {
+                playlist:  action.payload }
+            }
+        
         // case types.SET_BTN_STATE:
         //     return {
 

@@ -1,5 +1,6 @@
 import React from 'react'
-import { gql, useQuery, useMutation } from '@apollo/client'
+import gql from 'graphql-tag'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 import { TextField, Typography } from '@material-ui/core'
 import UrlTitleForm from './UrlTitleForm'
 
@@ -8,7 +9,7 @@ import UrlTitleForm from './UrlTitleForm'
 const TITLE_DATA = gql`
   query GetTitleData {
     title_records
-    # (query: {bpm_lte:125} sortBy:CHORDS_KEY_ASC)
+    (sortBy: URL_ASC)
      {
     _id
      artist
@@ -61,10 +62,12 @@ export function TitlesArtistQuery() {
   }
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(
+  if (error) return <p>Error :( from TitleArtist Query
     {error.message} </p>;
-  let data1 = data.title_records
-  // .slice(30)
+
+  console.log(data.title_records.length)
+  let data1 = data.title_records.filter(elem => elem.bpm < 149)
+  // .slice(66, 95)
   return (
     data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres }) => (
       <div key={_id} style={{
@@ -78,18 +81,16 @@ export function TitlesArtistQuery() {
           </p>
           <p style={{ color: "darkblue" }} id={titleMBID}>
             titleMBID: {titleMBID} <br />
-            titleURL: {url} </p>
-            <p style={{ color: "darkblue" }} id={titleMBID}>
-            titleMBID: {titleMBID} <br />
+            titleURL: {url}  <br />
             genres: {genres} </p>
         </p>
         <div style={{ color: " rgb(115, 41, 41)", display: 'flex', alignItems: 'space-between' }}>
-          {url != null ? <iframe width="240"
+          {url != null ? <iframe width="180"
             src={`https://www.youtube.com/embed/${url}`}>
           </iframe>
             : <p>No url provided </p>}
           <UrlTitleForm titleMBID={titleMBID} />
-        
+
         </div>
       </div>
     ))
