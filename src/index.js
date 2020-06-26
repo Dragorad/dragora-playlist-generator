@@ -9,10 +9,6 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import * as RealmWeb from "realm-web"
-// import { ApolloClient } from 'apollo-boost'
-// import { HttpLink, InMemoryCache} from 'apollo-boost'
-// import { ApolloProvider } from "@apollo/react-hooks"
-import { Stitch, AnonymousCredential, RemoteMongoClient } from "mongodb-stitch-browser-sdk"
 // import { setContext } from "apollo-link-context"
 // import * as initialState from './stateContext/initialState'
 // import {reducer} from './stateContext/reducers'
@@ -85,9 +81,7 @@ export const firstPlaylist = app.functions.generatePlaylist({ bpm: 169, delta: 2
   })
 
 export const getNewPlayList = async (inputObj) => {
-  const {bpm, delta} = inputObj
-  const playlist = await app.functions.generatePlaylist({ bpm: bpm, delta: delta })
-  console.log(playlist)
+  const playlist = await app.functions.generatePlaylist(inputObj)
   return playlist
 }
 

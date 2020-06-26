@@ -19,22 +19,29 @@ export const reducer = (state, action) => {
             }
         }
         case types.SET_URL_IDX: {
-            
             return {
+                ...state,
                 urlIdx: action.payload
             }
         }
-        case types.SET_NEW_PLAYLIST: {
-            
-            console.log(action.payload)
+        case types.SET_PLAYING: {
             return {
-                playlist:  action.payload }
+                ...state,
+                playing: action.payload
             }
-        
-        // case types.SET_BTN_STATE:
-        //     return {
+        }
+        case types.SET_NEW_PLAYLIST: {
 
-        //     }
+            console.log(action.payload)
+            return {...state,
+                playlist: action.payload
+            }
+        }
+
+        case types.TOGGLE_PLAY_PAUSE:
+            return { ...state,
+                playing: action.payload
+            }
 
 
         case "START":

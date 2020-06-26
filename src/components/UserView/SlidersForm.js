@@ -32,15 +32,15 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export const randomBpm = getRandomInt(85, 185)
-const randomDelta = getRandomInt(10, 50)
-console.log(`bpm: ${randomBpm}  delta: ${randomDelta}`)
+// export const randomBpm = getRandomInt(85, 185)
+// const randomDelta = getRandomInt(10, 50)
+// console.log(`bpm: ${randomBpm}  delta: ${randomDelta}`)
 
 
-const generateRandomInput = () => ({
-    bpm: getRandomInt(85, 185),
-    delta: getRandomInt(10, 50)
-})
+// const generateRandomInput = () => ({
+//     bpm: getRandomInt(85, 185),
+//     delta: getRandomInt(10, 50)
+// })
 
 const stateObj = {
     randomInt: { min: 120, max: 180, step: 5, value: 180 },
@@ -49,7 +49,7 @@ const stateObj = {
         min: 1, max: 100, step: 5, value: 45,
         valueLabelFormat: (x) => x + 60
     },
-    Tempo: { min: 60, max: 180, step: 5, value: 95 },
+    Tempo: { min: 60, max: 180, step: 5, value: 40 },
     Diversity: { min: 10, max: 50, step: 10, value: 20 },
     diversityStrings: [],
     genresButtons: {}
@@ -63,16 +63,26 @@ export default function SlidersForm() {
 
     const customInput = {
         bpm: state.Tempo.value + 70,
-        delta: state.Diversity.value
+        delta: state.Diversity.value,
+        average_loudness: state.Loudness.value,
+        spectral_centroid: state.Brightness.value
     }
-    const randomInput = generateRandomInput()
-    const setNewPlaylist = customInput => {
+        const setNewPlaylist = customInput => {
         console.log(customInput)
         getNewPlayList(customInput)
             .then(playlist => {
+                console.log(playlist)
                 dispatch({
                     type: types.SET_NEW_PLAYLIST,
                     payload: playlist
+                })
+                dispatch({
+                    type: types.SET_URL_IDX,
+                    payload: 0
+                })
+                dispatch({
+                    type: types.SET_PLAYING,
+                    payload: true
                 })
                 console.log(appState.playlist)
             })
