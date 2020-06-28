@@ -22,18 +22,17 @@ export default function UrlTitleForm(props) {
     return initialState
   })
 
-  // const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE_URL)
   const handleUpdateTitleRecordURL = async (url) => {
-    const newUrl =  await app.functions.updateTitleUrl({
+    const newUrl = await app.functions.updateTitleUrl({
       titleMBID: MBID,
       url: urlString
     })
-    newUrl !==undefined ?  setUrlString(urlString): setUrlString("error from url TItleForm")
+    newUrl !== undefined ? setUrlString(urlString) : setUrlString("error from url TItleForm")
   }
 
   const MBID = props.titleMBID
   const [urlString, setUrlString] = React.useState('')
-  const [genreString, setGenres] = React.useState('')
+  // sconst [genreString, setGenres] = React.useState('')
 
   const formStyles = {
     display: 'flex',
@@ -43,8 +42,8 @@ export default function UrlTitleForm(props) {
   }
   const handleChange = (event) => {
     const { name, value } = event.target
-    name === 'url' ? setUrlString(value.substring(17))
-      : setGenres(value)
+    name === 'url' && setUrlString(value.substring(17))
+    // : setGenres(value)
   }
   const clickUpdateUrl = () => handleUpdateTitleRecordURL({
     variables: {

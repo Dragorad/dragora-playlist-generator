@@ -19,6 +19,7 @@ const TITLE_DATA = gql`
     bpm
     url
     genres
+  
   }
   }
 `
@@ -69,7 +70,7 @@ export function TitlesArtistQuery() {
   let data1 = data.title_records.filter(elem => elem.bpm < 149)
   // .slice(66, 95)
   return (
-    data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres }) => (
+    data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres}) => (
       <div key={_id} style={{
         display: 'flex', flexDirection: 'column', paddingLeft: '3%',
         borderBottom: '1px solid gray', maxWidth: '600 px'
