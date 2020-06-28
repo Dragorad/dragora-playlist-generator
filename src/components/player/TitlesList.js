@@ -6,6 +6,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import PlayArrowIcon from '@material-ui/icons/PlayCircleOutline'
+import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined'
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 
@@ -23,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 export default function TitlesList(props) {
   const classes = useStyles()
   const [appState, dispatch] = useContext(AppContext)
-console.log(appState)
+  console.log(appState)
   const setAppStateIdx = index => (e) => {
     e.preventDefault()
     dispatch({
@@ -49,6 +51,12 @@ console.log(appState)
             <ListItemText primary={elem.artist}
               secondary={elem.titleName} />
             <Divider />
+            <ListItemIcon>
+              <ThumbUpAltOutlinedIcon />
+            </ListItemIcon>
+            <ListItemIcon>
+              < FavoriteOutlinedIcon />
+            </ListItemIcon>
           </ListItem>
         ))}
       </List>

@@ -25,6 +25,7 @@ import { Paper, Grid } from '@material-ui/core'
 // import PlayerDr from '../player/Player'
 import ReactPlayer from 'react-player'
 import { demoUrls } from '../player/demoUrls'
+import { blueGrey, lightBlue, blue } from '@material-ui/core/colors'
 
 const drawerWidth = 240
 
@@ -49,6 +50,8 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     display: 'flex',
+    backgroundColor:blue[900],
+    
     fontSize: "1rem",
     justifyContent: 'space-between',
     transition: theme.transitions.create(['margin', 'width'], {

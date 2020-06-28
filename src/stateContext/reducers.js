@@ -33,17 +33,29 @@ export const reducer = (state, action) => {
         case types.SET_NEW_PLAYLIST: {
 
             console.log(action.payload)
-            return {...state,
+            return {
+                ...state,
                 playlist: action.payload
             }
         }
 
         case types.TOGGLE_PLAY_PAUSE:
-            return { ...state,
+            return {
+                ...state,
                 playing: action.payload
             }
-
-
+        case types.TOGGLE_BTN_STATE: {
+            const [arrName, newArr] = action.payload
+            // const newArr = []
+            // state[arrName].includes(name) ?
+            //     newArr = state[arrName].filter(el => el !== name)
+            //     : newArr = state[arrName].push(name)
+            console.log(newArr)
+            return {
+                ...state,
+                [arrName]: newArr
+            }
+        }
         case "START":
             return {
                 loading: true

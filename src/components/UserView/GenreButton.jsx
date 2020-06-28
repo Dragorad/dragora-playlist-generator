@@ -1,30 +1,33 @@
-import React, { useState } from 'react'
-// import { style, minWidth } from '@material-ui/system'
+import React, { useState, useContext } from 'react'
 import ToggleButton from '@material-ui/lab/ToggleButton'
-import { makeStyles, createMuiTheme, Button, Grid, Paper, darken, capitalize } from '@material-ui/core'
-import { border } from '@material-ui/system'
+import { makeStyles } from '@material-ui/core/styles'
+import { createMuiTheme, Button, Grid, Paper, darken, capitalize } from '@material-ui/core'
+import { border, color } from '@material-ui/system'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { green, blue, red, blueGrey } from '@material-ui/core/colors';
-// import {app } from '../../index'
+import { green, blue, red, blueGrey, lightBlue } from '@material-ui/core/colors'
+import { AppContext } from '../../stateContext/indexContext';
+import { StylesProvider } from '@material-ui/core'
+import { descriptorsList } from '../../workers/descriptorsList'
+import { TOGGLE_BTN_STATE } from '../../stateContext/types'
 
 
 
 
 const useStyles = makeStyles({
   root: {
-    // width:'100%',
+    width: '100%',
     height: '100%',
-    padding: '4%',
-    // minWidth: '6 px',
-    // width: '3 px',
-    '&:active': {
-      backgroundColor: blue[600],
-      // backgroundColor: darken 
+    padding: '7%',
+    '&:hover': {
+      backgroundColor: blueGrey[200]
     },
-    '&$:hover': {
-      backgroundColor: red[900]
+    '&$selected': {
+      backgroundColor: blueGrey[400],
+      color: 'white'
     },
+
   },
+  selected: {},
   // checked: {},
   // hover: {},
   label: {
@@ -41,25 +44,23 @@ const useStyles = makeStyles({
 
 export function ButtonsGroupMultiple(props) {
 
-
-  // const {state: appState, actions} = useOvermind()
-  
   // const {btnState} = appState
   // const {genresArr, descriptorsArr} = btnState
-  
+  const [appState, dispatch] = useContext(AppContext)
   // const [selected, setSelected] = React.useState(props.selected)
   const inputArr = props.inputArr
+
   const onButtonClick = name => (event) => {
-    // setSelected(!selected)
-    // actions.formButtonAction(name)
-    // alert(genresArr.includes(name))
-    
-    // const {genresArr, descriptorsArr} = btnState
-    
-    // genresArr.includes(name) ?
-    //   genresArr = genresArr.filter(elem => elem !== name)
-    //   : genresArr.push(name)
-    // alert(genresArr)
+    const arrName = descriptorsList.includes(name) ? 'descriptorsArr' : 'genresArr'
+    // alert(arrName)
+    const newArr = appState[arrName].includes(name) ?
+      appState[arrName].filter(el => el !== name)
+      : [...appState[arrName], name]
+    console.log(newArr)
+    dispatch({
+      type: 'TOGGLE_BTN_STATE',
+      payload: [arrName, newArr]
+    })
   }
   const classes = useStyles()
   return (
@@ -72,12 +73,25 @@ export function ButtonsGroupMultiple(props) {
       {inputArr.map((text, index) => (
         <Grid item xs={4} sm={props.sm} spacing={1}>
           <Paper elevation={1}>
-            <GenreButton flexGrow={1}
+            <ToggleButton
+              key={index}
+              classes={{
+                root: classes.root,
+                selected: classes.selected
+              }}
+              aria-label={props.text}
               value={text}
-              key={index} variant='outlined'
-              onClick={onButtonClick(text)}
               text={text}
-            />
+              variant='outlined'
+              color='red'
+              selected={appState.genresArr.includes(text) || appState.descriptorsArr.includes(text)}
+              size={'medium'}
+              // name={name}
+              fullWidth
+              onChange={onButtonClick(text)}
+            >
+              {text}
+            </ToggleButton>
           </Paper>
         </Grid>
       ))}
@@ -87,27 +101,3 @@ export function ButtonsGroupMultiple(props) {
   )
 }
 
-export function GenreButton(props) {
-  const btnName = props.text
-  const classes = useStyles()
-  return (
-    <Button
-      variant='outlined'
-      color='red'
-      selected={props.selected}
-      size={'medium'}
-      // name={name}
-      fullWidth
-      onClick={props.onClick}
-      classNames={{
-        root: classes.root,
-        active: classes.active,
-        hoover: classes.hover,
-        label: classes.label,
-        label: classes.hover
-      }}
-    >
-      {props.text}
-    </Button>
-  )
-}

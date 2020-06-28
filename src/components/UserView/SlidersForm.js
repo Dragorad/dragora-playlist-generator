@@ -12,7 +12,7 @@ import { GenreButton, ButtonsGroupMultiple } from './GenreButton'
 import { flexbox, sizing } from '@material-ui/system'
 import { grey } from '@material-ui/core/colors'
 import { app, getNewPlayList } from '../../index'
-import { getRandomInt } from '../player/demoUrls'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -67,7 +67,7 @@ export default function SlidersForm() {
         average_loudness: state.Loudness.value,
         spectral_centroid: state.Brightness.value
     }
-        const setNewPlaylist = customInput => {
+    const setNewPlaylist = customInput => {
         console.log(customInput)
         getNewPlayList(customInput)
             .then(playlist => {
@@ -125,7 +125,6 @@ export default function SlidersForm() {
                 direction={'row'}
                 justify={'space-between'}
                 alignItems={'center'}
-            // alignContent='center'
             >
                 <Grid xs={12} sm={3} //genres'
                     style={{ padding: '1%', margin: 'auto' }}
@@ -135,7 +134,7 @@ export default function SlidersForm() {
                     justify='center'
                     alignItems='flex-start' >
                     <ButtonsGroupMultiple sm={6} lg={3} inputArr={genresList}
-                    // selected={true}
+                    selected={true}
                     />
                 </Grid>
 
@@ -150,9 +149,6 @@ export default function SlidersForm() {
                         container direction={'column'}
                         alignItems={'center'}
                         style={{ height: '30%' }}>
-                        {/* <Paper elevation={1}
-                         style={{ padding: '2%', margin: 'auto' }}> */}
-                        {/* //see slideer copy for template */}
                         {descriptorsList.map((descriptor, key) => (
                             // <Grid item sx={8}>
                             < SliderMUI key={key}
@@ -184,7 +180,7 @@ export default function SlidersForm() {
                         justify={'space-between'}
                         alignItems={'center'} >
                         <Container >
-                            <Divider orientation='horizontal' flexItem />
+                            <Divider orientation='vertical' flexItem />
                             <SliderMUI item
                                 //  height='10%'
                                 sliderText='Diversity'
@@ -193,8 +189,7 @@ export default function SlidersForm() {
                                 min={state.Diversity.min}
                                 max={state.Diversity.max}
                                 step={state.Diversity.step}
-                                // aria-text={descriptor}
-                                // sliderText={descriptor}
+                                aria-text={'Diversity'}
                                 name={'Diversity'}
                                 onChange={onSliderChange('Diversity')}
                                 onChangeComitted={handleCommit('Diversity')} />

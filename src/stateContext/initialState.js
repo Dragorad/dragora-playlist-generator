@@ -23,13 +23,12 @@ export const initialState = {
     Tempo: 14,
     Diversity: 20,
     diversityStrings: [],
+    genresStrings: [],
     bpm: 120
   },
-  btnState: {
-    genresArr: ['genres'],
-    descriptorsArr: ['descr']
+  genresArr: genresList,
+  descriptorsArr: ['Tempo'],
 
-  },
   sliderFormValues: {
     genresList: genresFilterList,
     Brightness: 35,
