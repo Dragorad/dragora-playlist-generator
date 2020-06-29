@@ -29,6 +29,9 @@ const useStyles = makeStyles(theme => ({
     paper: {
         padding: '2%',
         margin: 'auto'
+    },
+    buttonGroup: {
+        martinBottom: 1
     }
 }))
 
@@ -134,7 +137,7 @@ export default function SlidersForm() {
                     justify='center'
                     alignItems='flex-start' >
                     <ButtonsGroupMultiple sm={6} lg={3} inputArr={genresList}
-                    selected={true}
+                        selected={true}
                     />
                 </Grid>
 
@@ -159,6 +162,7 @@ export default function SlidersForm() {
                                 step={state[descriptor].step}
                                 aria-text={descriptor}
                                 sliderText={descriptor}
+                                disabled={!appState.descriptorsArr.includes(descriptor)}
                                 name={descriptor}
                                 onChange={onSliderChange(descriptor)}
                                 onChangeComitted={handleCommit(descriptor)}
@@ -174,8 +178,12 @@ export default function SlidersForm() {
                     {/* <Divider orientation='vertical' flexItem /> */}
                     <Grid item xs={12} sm={7} container //diversity
                         direction='column'
-                        spacing={1}
-                        style={{ borderTop: '1px solid #e5e6e8', paddingBottom: '20 px' }}
+                        spacing={5}
+                        style={{
+                            alignItems: 'space-between',
+                            borderTop: '1px solid #e5e6e8',
+                            borderBottom: '1px solid #e5e6e8', paddingBottom: '20 px'
+                        }}
 
                         justify={'space-between'}
                         alignItems={'center'} >
@@ -193,14 +201,18 @@ export default function SlidersForm() {
                                 name={'Diversity'}
                                 onChange={onSliderChange('Diversity')}
                                 onChangeComitted={handleCommit('Diversity')} />
-                            <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false} />
-
-                            <Button size={'medium'}
-                                variant="outlined"
-                                onClick={onSubmit}
-                                type='submit'
-                                fullWidth >Generate Playlist</Button>
-
+                            <Grid item >
+                                <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false}
+                                    classes={classes.buttonGroup} />
+                            </Grid>
+                            <Grid item>
+                                <Button size={'medium'}
+                                    style={{ margin: '5% 0' }}
+                                    variant="outlined"
+                                    onClick={onSubmit}
+                                    type='submit'
+                                    fullWidth >Generate Playlist</Button>
+                            </Grid>
                         </Container>
                     </Grid>
                 </Grid>

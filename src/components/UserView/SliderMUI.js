@@ -47,6 +47,7 @@ export default function SliderMUI(props) {
                 defaultValue={props.defaultValue}
                 value={props.value}
                 onChange={props.onChange}
+                disabled={props.disabled}
                 onChangeCommitted={props.onChangeCommitted}
                 step={10}
             />

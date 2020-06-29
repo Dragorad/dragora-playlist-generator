@@ -27,7 +27,7 @@ export const initialState = {
     bpm: 120
   },
   genresArr: genresList,
-  descriptorsArr: ['Tempo'],
+  descriptorsArr: ['Tempo', 'Brightness', 'Loudness'],
 
   sliderFormValues: {
     genresList: genresFilterList,

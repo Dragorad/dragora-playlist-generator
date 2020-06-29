@@ -32,7 +32,6 @@ export default function UrlTitleForm(props) {
 
   const MBID = props.titleMBID
   const [urlString, setUrlString] = React.useState('')
-  // sconst [genreString, setGenres] = React.useState('')
 
   const formStyles = {
     display: 'flex',
@@ -42,7 +41,7 @@ export default function UrlTitleForm(props) {
   }
   const handleChange = (event) => {
     const { name, value } = event.target
-    name === 'url' && setUrlString(value.substring(17))
+    setUrlString(value.substring(17))
     // : setGenres(value)
   }
   const clickUpdateUrl = () => handleUpdateTitleRecordURL({
@@ -58,22 +57,20 @@ export default function UrlTitleForm(props) {
       flexDirection: 'row', justifyItems: 'space-evently'
     }}>
       <form key={MBID} style={formStyles}
-        onSubmit={e => {
-          e.preventDefault()
+        onSubmit={() => {
+          // e.preventDefault()
           handleUpdateTitleRecordURL(urlString)
-          // handleUpdateTitleRecordURL({
-          //   variables: {
-          //     url: urlString,
-          //     titleMBID: MBID
-          //   }
-          // })
           h4String += " url updated"
           setUrlString('')
         }}>
         <Typography component={"h4"} align={"left"} gutterBottom={true}>{h4String[0]}</Typography>
         <TextField id={MBID} label="url" name='url'
-          value={urlString} placeholder={urlString} onChange={handleChange}
-          // required={true}
+          value={urlString} placeholder={urlString}
+          onChange={event => {
+            event.preventDefault()
+            setUrlString(event.target.value)}
+          }
+            // required={true}
           variant={'outlined'}
           helperText="You Tube url"
         />

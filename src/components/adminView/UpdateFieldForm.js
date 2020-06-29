@@ -23,8 +23,9 @@ export function UpdateFieldForm(props) {
     const litNameStr = '${nameStr}'
     const [valueStr, setValueStr] = React.useState('')
     const h4String = (`Handle ${nameStr}`).toUpperCase()
-    const handleFieldSubmit = nameStr == 'genres' &&
-        handleUpdateTitleGenres
+
+    // nameStr == 'genres' &&
+
     //  : handleUpdateInstruments
     // const variablesObj = {
     //     variables: {
@@ -35,27 +36,37 @@ export function UpdateFieldForm(props) {
     // const handleUpdateInstruments = async (instrObj) => {
     //     console.log(instrObj)
     // }
-    const handleUpdateTitleGenres = async (genresArr) => {
-        const newGenresArr = await app.functions.updateTitleGenres({
+    const handleUpdateGenres = async (valueStr, e) => {
+        const genresArr = valueStr.split(',').map(el => el.trim())
+        const genresObj = {
             titleMBID: MBID,
             genresArr: genresArr
-        })
+        }
+        console.log(genresObj)
+        const newGenresArr = await app.functions.updateTitleGenres(
+            genresObj
+            //     {
+            //     titleMBID: MBID,
+            //     genresArr: genresArr
+            // }
+        )
         const newValueString = newGenresArr.join(', ')
+        console.log(newGenresArr)
         newGenresArr !== undefined ? setValueStr(newValueString) : setValueStr("error from url TItleForm")
     }
+    const handleFieldSubmit = handleUpdateGenres(valueStr)
     return (
         <form key={nameStr} style={formStyles}
             onSubmit={e => {
                 e.preventDefault()
-                handleFieldSubmit(nameStr)
+                console.log(nameStr + ' : ' + valueStr)
+                handleUpdateGenres(valueStr)
                 // h4String = " field updated"
                 // setUrlString('')
             }}>
             <Typography component={"h4"} align={"left"} gutterBottom={true}>{h4String}</Typography>
             <TextField id={nameStr} label={nameStr} name={nameStr}
                 value={valueStr} placeholder={nameStr}
-                // onChange={handleChange}
-
                 onChange={event => {
                     event.preventDefault()
                     setValueStr(event.target.value)

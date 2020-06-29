@@ -67,8 +67,8 @@ export function TitlesArtistQuery() {
     {error.message} </p>;
 
   console.log(data.title_records.length)
-  let data1 = data.title_records.filter(elem => elem.bpm < 149)
-  // .slice(66, 95)
+  let data1 = data.title_records.filter(elem => elem.bpm < 149).slice(66, 69)
+  console.log(data1)
   return (
     data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres}) => (
       <div key={_id} style={{
