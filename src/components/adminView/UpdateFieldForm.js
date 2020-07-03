@@ -36,31 +36,30 @@ export function UpdateFieldForm(props) {
     // const handleUpdateInstruments = async (instrObj) => {
     //     console.log(instrObj)
     // }
-    const handleUpdateGenres = async (valueStr, e) => {
-        const genresArr = valueStr.split(',').map(el => el.trim())
-        const genresObj = {
-            titleMBID: MBID,
-            genresArr: genresArr
-        }
-        console.log(genresObj)
-        const newGenresArr = await app.functions.updateTitleGenres(
-            genresObj
-            //     {
-            //     titleMBID: MBID,
-            //     genresArr: genresArr
-            // }
-        )
-        const newValueString = newGenresArr.join(', ')
-        console.log(newGenresArr)
-        newGenresArr !== undefined ? setValueStr(newValueString) : setValueStr("error from url TItleForm")
-    }
-    const handleFieldSubmit = handleUpdateGenres(valueStr)
+    // const handleUpdateGenres = async (valueStr, e) => {
+    //     const genresArr = valueStr.split(',').map(el => el.trim())
+    //     const genresObj = {
+    //         titleMBID: MBID,
+    //         genresArr: genresArr
+    //     }
+    //     console.log(genresObj)
+    //     const newGenresArr = await app.functions.updateTitleGenres(
+    //         genresObj
+    //         //     {
+    //         //     titleMBID: MBID,
+    //         //     genresArr: genresArr
+    //         // }
+    //     )
+    //     const newValueString = newGenresArr.join(', ')
+    //     console.log(newGenresArr)
+    //     newGenresArr !== undefined ? setValueStr(newValueString) : setValueStr("error from url TItleForm")
+    // }
+    // const handleFieldSubmit = handleUpdateGenres(valueStr)
     return (
         <form key={nameStr} style={formStyles}
-            onSubmit={e => {
-                e.preventDefault()
+            onSubmit={() => {
                 console.log(nameStr + ' : ' + valueStr)
-                handleUpdateGenres(valueStr)
+                // handleUpdateGenres(valueStr)
                 // h4String = " field updated"
                 // setUrlString('')
             }}>

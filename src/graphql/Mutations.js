@@ -1,5 +1,5 @@
-import { gql } from "apollo-boost"
-import { app } from "realm-web"
+import gql  from "graphql-tag"
+// import { app } from "realm-web"
 
 // export const updateTitleUrlMongo = url => {
 // app.
@@ -8,12 +8,13 @@ import { app } from "realm-web"
 export const UPDATE_TITLE_URL = gql`
 mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
  updateOneTitle_record(
-    query: {titleMBID: $titleMBID}
+    query: {titleMBID: $titleMBID},
     set: { url: $url}
     # skip: !$titleMBID
     ){
       titleName
       url
+      
   }
 }
 `

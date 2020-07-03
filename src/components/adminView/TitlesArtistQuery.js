@@ -67,10 +67,12 @@ export function TitlesArtistQuery() {
     {error.message} </p>;
 
   console.log(data.title_records.length)
-  let data1 = data.title_records.filter(elem => elem.bpm < 149).slice(66, 69)
+  let data1 = data.title_records.filter(el => el.url == undefined)
+  // .filter(elem => elem.bpm < 149)
+  // .slice(66, 69)
   console.log(data1)
   return (
-    data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres}) => (
+    data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres }) => (
       <div key={_id} style={{
         display: 'flex', flexDirection: 'column', paddingLeft: '3%',
         borderBottom: '1px solid gray', maxWidth: '600 px'
@@ -86,11 +88,13 @@ export function TitlesArtistQuery() {
             genres: {genres} </p>
         </p>
         <div style={{ color: " rgb(115, 41, 41)", display: 'flex', alignItems: 'space-between' }}>
-          {url != null ? <iframe width="180"
+          {/* {url != null ? <iframe width="180"
             src={`https://www.youtube.com/embed/${url}`}>
           </iframe>
-            : <p>No url provided </p>}
-          <UrlTitleForm titleMBID={titleMBID} />
+            : <p>No url provided </p>} */}
+          <UrlTitleForm titleMBID={titleMBID}
+            url={url}
+            key={_id + titleMBID} />
 
         </div>
       </div>

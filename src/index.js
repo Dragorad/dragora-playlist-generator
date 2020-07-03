@@ -75,7 +75,6 @@ const client = new ApolloClient({
 
 export const firstPlaylist = app.functions.generatePlaylist({ bpm: 169, delta: 20 })
   .then(playlist => {
-    console.log(playlist)
     return playlist
 
   })
@@ -85,6 +84,10 @@ export const getNewPlayList = async (inputObj) => {
   return playlist
 }
 
+export const setTitleUrl = async (urlObj) => {
+  const result = await app.functions.updateTitleUrl(urlObj)
+  return result
+}
 ReactDOM.render(
 
   <AppContextProvider >

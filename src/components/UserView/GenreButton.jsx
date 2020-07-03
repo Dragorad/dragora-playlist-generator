@@ -31,9 +31,8 @@ const useStyles = makeStyles({
   // checked: {},
   // hover: {},
   label: {
-    color: 'red',
-    padding: '4%',
-    fontSize: '0.3 rem',
+    padding: '1%',
+    // fontSize: '1 rem',
     // textTransform: 'uppercase',
     '&$:hover': {
       textTransform: 'lowercase'
@@ -64,26 +63,26 @@ export function ButtonsGroupMultiple(props) {
   }
   const classes = useStyles()
   return (
-
-    <Grid container alignItems='flex-start'
-      justify='space-evenly'
-      style={{ height: '20' }}
+    <Grid container alignItems='space-between'
+      alignItems='stretch'
+      // justify='space-evenly'
+      // style={{ height: '20' }}
       spacing={1}>
-      {/* <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="text formatting"> */}
       {inputArr.map((text, index) => (
         <Grid item xs={4} sm={props.sm} spacing={1}>
-          <Paper elevation={1}>
+          <Paper elevation={1}
+            style={{ height: '100%' }}>
             <ToggleButton
               key={index}
               classes={{
                 root: classes.root,
-                selected: classes.selected
+                selected: classes.selected,
+                label: classes.label
               }}
               aria-label={props.text}
               value={text}
               text={text}
               variant='outlined'
-              color='red'
               selected={appState.genresArr.includes(text) || appState.descriptorsArr.includes(text)}
               size={'medium'}
               // name={name}
@@ -95,6 +94,7 @@ export function ButtonsGroupMultiple(props) {
           </Paper>
         </Grid>
       ))}
+      {/* </React.Fragment> */}
     </Grid>
 
 

@@ -50,8 +50,8 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     display: 'flex',
-    backgroundColor:blue[900],
-    
+    backgroundColor: blue[900],
+
     fontSize: "1rem",
     justifyContent: 'space-between',
     transition: theme.transitions.create(['margin', 'width'], {
@@ -121,6 +121,9 @@ export default function PersistentDrawerLeft() {
 
   return (
     <React.Fragment>
+     <Grid  spacing={1}
+        lg={10}
+        xl={6}>
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -137,15 +140,14 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          {/* <ThemeProvider theme={theme}> */}
           <Typography variant="h6" noWrap flexShrink='2' >
             DrAgora Music Selector Beta  !
           </Typography>
-          {/* </ThemeProvider> */}
           <InfoBox />
 
         </Toolbar>
       </AppBar>
+      </Grid>
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -187,40 +189,43 @@ export default function PersistentDrawerLeft() {
         <div className={classes.drawerHeader} />
       </main>
       {/* <content> */}
-        {/* <div style={{
+      {/* <div style={{
           display: 'flex',
           flexFlow: 'row wrap',
           alignItems: 'flex-start',
           justify: 'space-between'
         }}> */}
 
-        {/* <Paper elevation={4}> */}
-        {/* <div style={{width: '60%'}}> */}
-        <Grid container xs={12} 
-        lg={10}
+      {/* <Paper elevation={4}> */}
+      {/* <div style={{width: '60%'}}> */}
+      <Grid container xs={12}
+        // md={9}
         spacing={1}
-        xl={9}
+        lg={10}
+        xl={6}
+      >
+        <Grid item
+          xs={12}
+        lg={10}
+        // xl={8}
         >
-          <Grid item 
-          xs={12} 
-          // lg={6}
-          // xl={4}
-          >
-            <SlidersForm />
-            {/* </Paper> */}
-          </Grid>
-          <Grid item xs={12} lg={10}>
-            <PlayerCard />
-            {/* <ReactPlayer 
+          <SlidersForm />
+          {/* </Paper> */}
+        </Grid>
+        <Grid item xs={12} 
+        // lg={10}
+        >
+          <PlayerCard />
+          {/* <ReactPlayer 
             url={['https://youtu.be/uzR5jM9UeJA',
             'https://youtu.be/oDdOYyGa41Q']}
             light={true} controls
             width={'70%'}
             height={'60%'} />
  */}
-          </Grid>
         </Grid>
-        {/* </div> */}
+      </Grid>
+      {/* </div> */}
       {/* </content> */}
     </React.Fragment>
 
