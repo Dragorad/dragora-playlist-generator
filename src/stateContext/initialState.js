@@ -41,5 +41,5 @@ export const initialState = {
   },
   urlIdx: 0,
   playing: true,
-  playlist: []
+  playlist: playLists.playList1
 }

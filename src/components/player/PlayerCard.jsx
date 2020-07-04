@@ -24,6 +24,7 @@ import ReactPlayer from 'react-player'
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    justifyContent: 'space-around'
   },
   details: {
     display: 'flex',
@@ -114,17 +115,7 @@ export default function PlayerCard(props) {
           onEnded={changeUrlIndex('up')} />
       }
       <div className={classes.details}>
-        {/* <CardContent className={classes.content}>
-        <Typography variant="subtitle1" color="textSecondary">
-        Media Player
-        </Typography>
-        <Typography component="h6" variant="subtitle1">
-        Title Name
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-          Artist Name
-          </Typography>
-          {/* </CardContent> */}
+       
         <div className={classes.controls}>
           <IconButton aria-label="previous"
             onClick={changeUrlIndex('down')}>

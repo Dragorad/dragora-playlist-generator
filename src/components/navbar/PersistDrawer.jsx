@@ -15,8 +15,12 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
+// import InboxIcon from '@material-ui/icons/MoveToInbox'
+// import MailIcon from '@material-ui/icons/Mail'
+import ShareIcon from '@material-ui/icons/Share'
+import QueueMusicIcon from '@material-ui/icons/QueueMusic'
+import SettingsIcon from '@material-ui/icons/Settings'
+import PermIdentityIcon from '@material-ui/icons/PermIdentity'
 // import GenresList from '../GenresContainer/GenresContainer'
 import PlayerCard from '../player/PlayerCard'
 import InfoBox from '../navbar/InfoBox'
@@ -121,32 +125,30 @@ export default function PersistentDrawerLeft() {
 
   return (
     <React.Fragment>
-     <Grid  spacing={1}
-        lg={10}
-        xl={6}>
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar variant='dence'>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap flexShrink='2' >
-            DrAgora Music Selector Beta  !
+      <Grid spacing={1} lg={10} xl={6}>
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar variant='dence'>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap flexShrink='2' >
+              DrAgora Music Selector Beta  !
           </Typography>
-          <InfoBox />
+            <InfoBox />
 
-        </Toolbar>
-      </AppBar>
+          </Toolbar>
+        </AppBar>
       </Grid>
       <Drawer
         className={classes.drawer}
@@ -164,18 +166,18 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Following', 'Playlists', 'Starred', 'Share'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <QueueMusicIcon /> : <ShareIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {['Login', 'Preferences'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <PermIdentityIcon /> : <SettingsIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -198,31 +200,15 @@ export default function PersistentDrawerLeft() {
 
       {/* <Paper elevation={4}> */}
       {/* <div style={{width: '60%'}}> */}
-      <Grid container xs={12}
-        // md={9}
-        spacing={1}
-        lg={10}
-        xl={6}
+      <Grid container xs={12} spacing={1}
+        lg={10} xl={9}
       >
-        <Grid item
-          xs={12}
-        lg={10}
-        // xl={8}
+        <Grid item xs={12} 
         >
           <SlidersForm />
-          {/* </Paper> */}
         </Grid>
-        <Grid item xs={12} 
-        // lg={10}
-        >
+        <Grid item xs={12} lg={10} xl={9}>
           <PlayerCard />
-          {/* <ReactPlayer 
-            url={['https://youtu.be/uzR5jM9UeJA',
-            'https://youtu.be/oDdOYyGa41Q']}
-            light={true} controls
-            width={'70%'}
-            height={'60%'} />
- */}
         </Grid>
       </Grid>
       {/* </div> */}

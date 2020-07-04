@@ -10,7 +10,7 @@ import { genresList } from '../../workers/genresAndInstrumentsList'
 import { descriptorsList } from '../../workers/descriptorsList'
 import { GenreButton, ButtonsGroupMultiple } from './GenreButton'
 import { flexbox, sizing } from '@material-ui/system'
-import { grey } from '@material-ui/core/colors'
+import { grey, blue, blueGrey } from '@material-ui/core/colors'
 import { getNewPlayList } from '../../index'
 
 
@@ -117,45 +117,47 @@ export default function SlidersForm() {
                 // xl={6}
                 spacing={1}
                 direction={'row'}
-                justify={'space-between'}
-                alignItems={'flex-start'}
+                justifyContent={'space-between'}
+                alignItems={'baseline'}
             >
                 <Grid item sx={12} sm={3}
-                    style={{ borderBottom: '1px solid red' }}
+                    // style={{ border: '1px solid red' }}
                     direction='row'>
                     <ButtonsGroupMultiple inputArr={genresList}
-                        selected={true} sm={5}
+                        selected={true} sm={6}
                     />
                 </Grid>
                 <Grid item container xs={12} sm={9} //sliders and generate
                     direction='row'
-                    alignItems={'baseline'}
+                    // alignItems={'baseline'}
                     spacing={1}
-
-                    justify={'space-between'}>
+                    // style={{ border: '1px solid red' }}
+                    // justify={'space-between'}
+                    >
 
                     <Grid item sm={6}//descriptor sliders
                         container direction={'column'}
-                        alignItems={'center'}
-                        style={{ height: '30%' }}>
+                        // justifyContent={'st'}
+                        // alignItems={'center'}
+                        style={{ backgroundColor: 'none', height: '100%' }}>
                         {descriptorsList.map((descriptor, key) => (
-                            // <Grid item sx={8}>
-                            < SliderMUI key={key}
-                                value={state[descriptor].value}
-                                defaultValue={state[descriptor].value}
-                                min={state[descriptor].min}
-                                max={state[descriptor].max}
-                                step={state[descriptor].step}
-                                aria-text={descriptor}
-                                sliderText={descriptor}
-                                disabled={!appState.descriptorsArr.includes(descriptor)}
-                                name={descriptor}
-                                onChange={onSliderChange(descriptor)}
-                                onChangeComitted={handleCommit(descriptor)}
-                                valueLabelFormat={descriptor === "Tempo" ?
-                                    state.Tempo.valueLabelFormat : (x) => x = x}
-                            />
-                            // </Grid>
+                            <Grid item sx={8}>
+                                < SliderMUI key={key}
+                                    value={state[descriptor].value}
+                                    defaultValue={state[descriptor].value}
+                                    min={state[descriptor].min}
+                                    max={state[descriptor].max}
+                                    step={state[descriptor].step}
+                                    aria-text={descriptor}
+                                    sliderText={descriptor}
+                                    disabled={!appState.descriptorsArr.includes(descriptor)}
+                                    name={descriptor}
+                                    onChange={onSliderChange(descriptor)}
+                                    onChangeComitted={handleCommit(descriptor)}
+                                    valueLabelFormat={descriptor === "Tempo" ?
+                                        state.Tempo.valueLabelFormat : (x) => x = x}
+                                />
+                            </Grid>
                         ))}
 
                         {/* <Divider variant='middle' /> */}
@@ -164,25 +166,27 @@ export default function SlidersForm() {
 
                     {/* <Divider orienta4tion='horizontal' flexItem /> */}
 
-                    <Grid container item sm={12} sm={6}>
-                        
-                            <SliderMUI item
-                                //  height='10%'
-                                sliderText='Diversity'
-                                value={state.Diversity.value}
-                                defaultValue={state.Diversity.value}
-                                min={state.Diversity.min}
-                                max={state.Diversity.max}
-                                step={state.Diversity.step}
-                                aria-text={'Diversity'}
-                                name={'Diversity'}
-                                onChange={onSliderChange('Diversity')}
-                                onChangeComitted={handleCommit('Diversity')} />
-                        
-                        
+                    <Grid container item sm={12} //diversity
+                        // style={{ backgroundColor: blueGrey[200], height: '100%' }}
+                        sm={6}>
+
+                        <SliderMUI item
+                            //  height='10%'
+                            sliderText='Diversity'
+                            value={state.Diversity.value}
+                            defaultValue={state.Diversity.value}
+                            min={state.Diversity.min}
+                            max={state.Diversity.max}
+                            step={state.Diversity.step}
+                            aria-text={'Diversity'}
+                            name={'Diversity'}
+                            onChange={onSliderChange('Diversity')}
+                            onChangeComitted={handleCommit('Diversity')} />
+
+
                         <ButtonsGroupMultiple sm={12} sm={4} inputArr={descriptorsList} selected={false}
                             classes={classes.buttonGroup} />
-                        
+
                         <Button size={'medium'}
                             style={{ margin: '5% 0' }}
                             variant="outlined"
