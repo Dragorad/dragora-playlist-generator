@@ -153,7 +153,7 @@ export default function PersistentDrawerLeft() {
               justifyContent: 'space-between',
               marginLeft: '20%'
             }}>
-              <LogButton />
+              {/* <LogButton /> */}
               <LoginInfoBox />
               <InfoBox />
             </div>
