@@ -17,6 +17,7 @@ export const getNewPlayList = async () => {
 }
 
 export const initialState = {
+  userId: '',
   playListParams: {
     Brightness: 25,
     Loudness: 45,

@@ -44,6 +44,12 @@ export const reducer = (state, action) => {
                 ...state,
                 playing: action.payload
             }
+
+        case types.SET_USER_DATA:
+            return {
+                ...state,
+                userId: action.payload
+            }
         case types.TOGGLE_BTN_STATE: {
             const [arrName, newArr] = action.payload
             // const newArr = []

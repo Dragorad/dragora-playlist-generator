@@ -16,7 +16,6 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 // import InboxIcon from '@material-ui/icons/MoveToInbox'
-// import MailIcon from '@material-ui/icons/Mail'
 import ShareIcon from '@material-ui/icons/Share'
 import QueueMusicIcon from '@material-ui/icons/QueueMusic'
 import SettingsIcon from '@material-ui/icons/Settings'
@@ -25,11 +24,13 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity'
 import PlayerCard from '../player/PlayerCard'
 import InfoBox from '../navbar/InfoBox'
 import SlidersForm from '../UserView/SlidersForm'
-import { Paper, Grid } from '@material-ui/core'
+import { Paper, Grid, Box } from '@material-ui/core'
 // import PlayerDr from '../player/Player'
 import ReactPlayer from 'react-player'
 import { demoUrls } from '../player/demoUrls'
 import { blueGrey, lightBlue, blue } from '@material-ui/core/colors'
+import { LogButton } from '../authUsers/Login'
+import LoginInfoBox from '../authUsers/LoginModal'
 
 const drawerWidth = 240
 
@@ -145,8 +146,17 @@ export default function PersistentDrawerLeft() {
             <Typography variant="h6" noWrap flexShrink='2' >
               DrAgora Music Selector Beta  !
           </Typography>
-            <InfoBox />
-
+            <div style={{
+              display: 'flex',
+              position: 'relative', right: '1%',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginLeft: '20%'
+            }}>
+              <LogButton />
+              <LoginInfoBox />
+              <InfoBox />
+            </div>
           </Toolbar>
         </AppBar>
       </Grid>
@@ -203,7 +213,7 @@ export default function PersistentDrawerLeft() {
       <Grid container xs={12} spacing={1}
         lg={10} xl={9}
       >
-        <Grid item xs={12} 
+        <Grid item xs={12}
         >
           <SlidersForm />
         </Grid>
