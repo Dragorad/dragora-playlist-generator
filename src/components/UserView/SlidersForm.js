@@ -141,7 +141,7 @@ export default function SlidersForm() {
                         // alignItems={'center'}
                         style={{ backgroundColor: 'none', height: '100%' }}>
                         {descriptorsList.map((descriptor, key) => (
-                            <Grid item sx={8}>
+                            <Grid item sm={12}>
                                 < SliderMUI key={key}
                                     value={state[descriptor].value}
                                     defaultValue={state[descriptor].value}

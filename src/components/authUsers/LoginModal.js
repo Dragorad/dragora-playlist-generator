@@ -26,8 +26,8 @@ const formStyles = {
     margin: '1rem'
 }
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50
+    const left = 50
 
     return {
         top: `${top}%`,
@@ -159,7 +159,6 @@ export default function LoginInfoBox() {
     }
     return (
         <div>
-            {/* <div> */}
             {appState.userId === '' ? <Button
                 variant="outlined"
                 size='small'
@@ -170,13 +169,12 @@ export default function LoginInfoBox() {
                 <Button name='LogOut' onClick={logOut} variant='outlined' size='small'
                     style={{ backgroundColor: grey[400], marginBottom: '2%' }} >
                     Log Out</Button>}
-            {/* </div> */}
+
             <Modal
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 open={open}
                 onClose={handleModalClose}
-            // onClick={handleClose}
             >
                 <div style={modalStyle} className={classes.paper}>
                     <ButtonGroup variant='text' fullWidth >
