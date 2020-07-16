@@ -135,7 +135,7 @@ export default function SlidersForm() {
                     // justify={'space-between'}
                     >
 
-                    <Grid item sm={6}//descriptor sliders
+                    <Grid item sm={7}//descriptor sliders
                         container direction={'column'}
                         // justifyContent={'st'}
                         // alignItems={'center'}
@@ -168,7 +168,7 @@ export default function SlidersForm() {
 
                     <Grid container item sm={12} //diversity
                         // style={{ backgroundColor: blueGrey[200], height: '100%' }}
-                        sm={6}>
+                        sm={5}>
 
                         <SliderMUI item
                             //  height='10%'
