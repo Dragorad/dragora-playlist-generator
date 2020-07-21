@@ -47,7 +47,7 @@ export const LogButton = () => {
             payload: ''
         })
     }
-    const loginAnonymous = async () => {
+const loginAnonymous = async () => {
 
         const credentials = RealmWeb.Credentials.anonymous();
 

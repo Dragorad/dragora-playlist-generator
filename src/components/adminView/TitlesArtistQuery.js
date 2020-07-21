@@ -19,9 +19,9 @@ const TITLE_DATA = gql`
     bpm
     url
     genres
-  
-  }
-  }
+      tags{
+    genre
+  }}}
 `
 const TITLE_RECORD = gql`
 query GetTitleRecord ($titleMBID: String){
@@ -34,8 +34,7 @@ query GetTitleRecord ($titleMBID: String){
   bpm
   genres
   titleMBID
-  }
-}
+  }}
 `
 const UPDATE_TITLE = gql`
 mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
@@ -57,22 +56,22 @@ export function TitlesArtistQuery() {
     skip: data == null
   })
 
-  const [url, setUrl] = React.useState('Cat in the Hat');
+  const [url, setUrl] = React.useState(null)
   const handleChange = (event) => {
     setUrl(event.target.value);
   }
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :( from TitleArtist Query
-    {error.message} </p>;
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error :( from TitleArtist Query {error.message} </p>
 
   console.log(data.title_records.length)
-  let data1 = data.title_records.filter(el => el.url == undefined)
-  // .filter(elem => elem.bpm < 149)
-  // .slice(66, 69)
+  let data1 = data.title_records.filter(elem => elem.bpm < 149).slice(66, 69)
+  // filter(el => el.url == undefined)
+
   console.log(data1)
   return (
-    data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres }) => (
+    data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres, tags }) => (
+
       <div key={_id} style={{
         display: 'flex', flexDirection: 'column', paddingLeft: '3%',
         borderBottom: '1px solid gray', maxWidth: '600 px'
@@ -85,7 +84,8 @@ export function TitlesArtistQuery() {
           <p style={{ color: "darkblue" }} id={titleMBID}>
             titleMBID: {titleMBID} <br />
             titleURL: {url}  <br />
-            genres: {genres} </p>
+            MBGenres: {tags.genre} <br />
+            genres: {genres.join('; ')} </p>
         </p>
         <div style={{ color: " rgb(115, 41, 41)", display: 'flex', alignItems: 'space-between' }}>
           {/* {url != null ? <iframe width="180"
@@ -93,6 +93,7 @@ export function TitlesArtistQuery() {
           </iframe>
             : <p>No url provided </p>} */}
           <UrlTitleForm titleMBID={titleMBID}
+            MBGenres={tags.genre}
             url={url}
             key={_id + titleMBID} />
 

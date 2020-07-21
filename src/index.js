@@ -22,23 +22,20 @@ export const app = new RealmWeb.App({
   // baseUrl: "https://realm.mongodb.com"
 });
 
-// async function loginAnonymous() {
-//   // Create an anonymous credential
-//   const credentials = RealmWeb.Credentials.anonymous();
-//   try {
-//     // Authenticate the user
-//     const user = await app.logIn(credentials);
-//     // `App.currentUser` updates to match the logged in user
-//     if (user.id === app.currentUser.id) return user
-//   } catch (err) {
-//     console.error("Failed to log in", err);
-//   }
-// }
-// loginAnonymous().then(user => {
-//   console.log("Successfully logged in!", user)
-// })
-
-
+const credentials = RealmWeb.Credentials.anonymous();
+try {
+  // Authenticate the user
+  const user = app.logIn(credentials)
+    .then(user => {
+      console.log('Loged anonimous ', user.id)
+    })
+  // `App.currentUser` updates to match the logged in user
+  // assert(user.id === app.currentUser.id)
+  // return user
+}
+catch (err) {
+  console.error("Failed to log in", err);
+}
 // Add an Authorization header with a valid user access token to all GraphQL requests
 const authorizationHeaderLink = setContext(async (_, { headers }) => {
   if (app.currentUser) {
@@ -88,6 +85,15 @@ export const setTitleUrl = async (urlObj) => {
   const result = await app.functions.updateTitleUrl(urlObj)
   return result
 }
+export const setTitleGenres = async (genreObj) => {
+  const result = await app.functions.updateTitleGenres(genreObj)
+  return result
+}
+export const setTitleInstruments = async (instrumObj) => {
+  const result = await app.functions.updateTitleInstruments(instrumObj)
+  return result
+}
+
 ReactDOM.render(
 
   <AppContextProvider >

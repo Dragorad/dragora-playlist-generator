@@ -13,10 +13,21 @@ const formStyles = {
     maxWidth: '90%',
     margin: '1rem'
 }
+// https://stackoverflow.com/questions/650022/how-do-i-split-a-string-with-multiple-separators-in-javascript
 
+
+function splitMulti(str, tokens) {
+    var tempChar = tokens[0]; // We can use the first token as a temporary join character
+    for (var i = 1; i < tokens.length; i++) {
+        str = str.split(tokens[i]).join(tempChar);
+    }
+    str = str.split(tempChar);
+    return str;
+}
 export function UpdateFieldForm(props) {
 
     const MBID = props.titleMBID
+    const MBGenres = props.MBGenres
     // console.log(props)
 
     const nameStr = props.nameStr
@@ -24,42 +35,28 @@ export function UpdateFieldForm(props) {
     const [valueStr, setValueStr] = React.useState('')
     const h4String = (`Handle ${nameStr}`).toUpperCase()
 
-    // nameStr == 'genres' &&
 
-    //  : handleUpdateInstruments
-    // const variablesObj = {
-    //     variables: {
-    //         titleMBID: MBID,
-    //         [nameStr]: valueStr.split(','),
-    //     }
-    // }
-    // const handleUpdateInstruments = async (instrObj) => {
-    //     console.log(instrObj)
-    // }
-    // const handleUpdateGenres = async (valueStr, e) => {
-    //     const genresArr = valueStr.split(',').map(el => el.trim())
-    //     const genresObj = {
-    //         titleMBID: MBID,
-    //         genresArr: genresArr
-    //     }
-    //     console.log(genresObj)
-    //     const newGenresArr = await app.functions.updateTitleGenres(
-    //         genresObj
-    //         //     {
-    //         //     titleMBID: MBID,
-    //         //     genresArr: genresArr
-    //         // }
-    //     )
-    //     const newValueString = newGenresArr.join(', ')
-    //     console.log(newGenresArr)
-    //     newGenresArr !== undefined ? setValueStr(newValueString) : setValueStr("error from url TItleForm")
-    // }
-    // const handleFieldSubmit = handleUpdateGenres(valueStr)
+    const submFunction = props.onSubmit
     return (
         <form key={nameStr} style={formStyles}
-            onSubmit={() => {
+            onSubmit={(e) => {
+                e.preventDefault()
+                const splitters = ['/', ', ', '-', ' ']
+                const valuesArr = nameStr === "Genres" ? props.MBGenres : []
+
                 console.log(nameStr + ' : ' + valueStr)
+                console.log(Array.isArray(props.MBGenres))
+                valuesArr.push(valueStr)
+
+                // get unique values from stackoverflow
+
+                let newValuesArr = [...new Set(splitMulti(valuesArr.join(', '), splitters)
+                    .map(el => el.trim()).filter(elem => elem !== ''))]
+                const updateObj = { titleMBID: MBID, valuesArr: newValuesArr }
+                console.log(updateObj)
+                props.onSubmit(updateObj)
                 // handleUpdateGenres(valueStr)
+
                 // h4String = " field updated"
                 // setUrlString('')
             }}>
@@ -68,7 +65,9 @@ export function UpdateFieldForm(props) {
                 value={valueStr} placeholder={nameStr}
                 onChange={event => {
                     event.preventDefault()
-                    setValueStr(event.target.value)
+                    let newValueStr = event.target.value
+                    // console.log(newValueStr)
+                    setValueStr(newValueStr)
                 }}
                 value={valueStr}
                 // required={true}

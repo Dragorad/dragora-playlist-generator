@@ -52,24 +52,13 @@ export const reducer = (state, action) => {
             }
         case types.TOGGLE_BTN_STATE: {
             const [arrName, newArr] = action.payload
-            // const newArr = []
-            // state[arrName].includes(name) ?
-            //     newArr = state[arrName].filter(el => el !== name)
-            //     : newArr = state[arrName].push(name)
             console.log(newArr)
             return {
                 ...state,
                 [arrName]: newArr
             }
         }
-        case "START":
-            return {
-                loading: true
-            };
-        case "COMPLETE":
-            return {
-                loading: false
-            };
+      
         default:
             throw new Error();
     }

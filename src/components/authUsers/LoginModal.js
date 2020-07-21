@@ -117,8 +117,8 @@ export default function LoginInfoBox() {
             payload: ''
         })
         // setUser(app.currentUser);
-    };
-    const loginAnonymous = async () => {
+    }
+const loginAnonymous = async () => {
 
         try {
             const credentials = RealmWeb.Credentials.anonymous();
