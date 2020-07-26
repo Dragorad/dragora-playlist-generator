@@ -65,7 +65,7 @@ export function TitlesArtistQuery() {
   if (error) return <p>Error :( from TitleArtist Query {error.message} </p>
 
   console.log(data.title_records.length)
-  let data1 = data.title_records..slice(0, 30)
+  let data1 = data.title_records.slice(0, 30)
 //   filter(elem => elem.bpm < 149)
   // filter(el => el.url == undefined)
 
