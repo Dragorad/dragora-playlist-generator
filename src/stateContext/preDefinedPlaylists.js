@@ -176,3 +176,70 @@ export const playList5 = [
     "url": "8yfsFFZ5_vQ"
   }
 ]
+export const playList6 =[
+  {
+    "artist": "Norah Jones",
+    "titleName": "Don't Know Why",
+    "bpm": 88,
+    "chords_key": "A#",
+    "lowLevelSpectral": {
+      "average_loudness": 0.0947103500366,
+      "spectral_centroid": {
+        "mean": 825.147399902
+      }
+    },
+    "url": "V6zJYzkAhcw"
+  },
+  {
+    "artist": "José James",
+    "titleName": "Just The Two of Us",
+    "bpm": 95,
+    "chords_key": "F",
+    "lowLevelSpectral": {
+      "average_loudness": 0.923881530762,
+      "spectral_centroid": {
+        "mean": 907.622375488
+      }
+    },
+    "url": "N6dgAVxhMPI"
+  },
+  {
+    "artist": "Chambao",
+    "titleName": "Pokito a Poko",
+    "bpm": 107,
+    "chords_key": "B",
+    "lowLevelSpectral": {
+      "average_loudness": 0.956078231335,
+      "spectral_centroid": {
+        "mean": 1001.13128662
+      }
+    },
+    "url": "dOlYxYKmX_0"
+  },
+  {
+    "artist": "Peter Cincotti",
+    "titleName": "Sounds of Summer",
+    "bpm": 119,
+    "chords_key": "F",
+    "lowLevelSpectral": {
+      "average_loudness": 0.0928070768714,
+      "spectral_centroid": {
+        "mean": 835.133239746
+      }
+    },
+    "url": "BQ-XCLm00Ik"
+  },
+  {
+    "artist": "CAKE",
+    "titleName": "Never There",
+    "bpm": 125,
+    "chords_key": "F",
+    "lowLevelSpectral": {
+      "average_loudness": 0.946442723274,
+      "spectral_centroid": {
+        "mean": 795.009399414
+      }
+    },
+    "url": "VxqaI_c9j_g"
+  }
+]

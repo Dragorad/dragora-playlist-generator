@@ -17,10 +17,11 @@ export const getNewPlayList = async () => {
 }
 
 export const initialState = {
+  userId: '',
   playListParams: {
-    Brightness: 25,
-    Loudness: 45,
-    Tempo: 14,
+    Brightness: 30,
+    Loudness: 10,
+    Tempo: 20,
     Diversity: 20,
     diversityStrings: [],
     genresStrings: [],
@@ -32,8 +33,8 @@ export const initialState = {
   sliderFormValues: {
     genresList: genresFilterList,
     Brightness: 35,
-    Loudness: 60,
-    Tempo: 40
+    Loudness: 10,
+    Tempo: 20
   },
   diversity: {
     value: 20,
@@ -41,5 +42,5 @@ export const initialState = {
   },
   urlIdx: 0,
   playing: true,
-  playlist: playLists.playList1
+  playlist: playLists.playList6
 }

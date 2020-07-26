@@ -36,6 +36,7 @@ const useStyles = makeStyles(theme => ({
     },
     button:{
         backgroundColor: "#ff1166",
+        // padding: '1rem, 0',
         label:{
             color: "secondary",
             fontSize: '3rem'

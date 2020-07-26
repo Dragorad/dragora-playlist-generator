@@ -7,31 +7,10 @@ import { ItemsList } from './SelectedList'
 // import { from } from 'apollo-boost'
 import { UpdateFieldForm } from './UpdateFieldForm'
 import { UPDATE_TITLE_URL, UPDATE_GENRES, UPDATE_INSTRUMENTS } from '../../graphql/Mutations'
-import { setTitleUrl } from '../../index'
+import { setTitleUrl, setTitleGenres, setTitleInstruments } from '../../index'
 
 
 export default function UrlTitleForm(props) {
-
-  const initialState = {}
-  // const fieldNames = ['genres', 'instruments solo', 'instruments oblig']
-  // //  const {fieldNames} = props
-  // //   const initialState = {}
-
-  // fieldNames.map(strValue => {
-  //   initialState[strValue] = ''
-  //   return initialState
-  // })
-  // const { loading, error, data } = useQuery(TITLE_DATA)
-
-
-  // const handleUpdateTitleRecordURL = async (url) => {
-  //   const newUrl = await app.functions.updateTitleUrl({
-  //     titleMBID: MBID,
-  //     url: urlString
-  //   })
-  //   console.log(newUrl)
-  //   newUrl !== undefined ? setUrlString(urlString) : setUrlString("error from url TItleForm")
-  // }
 
   const MBID = props.titleMBID
   // const updatedUrl = props.url
@@ -56,7 +35,7 @@ export default function UrlTitleForm(props) {
       titleMBID: MBID
     }
   })
-  const onSubmit = async (e) => {
+  const onUrlSubmit = async (e) => {
     e.preventDefault()
     const variableObj = {
       titleMBID: MBID,
@@ -97,18 +76,22 @@ export default function UrlTitleForm(props) {
             variant={'outlined'}
             helperText="You Tube url"
           />
-          <button type="submit" onClick={onSubmit}
+          <button type="submit" onClick={onUrlSubmit}
           >Update Title URL</button>
         </form>
         {/* <ItemsList arr={genresList} title='Genres' /> */}
-        <UpdateFieldForm nameStr='Genres' style={formStyles} titleMBID={MBID} />
+        <UpdateFieldForm nameStr='Genres' style={formStyles} titleMBID={MBID}
+        MBGenres={props.MBGenres}
+          oldGenres={props.genres} onSubmit={setTitleGenres} />
         <Divider orientation='vertical' />
         <div style={{ display: 'flex', padding: '1%' }}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {['instruments solo', 'instruments oblig'].map(nameStr => <UpdateFieldForm
-              titleMBID={MBID}
-              nameStr={nameStr}
-              styles={formStyles} />)}
+            {['instruments solo', 'instruments oblig'].map(nameStr =>
+              <UpdateFieldForm
+                onSubmit={setTitleInstruments}
+                titleMBID={MBID}
+                nameStr={nameStr}
+                styles={formStyles} />)}
           </div>
         </div >
         {/* <ItemsList arr={instrumentsList} title='Instruments' /> */}

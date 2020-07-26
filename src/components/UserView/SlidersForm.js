@@ -40,11 +40,11 @@ const stateObj = {
     randomInt: { min: 120, max: 180, step: 5, value: 180 },
     Brightness: { min: 0, max: 100, step: 5, value: 65 },
     Loudness: {
-        min: 1, max: 100, step: 5, value: 45,
+        min: 1, max: 100, step: 5, value: 20,
         valueLabelFormat: (x) => x + 60
     },
-    Tempo: { min: 60, max: 180, step: 5, value: 40 },
-    Diversity: { min: 10, max: 50, step: 10, value: 20 },
+    Tempo: { min: 60, max: 180, step: 5, value: 10 },
+    Diversity: { min: 10, max: 50, step: 10, value: 10 },
     diversityStrings: [],
     genresButtons: {}
 }
@@ -90,8 +90,12 @@ export default function SlidersForm() {
         // alert(state[name])
     }
     const handleCommit = name => (ev, value) => {
-        setState({ ...state, [name]: { ...state[name], value: value } })
 
+        console.log(state[name])
+        setState({ ...state, [name]: { ...state[name], value: value } })
+        dispatch({
+
+        })
     }
 
     const handleSliderChange = name => (ev, value) => {
@@ -103,6 +107,7 @@ export default function SlidersForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault()
+        console.log(customInput)
         setNewPlaylist(customInput)
         // .then (res => {console.log(res)})
         // console.log(appState.default)
@@ -131,17 +136,17 @@ export default function SlidersForm() {
                     direction='row'
                     // alignItems={'baseline'}
                     spacing={1}
-                    // style={{ border: '1px solid red' }}
-                    // justify={'space-between'}
-                    >
+                // style={{ border: '1px solid red' }}
+                // justify={'space-between'}
+                >
 
-                    <Grid item sm={6}//descriptor sliders
+                    <Grid item sm={7}//descriptor sliders
                         container direction={'column'}
                         // justifyContent={'st'}
                         // alignItems={'center'}
                         style={{ backgroundColor: 'none', height: '100%' }}>
                         {descriptorsList.map((descriptor, key) => (
-                            <Grid item sx={8}>
+                            <Grid item sm={12}>
                                 < SliderMUI key={key}
                                     value={state[descriptor].value}
                                     defaultValue={state[descriptor].value}
@@ -168,7 +173,7 @@ export default function SlidersForm() {
 
                     <Grid container item sm={12} //diversity
                         // style={{ backgroundColor: blueGrey[200], height: '100%' }}
-                        sm={6}>
+                        sm={5}>
 
                         <SliderMUI item
                             //  height='10%'
