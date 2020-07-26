@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles, useTheme, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import AppBar from '@material-ui/core/AppBar'
@@ -15,21 +15,48 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
-import GenresList from '../GenresContainer/GenresContainer'
-import Player from '../player/Player'
+// import InboxIcon from '@material-ui/icons/MoveToInbox'
+// import MailIcon from '@material-ui/icons/Mail'
+import ShareIcon from '@material-ui/icons/Share'
+import QueueMusicIcon from '@material-ui/icons/QueueMusic'
+import SettingsIcon from '@material-ui/icons/Settings'
+import PermIdentityIcon from '@material-ui/icons/PermIdentity'
+// import GenresList from '../GenresContainer/GenresContainer'
+import PlayerCard from '../player/PlayerCard'
 import InfoBox from '../navbar/InfoBox'
+import SlidersForm from '../UserView/SlidersForm'
+import { Paper, Grid } from '@material-ui/core'
+// import PlayerDr from '../player/Player'
+import ReactPlayer from 'react-player'
+import { demoUrls } from '../player/demoUrls'
+import { blueGrey, lightBlue, blue } from '@material-ui/core/colors'
 
 const drawerWidth = 240
 
+
+// const theme = createMuiTheme()
+
+// theme.typography.h6 = {
+//   fontSize: '1.1 rem',
+//   '@media(max-width: 360px)': {
+//     fontSize: '0.6 rem'
+//   },
+//   [theme.breakpoints.up('sm')]: {
+//     fontSize: '1.8 rem'
+//   }
+// }
+
 const useStyles = makeStyles(theme => ({
   root: {
+    maxWidth: '1200px',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-end'
   },
   appBar: {
-    display:'flex',
+    display: 'flex',
+    backgroundColor: blue[900],
+
+    fontSize: "1rem",
     justifyContent: 'space-between',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -45,7 +72,7 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   hide: {
     display: 'none',
@@ -61,12 +88,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
+    // ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    maxWidth: '1200px',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -96,32 +124,32 @@ export default function PersistentDrawerLeft() {
   }
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-      // className={clsx(classes.appBar, {
-      //   [classes.appBarShift]: open,
-      // })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            DrAgora Music Selector
+    <React.Fragment>
+      <Grid spacing={1} lg={10} xl={6}>
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar variant='dence'>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap flexShrink='2' >
+              DrAgora Music Selector Beta  !
           </Typography>
+            <InfoBox />
 
-          <InfoBox />
-
-        </Toolbar>
-      </AppBar>
+          </Toolbar>
+        </AppBar>
+      </Grid>
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -138,18 +166,18 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Following', 'Playlists', 'Starred', 'Share'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <QueueMusicIcon /> : <ShareIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {['Login', 'Preferences'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <PermIdentityIcon /> : <SettingsIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -161,10 +189,31 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-
-        <GenresList />
-        <Player />
       </main>
-    </div>
+      {/* <content> */}
+      {/* <div style={{
+          display: 'flex',
+          flexFlow: 'row wrap',
+          alignItems: 'flex-start',
+          justify: 'space-between'
+        }}> */}
+
+      {/* <Paper elevation={4}> */}
+      {/* <div style={{width: '60%'}}> */}
+      <Grid container xs={12} spacing={1}
+        lg={10} xl={9}
+      >
+        <Grid item xs={12} 
+        >
+          <SlidersForm />
+        </Grid>
+        <Grid item xs={12} lg={10} xl={9}>
+          <PlayerCard />
+        </Grid>
+      </Grid>
+      {/* </div> */}
+      {/* </content> */}
+    </React.Fragment>
+
   )
 }

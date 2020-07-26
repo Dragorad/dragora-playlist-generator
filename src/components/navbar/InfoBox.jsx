@@ -5,7 +5,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import GenreButton from '../GenresContainer/GenreButton'
+import GenreButton from '../UserView/GenreButton'
 import Modal from '@material-ui/core/Modal';
 import { Paper, Button } from '@material-ui/core'
 
@@ -27,12 +27,20 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
     paper: {
         position: 'absolute',
-        width: 400,
+        width: 350,
         backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
+        border: '2px solid #ffffff',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: theme.spacing(1, 4, 3),
+        margin: theme.spacing(1)
     },
+    button:{
+        backgroundColor: "#ff1166",
+        label:{
+            color: "secondary",
+            fontSize: '3rem'
+        }
+    }
 }));
 
 export default function InfoBox() {
@@ -51,25 +59,31 @@ export default function InfoBox() {
 
     return (
         <div>
-           <div>
-             <Button variant="outlined" color="danger"
-                onClick={handleOpen}>
-                App Info
+           {/* <div> */}
+             <Button
+              variant="outlined"
+            size='small'
+            color='inherit'
+            backgroundColor='#ff1133'
+            fontSize='0.8rem'
+            onClick={handleOpen}>
+               App Info
                 </Button>
-                </div>
+                {/* </div> */}
                       <Modal
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 open={open}
                 onClose={handleClose}
+                onClick={handleClose}
             >
                 <div style={modalStyle} className={classes.paper}>
                     <h2 id="simple-modal-title">How to use</h2>
                     <p id="simple-modal-description">
                     <Typography>
-//          Всяка една от композициите е избрана лично от висококласен музикален редактор с доказано добър вкус.<br/>
+//          Всяка една от композициите е избрана лично от опитен музикален редактор с доказано добър вкус.<br/>
 //          Изберете жанр, средно темпо и средна гръмкост и ще получите първите пет предложения.<br/>
-//          С Diversity управлявате колко често да се сменят стила и темпата на траковете вътре в плейлистата.<br/>
+//          С Diversity управлявате диапазон на темпо, гръмкост и усреднена честота на траковете вътре в плейлистата.<br/>
 //          Можете да харесвате и нехаресвате конкретен трак. <br/>
 //          Регистрираните потребители могат да следват хората, които предлагат траковете и да запазват плейлисти.
      </Typography>
