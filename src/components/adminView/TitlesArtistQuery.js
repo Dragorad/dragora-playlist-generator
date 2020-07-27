@@ -65,13 +65,13 @@ export function TitlesArtistQuery() {
   if (error) return <p>Error :( from TitleArtist Query {error.message} </p>
 
   console.log(data.title_records.length)
-  let data1 = data.title_records.filter(elem => elem.bpm < 149).slice(66, 69)
+  let data1 = data.title_records.slice(6, 10) 
+  // filter(elem => elem.bpm < 149).slice(66, 69)
   // filter(el => el.url == undefined)
 
   console.log(data1)
   return (
     data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres, tags }) => (
-
       <div key={_id} style={{
         display: 'flex', flexDirection: 'column', paddingLeft: '3%',
         borderBottom: '1px solid gray', maxWidth: '600 px'
@@ -84,8 +84,8 @@ export function TitlesArtistQuery() {
           <p style={{ color: "darkblue" }} id={titleMBID}>
             titleMBID: {titleMBID} <br />
             titleURL: {url}  <br />
-            MBGenres: {tags.genre} <br />
-            genres: {genres.join('; ')} </p>
+            MBGenres: {tags.genre ? "no tags defined": tags.genre} <br />
+            genres: {genres=== null? 'no genres yet': genres.join('; ')} </p>
         </p>
         <div style={{ color: " rgb(115, 41, 41)", display: 'flex', alignItems: 'space-between' }}>
           {/* {url != null ? <iframe width="180"
@@ -94,6 +94,7 @@ export function TitlesArtistQuery() {
             : <p>No url provided </p>} */}
           <UrlTitleForm titleMBID={titleMBID}
             MBGenres={tags.genre}
+            oldGenres = { !genres  ? [] : genres}
             url={url}
             key={_id + titleMBID} />
 

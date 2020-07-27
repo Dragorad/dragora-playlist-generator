@@ -17,7 +17,7 @@ export default function UrlTitleForm(props) {
   const [urlString, setUrlString] = React.useState('')
   const [updatedUrl, setUpdatedUrl] = React.useState(props.url)
   const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE_URL)
-
+  console.log(props.oldGenres)
   const formStyles = {
     display: 'flex',
     flexDirection: 'column',
@@ -58,7 +58,7 @@ export default function UrlTitleForm(props) {
   return (
     <React.Fragment>
       {updatedUrl != null ? <iframe width="180"
-        src={`https://www.youtube.com/embed/${urlString}`}>
+        src={`https://www.youtube.com/embed/${props.url}`}>
       </iframe>
         : <p>No url provided </p>}
 
@@ -80,9 +80,10 @@ export default function UrlTitleForm(props) {
           >Update Title URL</button>
         </form>
         {/* <ItemsList arr={genresList} title='Genres' /> */}
-        <UpdateFieldForm nameStr='Genres' style={formStyles} titleMBID={MBID}
-        MBGenres={props.MBGenres}
-          oldGenres={props.genres} onSubmit={setTitleGenres} />
+        <UpdateFieldForm nameStr='Genres' style={formStyles}
+          titleMBID={MBID}
+          MBGenres={props.MBGenres}
+          oldGenres={props.oldGenres} onSubmit={setTitleGenres} />
         <Divider orientation='vertical' />
         <div style={{ display: 'flex', padding: '1%' }}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>

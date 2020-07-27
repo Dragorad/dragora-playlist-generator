@@ -25,27 +25,47 @@ function splitMulti(str, tokens) {
     return str;
 }
 export function UpdateFieldForm(props) {
-
-    const MBID = props.titleMBID
-    const MBGenres = props.MBGenres
-    // console.log(props)
-
     const nameStr = props.nameStr
+    const MBID = props.titleMBID
+    const getNewGenresArr = (nameStr, props) => {
+        if (nameStr === "Genres") {
+            console.log(props.oldGenres)
+            const MBGenres = Array.isArray(props.MBGenres) ? props.MBGenres : []
+
+            // https://stackoverflow.com/questions/35235794/filter-strings-in-array-based-on-content
+
+            // var textToSearch = 'bedroom';
+            // var filteredArray = myArray.filter((str)=>{
+            //   return str.toLowerCase().indexOf(textToSearch.toLowerCase()) >= 0; 
+            // });
+            const excludeString = 'object'
+            const oldGenres = props.oldGenres.filter(el => {
+                const substrIdx = el.toLowerCase().indexOf(excludeString.toLowerCase())
+                if (substrIdx < 0) return el
+
+            })
+
+
+            const newGenresArr0 = MBGenres.concat(oldGenres)
+            const newGenresArr = Array.from(new Set(newGenresArr0))
+            return newGenresArr
+        }
+    }
+
+    const newGenresArr = props.oldGenres == undefined ? [] : getNewGenresArr(nameStr, props)
     const litNameStr = '${nameStr}'
     const [valueStr, setValueStr] = React.useState('')
     const h4String = (`Handle ${nameStr}`).toUpperCase()
-
-
     const submFunction = props.onSubmit
+
     return (
         <form key={nameStr} style={formStyles}
             onSubmit={(e) => {
                 e.preventDefault()
                 const splitters = ['/', ', ', '-', ' ']
-                const valuesArr = nameStr === "Genres" ? props.MBGenres : []
+                const valuesArr = nameStr === "Genres" ? newGenresArr : []
 
                 console.log(nameStr + ' : ' + valueStr)
-                console.log(Array.isArray(props.MBGenres))
                 valuesArr.push(valueStr)
 
                 // get unique values from stackoverflow
@@ -55,6 +75,11 @@ export function UpdateFieldForm(props) {
                 const updateObj = { titleMBID: MBID, valuesArr: newValuesArr }
                 console.log(updateObj)
                 props.onSubmit(updateObj)
+                    // .then(result => {
+                    //     console.log(result)
+                    //     const { genres, tags } = result
+                    // })
+                    // .catch(err => console.log(err.message))
                 // handleUpdateGenres(valueStr)
 
                 // h4String = " field updated"
