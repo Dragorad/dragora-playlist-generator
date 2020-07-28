@@ -9,8 +9,8 @@ import {
 import { genresList } from '../../workers/genresAndInstrumentsList'
 import { descriptorsList } from '../../workers/descriptorsList'
 import { GenreButton, ButtonsGroupMultiple } from './GenreButton'
-import { flexbox, sizing } from '@material-ui/system'
-import { grey, blue, blueGrey } from '@material-ui/core/colors'
+// import { flexbox, sizing } from '@material-ui/system'
+// import { grey, blue, blueGrey } from '@material-ui/core/colors'
 import { getNewPlayList } from '../../index'
 
 
@@ -54,12 +54,17 @@ export default function SlidersForm() {
     const [state, setState] = useState(stateObj)
     // console.log(state)
     const [appState, dispatch] = useContext(AppContext)
+    const includedGenres = appState.genresArr.join(' ').split(' ')
+        .filter(el => el !== 'general' && el !== 'and')
+    // console.log(includedGenres)
+
 
     const customInput = {
         bpm: state.Tempo.value + 70,
         delta: state.Diversity.value,
         average_loudness: state.Loudness.value,
-        spectral_centroid: state.Brightness.value
+        spectral_centroid: state.Brightness.value,
+        genresArr: includedGenres
     }
     const setNewPlaylist = customInput => {
         console.log(customInput)
@@ -125,7 +130,7 @@ export default function SlidersForm() {
                 justifyContent={'space-between'}
                 alignItems={'baseline'}
             >
-                <Grid item sx={12} sm={3}
+                <Grid item sx={12} sm={3} // genres buttons
                     // style={{ border: '1px solid red' }}
                     direction='row'>
                     <ButtonsGroupMultiple inputArr={genresList}
