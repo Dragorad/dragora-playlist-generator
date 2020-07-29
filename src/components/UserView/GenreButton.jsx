@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, {useContext } from 'react'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import { makeStyles } from '@material-ui/core/styles'
-import { createMuiTheme, Button, Grid, Paper, darken, capitalize } from '@material-ui/core'
+import { Grid, Paper} from '@material-ui/core'
 import { border, color } from '@material-ui/system'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { green, blue, red, blueGrey, lightBlue } from '@material-ui/core/colors'
+import {blueGrey, lightBlue } from '@material-ui/core/colors'
 import { AppContext } from '../../stateContext/indexContext';
 import { StylesProvider } from '@material-ui/core'
 import { descriptorsList } from '../../workers/descriptorsList'

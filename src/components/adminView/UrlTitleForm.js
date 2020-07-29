@@ -1,12 +1,8 @@
-import React, { useReducer, useState } from 'react'
-import { useQuery, useMutation } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import React from 'react'
+import { useMutation } from '@apollo/react-hooks'
 import { TextField, Typography, div, Divider } from '@material-ui/core'
-import { instrumentsList, genresList } from '../../workers/genresAndInstrumentsList'
-import { ItemsList } from './SelectedList'
-// import { from } from 'apollo-boost'
 import { UpdateFieldForm } from './UpdateFieldForm'
-import { UPDATE_TITLE_URL, UPDATE_GENRES, UPDATE_INSTRUMENTS } from '../../graphql/Mutations'
+import { UPDATE_TITLE_URL } from '../../graphql/Mutations'
 import { setTitleUrl, setTitleGenres, setTitleInstruments } from '../../index'
 
 
@@ -16,7 +12,7 @@ export default function UrlTitleForm(props) {
   // const updatedUrl = props.url
   const [urlString, setUrlString] = React.useState('')
   const [updatedUrl, setUpdatedUrl] = React.useState(props.url)
-  const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE_URL)
+  // const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE_URL)
   console.log(props.oldGenres)
   const formStyles = {
     display: 'flex',
@@ -25,16 +21,16 @@ export default function UrlTitleForm(props) {
     margin: '1rem'
   }
   const handleChange = (event) => {
-    const { name, value } = event.target
+    const { value } = event.target
     setUrlString(value.substring(17))
     // : setGenres(value)
   }
-  const clickUpdateUrl = () => handleUpdateTitleRecordURL({
-    variables: {
-      url: urlString,
-      titleMBID: MBID
-    }
-  })
+  // const clickUpdateUrl = () => handleUpdateTitleRecordURL({
+  //   variables: {
+  //     url: urlString,
+  //     titleMBID: MBID
+  //   }
+  // })
   const onUrlSubmit = async (e) => {
     e.preventDefault()
     const variableObj = {
@@ -58,6 +54,7 @@ export default function UrlTitleForm(props) {
   return (
     <React.Fragment>
       {updatedUrl != null ? <iframe width="180"
+        title={props.url}
         src={`https://www.youtube.com/embed/${props.url}`}>
       </iframe>
         : <p>No url provided </p>}

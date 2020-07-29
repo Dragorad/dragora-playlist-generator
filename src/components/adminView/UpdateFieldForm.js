@@ -1,9 +1,6 @@
-import React, { useReducer, useState } from 'react'
-import gql from 'graphql-tag'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import React from 'react'
 import { TextField, Typography } from '@material-ui/core'
-import { UPDATE_GENRES, UPDATE_INSTRUMENTS } from '../../graphql/Mutations'
-import { app } from '../../index'
+
 
 // props - nameStr   updateMutation
 

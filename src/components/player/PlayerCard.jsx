@@ -1,22 +1,18 @@
 import React, { useState, useContext } from 'react'
-import gql from 'graphql-tag'
-import { useQuery, useMutation } from '@apollo/react-hooks'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
+// import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
+// import CardMedia from '@material-ui/core/CardMedia'
 import IconButton from '@material-ui/core/IconButton'
 import PauseIcon from '@material-ui/icons/Pause'
 import Typography from '@material-ui/core/Typography'
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
-import { Container, Button } from '@material-ui/core'
-import { demoUrls, GET_FIVE, getRandomInt } from './demoUrls'
-import PlayerDr from './Player'
+import { Container } from '@material-ui/core'
+// import PlayerDr from './Player'
 import TitlesList from './TitlesList'
 import { AppContext } from '../../stateContext/indexContext'
-import { app } from 'realm-web'
 import * as types from '../../stateContext/types'
 import ReactPlayer from 'react-player'
 
@@ -62,7 +58,7 @@ export default function PlayerCard(props) {
   })
   const changeUrlIndex = direction => (event) => {
     const lastIdx = stateUrls.length - 1
-    const newIdx = 0
+    // const newIdx = 0
     switch (direction) {
       case 'up': {
         return dispatch({
@@ -79,9 +75,6 @@ export default function PlayerCard(props) {
 
       default: return setState({ ...state, urlIndex: direction })
     }
-
-
-    console.log(appState.urlIdx)
   }
   const handlePlayPause = e => {
     e.preventDefault()
@@ -101,7 +94,7 @@ export default function PlayerCard(props) {
   return (
     <Container className={classes.root}>
       {appState.playlist.length < 1 ?
-        <Typography variant={'h4'}  color={"textSecondary"}>
+        <Typography variant={'h4'} color={"textSecondary"}>
           You have to generate playlist </Typography>
         :
         <ReactPlayer
@@ -115,7 +108,7 @@ export default function PlayerCard(props) {
           onEnded={changeUrlIndex('up')} />
       }
       <div className={classes.details}>
-       
+
         <div className={classes.controls}>
           <IconButton aria-label="previous"
             onClick={changeUrlIndex('down')}>

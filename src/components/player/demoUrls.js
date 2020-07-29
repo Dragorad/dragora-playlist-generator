@@ -1,4 +1,4 @@
-import { gql, useQuery } from "apollo-boost"
+import { gql } from "apollo-boost"
 
 export const UPDATE_TITLE_URL = gql`
 mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){

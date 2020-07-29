@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Modal from '@material-ui/core/Modal';
 import {
-    Paper, Button, TextField, Typography, InputAdornment, IconButton,
-    FormControl, Input, InputLabel, OutlinedInput, ButtonGroup
+   Button, TextField, Typography, InputAdornment, IconButton,
+    FormControl, InputLabel, OutlinedInput, ButtonGroup
 } from '@material-ui/core'
-import { blueGrey, green, grey } from '@material-ui/core/colors'
-import PermIdentityIcon from '@material-ui/icons/PermIdentity'
+import { blueGrey, grey } from '@material-ui/core/colors'
+// import PermIdentityIcon from '@material-ui/icons/PermIdentity'
 import MailIcon from '@material-ui/icons/Mail'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
@@ -16,9 +16,9 @@ import { app } from '../../index'
 import * as types from '../../stateContext/types'
 import { AppContext } from '../../stateContext/indexContext'
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
+// function rand() {
+//     return Math.round(Math.random() * 20) - 10;
+// }
 const formStyles = {
     display: 'flex',
     flexDirection: 'column',

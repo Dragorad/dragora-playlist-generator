@@ -1,6 +1,5 @@
-import React, { createContext, useReducer } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import { render } from "react-dom"
 import { AppContextProvider } from './stateContext/indexContext'
 import './index.css'
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";

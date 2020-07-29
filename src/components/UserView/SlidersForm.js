@@ -1,14 +1,11 @@
-import React, { useState, useReducer, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import SliderMUI from './SliderMUI'
-import {
-    Button, Grid, Slider,
-    Paper, Divider, makeStyles, Typography, Container
-} from '@material-ui/core'
+import { Button, Grid, makeStyles } from '@material-ui/core'
 import { genresList } from '../../workers/genresAndInstrumentsList'
 import { descriptorsList } from '../../workers/descriptorsList'
-import { GenreButton, ButtonsGroupMultiple } from './GenreButton'
+import { ButtonsGroupMultiple } from './GenreButton'
 // import { flexbox, sizing } from '@material-ui/system'
 // import { grey, blue, blueGrey } from '@material-ui/core/colors'
 import { getNewPlayList } from '../../index'
@@ -103,12 +100,12 @@ export default function SlidersForm() {
         })
     }
 
-    const handleSliderChange = name => (ev, value) => {
-        ev.preventDefault()
-        setState({
-            ...state, [name]: value
-        })
-    }
+    // const handleSliderChange = name => (ev, value) => {
+    //     ev.preventDefault()
+    //     setState({
+    //         ...state, [name]: value
+    //     })
+    // }
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -176,10 +173,9 @@ export default function SlidersForm() {
 
                     {/* <Divider orienta4tion='horizontal' flexItem /> */}
 
-                    <Grid container item sm={12} //diversity
+                    <Grid container item  sm={5} //diversity
                         // style={{ backgroundColor: blueGrey[200], height: '100%' }}
-                        sm={5}>
-
+                        >
                         <SliderMUI item
                             //  height='10%'
                             sliderText='Diversity'
@@ -194,7 +190,7 @@ export default function SlidersForm() {
                             onChangeComitted={handleCommit('Diversity')} />
 
 
-                        <ButtonsGroupMultiple sm={12} sm={4} inputArr={descriptorsList} selected={false}
+                        <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false}
                             classes={classes.buttonGroup} />
 
                         <Button size={'medium'}
