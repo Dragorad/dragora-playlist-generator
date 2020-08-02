@@ -69,11 +69,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-export const firstPlaylist = app.functions.generatePlaylist({ bpm: 169, delta: 20 })
-  .then(playlist => {
-    return playlist
+// export const firstPlaylist = app.functions.generatePlaylist({ bpm: 169, delta: 20 })
+//   .then(playlist => {
+//     return playlist
 
-  })
+//   })
 
 export const getNewPlayList = async (inputObj) => {
   const playlist = await app.functions.generatePlaylist(inputObj)

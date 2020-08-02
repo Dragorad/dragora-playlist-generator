@@ -72,11 +72,11 @@ export function UpdateFieldForm(props) {
                 const updateObj = { titleMBID: MBID, valuesArr: newValuesArr }
                 console.log(updateObj)
                 props.onSubmit(updateObj)
-                    // .then(result => {
-                    //     console.log(result)
+                    .then(result => {
+                        console.log(result)
                     //     const { genres, tags } = result
-                    // })
-                    // .catch(err => console.log(err.message))
+                    })
+                    .catch(err => console.log(err.message))
                 // handleUpdateGenres(valueStr)
 
                 // h4String = " field updated"

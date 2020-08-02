@@ -66,8 +66,8 @@ export function TitlesArtistQuery() {
 
   console.log(data.title_records.length)
   let data1 = data.title_records
-  .filter(elem => elem.bpm > 149)
-  // .slice(101, 120)
+  .slice(0, 10)
+  // .filter(elem => elem.bpm > 149)
   // filter(el => el.url == undefined)
 
   console.log(data1)
