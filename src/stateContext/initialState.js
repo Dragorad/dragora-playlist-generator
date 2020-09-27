@@ -27,7 +27,7 @@ export const initialState = {
     genresStrings: [],
     bpm: 120
   },
-  genresArr: genresList,
+  genresArr: [],
   descriptorsArr: ['Tempo', 'Brightness', 'Loudness'],
 
   sliderFormValues: {

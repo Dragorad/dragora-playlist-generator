@@ -38,6 +38,12 @@ export const reducer = (state, action) => {
                 playlist: action.payload
             }
         }
+        case types.SET_GENRES: {
+            return {
+                ...state,
+                genresArr: action.payload
+            }
+        }
 
         case types.TOGGLE_PLAY_PAUSE:
             return {
@@ -58,7 +64,7 @@ export const reducer = (state, action) => {
                 [arrName]: newArr
             }
         }
-      
+
         default:
             throw new Error();
     }

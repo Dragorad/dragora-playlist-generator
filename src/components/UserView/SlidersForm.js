@@ -6,8 +6,7 @@ import { Button, Grid, makeStyles } from '@material-ui/core'
 import { genresList } from '../../workers/genresAndInstrumentsList'
 import { descriptorsList } from '../../workers/descriptorsList'
 import { ButtonsGroupMultiple } from './GenreButton'
-// import { flexbox, sizing } from '@material-ui/system'
-// import { grey, blue, blueGrey } from '@material-ui/core/colors'
+import { blueGrey } from '@material-ui/core/colors'
 import { getNewPlayList } from '../../index'
 
 
@@ -99,7 +98,20 @@ export default function SlidersForm() {
 
         })
     }
-
+    const toggleAllGenres = e => {
+        e.preventDefault()
+        dispatch({
+            type: types.SET_GENRES,
+            payload: genresList
+        })
+    }
+    const deselectAllGenres = e => {
+        e.preventDefault()
+        dispatch({
+            type: types.SET_GENRES,
+            payload: []
+        })
+    }
     // const handleSliderChange = name => (ev, value) => {
     //     ev.preventDefault()
     //     setState({
@@ -127,12 +139,27 @@ export default function SlidersForm() {
                 justifyContent={'space-between'}
                 alignItems={'baseline'}
             >
+
                 <Grid item sx={12} sm={3} // genres buttons
                     // style={{ border: '1px solid red' }}
                     direction='row'>
+                    <Button style={{
+                        margin: '2% 0',
+                        backgroundColor: blueGrey[400],
+                        color: 'white'
+                    }}
+                        onClick={toggleAllGenres}
+                        fullWidth  > Select All Genres</Button>
+
                     <ButtonsGroupMultiple inputArr={genresList}
                         selected={true} sm={6}
                     />
+                    <Button style={{ margin: '2% 0' }}
+                        variant="outlined"
+                        onClick={deselectAllGenres}
+                        // type='submit'
+                        fullWidth  > DeSelect All Genres</Button>
+
                 </Grid>
                 <Grid item container xs={12} sm={9} //sliders and generate
                     direction='row'
@@ -173,9 +200,9 @@ export default function SlidersForm() {
 
                     {/* <Divider orienta4tion='horizontal' flexItem /> */}
 
-                    <Grid container item  sm={5} //diversity
-                        // style={{ backgroundColor: blueGrey[200], height: '100%' }}
-                        >
+                    <Grid container item sm={5} //diversity
+                    // style={{ backgroundColor: blueGrey[200], height: '100%' }}
+                    >
                         <SliderMUI item
                             //  height='10%'
                             sliderText='Diversity'
