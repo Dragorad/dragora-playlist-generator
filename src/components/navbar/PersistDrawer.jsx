@@ -31,6 +31,7 @@ import { demoUrls } from '../player/demoUrls'
 import { blueGrey, lightBlue, blue } from '@material-ui/core/colors'
 import { LogButton } from '../authUsers/Login'
 import LoginInfoBox from '../authUsers/LoginModal'
+import Notifications from 'react-notify-toast'
 
 const drawerWidth = 240
 
@@ -198,6 +199,7 @@ export default function PersistentDrawerLeft() {
           [classes.contentShift]: open,
         })}
       >
+        <Notifications />
         <div className={classes.drawerHeader} />
       </main>
       {/* <content> */}

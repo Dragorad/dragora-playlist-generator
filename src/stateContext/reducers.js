@@ -44,6 +44,12 @@ export const reducer = (state, action) => {
                 genresArr: action.payload
             }
         }
+        case types.SET_ALERT_OPEN: {
+            return {
+                ...state,
+                alertOpen: action.payload
+            }
+        }
 
         case types.TOGGLE_PLAY_PAUSE:
             return {

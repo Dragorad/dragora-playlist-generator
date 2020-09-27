@@ -8,6 +8,9 @@ import { descriptorsList } from '../../workers/descriptorsList'
 import { ButtonsGroupMultiple } from './GenreButton'
 import { blueGrey } from '@material-ui/core/colors'
 import { getNewPlayList } from '../../index'
+import SnackBar from './SnackBar'
+import Notifications, { notify } from 'react-notify-toast'
+import { notifyOptions } from './notifyOptions'
 
 
 
@@ -48,12 +51,9 @@ const stateObj = {
 export default function SlidersForm() {
 
     const [state, setState] = useState(stateObj)
-    // console.log(state)
     const [appState, dispatch] = useContext(AppContext)
     const includedGenres = appState.genresArr.join(' ').split(' ')
         .filter(el => el !== 'general' && el !== 'and')
-    // console.log(includedGenres)
-
 
     const customInput = {
         bpm: state.Tempo.value + 70,
@@ -94,9 +94,6 @@ export default function SlidersForm() {
 
         console.log(state[name])
         setState({ ...state, [name]: { ...state[name], value: value } })
-        dispatch({
-
-        })
     }
     const toggleAllGenres = e => {
         e.preventDefault()
@@ -121,15 +118,17 @@ export default function SlidersForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        console.log(customInput)
-        setNewPlaylist(customInput)
-        // .then (res => {console.log(res)})
-        // console.log(appState.default)
+        console.log(appState)
+        !appState.genresArr.length ?
+            notify.show('You have to select at last one genre button or select all genres', "error", 7000)
+            : setNewPlaylist(customInput)
     }
 
     const classes = useStyles()
     return (
         <form style={{ padding: '1rem', margin: 'auto' }}>
+            <Notifications
+                options={notifyOptions} />
             <Grid container
                 xs={12}
                 lg={10}

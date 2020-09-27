@@ -29,7 +29,7 @@ export const initialState = {
   },
   genresArr: [],
   descriptorsArr: ['Tempo', 'Brightness', 'Loudness'],
-
+  alertOpen: false,
   sliderFormValues: {
     genresList: genresFilterList,
     Brightness: 35,
