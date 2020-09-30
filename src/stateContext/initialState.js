@@ -10,11 +10,11 @@ const genresFilterList = genresList.join(' ').split(' ')
   .filter(elem => elem !== "and")
 
 
-export const getNewPlayList = async () => {
-  const playlist = await app.functions.generatePlaylist({ bpm: 169, delta: 20 })
-  console.log(playlist)
-  return playlist
-}
+// export const getNewPlayList = async () => {
+//   const playlist = await app.functions.generatePlaylist({ bpm: 169, delta: 20 })
+//   console.log(playlist)
+//   return playlist
+// }
 
 export const initialState = {
   userId: '',
@@ -34,10 +34,10 @@ export const initialState = {
     genresList: genresFilterList,
     Brightness: 35,
     Loudness: 10,
-    Tempo: 20
+    Tempo: 40
   },
   diversity: {
-    value: 20,
+    value: 30,
     params: []
   },
   urlIdx: 0,

@@ -1,6 +1,6 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import { useQuery} from '@apollo/react-hooks'
 import { TextField, Typography } from '@material-ui/core'
 import UrlTitleForm from './UrlTitleForm'
 
@@ -9,7 +9,7 @@ import UrlTitleForm from './UrlTitleForm'
 const TITLE_DATA = gql`
   query GetTitleData {
     title_records
-    (sortBy: URL_ASC)
+    (sortBy: BPM_ASC)
      {
     _id
      artist
@@ -51,10 +51,10 @@ mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
 
 export function TitlesArtistQuery() {
   const { loading, error, data } = useQuery(TITLE_DATA)
-  const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE, {
-    variables: { titleMBID: 'data.titleMBID' },
-    skip: data == null
-  })
+  // const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE, {
+  //   variables: { titleMBID: 'data.titleMBID' },
+  //   skip: data == null
+  // })
 
   const [url, setUrl] = React.useState(null)
   const handleChange = (event) => {
@@ -65,7 +65,7 @@ export function TitlesArtistQuery() {
   if (error) return <p>Error :( from TitleArtist Query {error.message} </p>
 
   console.log(data.title_records.length)
-  let data1 = data.title_records.slice(0, 20)
+  let data1 = data.title_records.slice(61, 80)
   // .filter(elem => elem.bpm > 149)
   // filter(el => el.url == undefined)
 

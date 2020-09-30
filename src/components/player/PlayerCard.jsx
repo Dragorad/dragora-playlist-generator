@@ -15,6 +15,7 @@ import TitlesList from './TitlesList'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import ReactPlayer from 'react-player'
+import { notify } from 'react-notify-toast'
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,8 +47,6 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-
-
 export default function PlayerCard(props) {
   const [appState, dispatch] = useContext(AppContext)
   const classes = useStyles()
@@ -73,7 +72,8 @@ export default function PlayerCard(props) {
         })
       }
 
-      default: return setState({ ...state, urlIndex: direction })
+      default: notify.show("Tell me what to do", 'danger')
+      // return setState({ ...state, urlIndex: direction })
     }
   }
   const handlePlayPause = e => {

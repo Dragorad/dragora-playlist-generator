@@ -26,7 +26,7 @@ export function UpdateFieldForm(props) {
     const MBID = props.titleMBID
     const getNewGenresArr = (nameStr, props) => {
         if (nameStr === "Genres") {
-            console.log(props.oldGenres)
+            // console.log(props.oldGenres)
             const MBGenres = Array.isArray(props.MBGenres) ? props.MBGenres : []
 
             // https://stackoverflow.com/questions/35235794/filter-strings-in-array-based-on-content
@@ -56,7 +56,7 @@ export function UpdateFieldForm(props) {
     const submFunction = props.onSubmit
 
     return (
-        <form key={nameStr} style={formStyles}
+        <form key={`${MBID}-${nameStr}`} style={formStyles}
             onSubmit={(e) => {
                 e.preventDefault()
                 const splitters = ['/', ', ', '-', ' ']

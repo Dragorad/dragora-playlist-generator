@@ -63,7 +63,7 @@ export default function UrlTitleForm(props) {
         display: 'flex', maxWidth: '1200 px',
         flexDirection: 'row', justifyItems: 'space-evently'
       }}>
-        <form key={MBID} style={formStyles}
+        <form key={MBID + 'url'} style={formStyles}
         >
           <Typography component={"h4"} align={"left"} gutterBottom={true}>{h4String[0]}</Typography>
           <TextField id={MBID} label="url" name='url'
