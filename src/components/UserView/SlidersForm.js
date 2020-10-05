@@ -118,7 +118,7 @@ export default function SlidersForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        console.log(appState)
+        console.log(customInput)
         !appState.genresArr.length ?
             notify.show('You have to select at last one genre button or select all genres', "error", 7000)
             : setNewPlaylist(customInput)

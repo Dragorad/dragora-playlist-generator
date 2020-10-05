@@ -22,9 +22,8 @@ function splitMulti(str, tokens) {
     return str;
 }
 export function UpdateFieldForm(props) {
-    const nameStr = props.nameStr
-    const MBID = props.titleMBID
-    const getNewGenresArr = (nameStr, props) => {
+    const {nameStr, titleMBID} = props
+        const getNewGenresArr = (nameStr, props) => {
         if (nameStr === "Genres") {
             // console.log(props.oldGenres)
             const MBGenres = Array.isArray(props.MBGenres) ? props.MBGenres : []
@@ -56,7 +55,7 @@ export function UpdateFieldForm(props) {
     const submFunction = props.onSubmit
 
     return (
-        <form key={`${MBID}-${nameStr}`} style={formStyles}
+        <form key={`${titleMBID}-${nameStr}`} style={formStyles}
             onSubmit={(e) => {
                 e.preventDefault()
                 const splitters = ['/', ', ', '-', ' ']
@@ -69,7 +68,7 @@ export function UpdateFieldForm(props) {
 
                 let newValuesArr = [...new Set(splitMulti(valuesArr.join(', '), splitters)
                     .map(el => el.trim()).filter(elem => elem !== ''))]
-                const updateObj = { titleMBID: MBID, valuesArr: newValuesArr }
+                const updateObj = { titleMBID: titleMBID, valuesArr: newValuesArr }
                 console.log(updateObj)
                 props.onSubmit(updateObj)
                     .then(result => {

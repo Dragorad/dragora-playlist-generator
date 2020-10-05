@@ -33,7 +33,7 @@
 // db.sales.aggregate(aggregation);
  
  use ('Dragora_Selector')
-db.title_records.updateMany({}, {$set: {"genres": []}})
+// db.title_records.updateMany({}, {$set: {"genres": []}})
 // mongodb+srv://cluster0-ep2da.gcp.mongodb.net/test" --username Drag?replicaSet=Cluster0-shard-0&readPreference=primary&authSource=admin&ssl=true
 //  const query = {titleMBID: "c08d29a7-e402-4238-8c72-0b1a2395df52"}
 //  const project = {'tags.genre': true, 'genres': true}
@@ -58,11 +58,11 @@ db.title_records.updateMany({}, {$set: {"genres": []}})
 // db.title_records.find({}, {titleMBID: true, 'tags.genre': true}).map(elem => {
 //     const tempQuery = elem.titleMBID
 // const values = db.title_records.distinct("tags.genre", tempQuery)
-// let valuesSplit = values.map(el => {splitMulti(el, ['/', ' '])})
+// let valuesSplit = values.map(e_id__baas_transactionl => {splitMulti(el, ['/', ' '])})
 // const accumValues = [...[], ...valuesSplit]
 // const tempUpdate = {$addToSet:{"genres":{$each: accumValues}}}
 // db.title_records.updateOne(tempQuery, tempUpdate, {upsert: true})
 
 // })
-
-db.title_records.find(query, {titleName: 1, artist: 1, titleMBID: 1}})
+const query = {"genres": {$exists: false}}
+db.title_records.find(query, {"titleName": 1, 'artist': 1, 'titleMBID': 1, "updated": 1})

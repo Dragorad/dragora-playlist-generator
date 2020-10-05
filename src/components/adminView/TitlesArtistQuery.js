@@ -1,15 +1,16 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { useQuery} from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 import { TextField, Typography } from '@material-ui/core'
 import UrlTitleForm from './UrlTitleForm'
-
-
+import Notifications from 'react-notify-toast'
 
 const TITLE_DATA = gql`
   query GetTitleData {
     title_records
-    (sortBy: BPM_ASC)
+    (
+      # query: {genres_exists: false} 
+      sortBy: BPM_ASC)
      {
     _id
      artist
@@ -23,19 +24,39 @@ const TITLE_DATA = gql`
       genre
       }}}
 `
-const TITLE_RECORD = gql`
+export const TITLE_RECORD = gql`
 query GetTitleRecord ($titleMBID: String){
   title_record(query: {titleMBID: $titleMBID}) {
-  _id
-  artist
-  titleName
-  chords_key
-  url
-  bpm
-  genres
-  titleMBID
-  }}
+    _id
+     artist
+    titleName
+    chords_key
+    titleMBID
+    bpm
+    url
+    genres
+    tags{
+      genre
+      }}}
 `
+export const UPDATE_TITLE_GENRES = gql`
+mutation updateOneTitle_record ($titleMBID: String!, $genres:[String]){
+  updateOneTitle_record
+  (query: {titleMBID: $titleMBID}
+    set:{genres: $genres})  {
+    _id
+     artist
+    titleName
+    chords_key
+    titleMBID
+    bpm
+    url
+    genres
+    tags{
+      genre
+      }}}
+`
+
 const UPDATE_TITLE = gql`
 mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
  updateOneTitle_record(
@@ -51,6 +72,7 @@ mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
 
 export function TitlesArtistQuery() {
   const { loading, error, data } = useQuery(TITLE_DATA)
+  const { mutation_loading, mutation_error, mutation_data, refetch } = useMutation(UPDATE_TITLE_GENRES)
   // const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE, {
   //   variables: { titleMBID: 'data.titleMBID' },
   //   skip: data == null
@@ -65,17 +87,18 @@ export function TitlesArtistQuery() {
   if (error) return <p>Error :( from TitleArtist Query {error.message} </p>
 
   console.log(data.title_records.length)
-  let data1 = data.title_records.slice(61, 80)
+  let data1 = data.title_records.slice(0, 20)
   // .filter(elem => elem.bpm > 149)
   // filter(el => el.url == undefined)
 
   console.log(data1)
   return (
     data1.map(({ _id, artist, titleName, bpm, chords_key, titleMBID, url, genres, tags }) => (
-      <div key={_id} style={{
+      <div key={`title-data${_id}`} style={{
         display: 'flex', flexDirection: 'column', paddingLeft: '3%',
         borderBottom: '1px solid gray', maxWidth: '600 px'
       }}>
+        <Notifications />
         <p style={{ "color": "blue" }}>
           {artist}: {titleName}
           <p style={{ "color": "red" }} >
