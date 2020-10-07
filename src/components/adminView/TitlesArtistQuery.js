@@ -9,8 +9,8 @@ const TITLE_DATA = gql`
   query GetTitleData {
     title_records
     (
-      # query: {genres_exists: false} 
-      sortBy: BPM_ASC)
+      query: {url_exists: false} 
+      sortBy: ARTIST_ASC)
      {
     _id
      artist
