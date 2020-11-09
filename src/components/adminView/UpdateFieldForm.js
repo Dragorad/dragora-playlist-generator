@@ -1,5 +1,6 @@
 import React from 'react'
 import { TextField, Typography } from '@material-ui/core'
+import { notify } from 'react-notify-toast';
 
 
 // props - nameStr   updateMutation
@@ -22,8 +23,8 @@ function splitMulti(str, tokens) {
     return str;
 }
 export function UpdateFieldForm(props) {
-    const {nameStr, titleMBID} = props
-        const getNewGenresArr = (nameStr, props) => {
+    const { nameStr, titleMBID } = props
+    const getNewGenresArr = (nameStr, props) => {
         if (nameStr === "Genres") {
             // console.log(props.oldGenres)
             const MBGenres = Array.isArray(props.MBGenres) ? props.MBGenres : []
@@ -73,9 +74,11 @@ export function UpdateFieldForm(props) {
                 props.onSubmit(updateObj)
                     .then(result => {
                         console.log(result)
-                    //     const { genres, tags } = result
+                        //     const { genres, tags } = result
+                    }).catch(error => {
+                        notify.show(error.message, "error")
+                        console.log(error.message)
                     })
-                    .catch(err => console.log(err.message))
                 // handleUpdateGenres(valueStr)
 
                 // h4String = " field updated"
