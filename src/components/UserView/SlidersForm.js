@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import SliderMUI from './SliderMUI'
@@ -8,7 +8,7 @@ import { descriptorsList } from '../../workers/descriptorsList'
 import { ButtonsGroupMultiple } from './GenreButton'
 import { blueGrey } from '@material-ui/core/colors'
 import { getNewPlayList } from '../../index'
-import SnackBar from './SnackBar'
+// import SnackBar from './SnackBar'
 import Notifications, { notify } from 'react-notify-toast'
 import { notifyOptions } from './notifyOptions'
 
@@ -181,7 +181,7 @@ export default function SlidersForm() {
                                     min={state[descriptor].min}
                                     max={state[descriptor].max}
                                     step={state[descriptor].step}
-                                    aria-text={descriptor}
+                                    // aria-text={descriptor}
                                     sliderText={descriptor}
                                     disabled={!appState.descriptorsArr.includes(descriptor)}
                                     name={descriptor}

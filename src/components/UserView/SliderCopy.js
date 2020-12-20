@@ -1,10 +1,9 @@
-import React from 'react';
+import {useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import VolumeDown from '@material-ui/icons/VolumeDown';
-import VolumeUp from '@material-ui/icons/VolumeUp';
+// import VolumeUp from '@material-ui/icons/VolumeUp';
 
 const useStyles = makeStyles({
   root: {
@@ -28,7 +27,7 @@ const useStyles = makeStyles({
 
 export default function ContinuousSlider() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(30);
+  const [value, setValue] = useState(30);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -43,25 +42,7 @@ export default function ContinuousSlider() {
         <Grid item xs>
           <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
         </Grid>
-    {/* <Typography id="discrete-slider" gutterBottom>
-                            Temperature
-                        </Typography>
-                        <Slider
-                            defaultValue={state.stName}
-                            value={state[stName]}
-                            // getAriaValueText={valuetext}
-                            // aria-labelledby="discrete-slider"
-                            valueLabelDisplay="auto"
-                            name={stName}
-                            onChange={onSliderChange(stName)}
-                            onChangeCommitted={handleCommit(stName)}
-                            step={10}
-                            marks
-                            min={10}
-                            max={110}
-                        /> */}
-
-      </Grid>
+        </Grid>
     </div>
   );
 }

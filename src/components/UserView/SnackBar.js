@@ -1,15 +1,15 @@
-import React, { useState, useContext } from 'react'
+import { useContext } from 'react'
 import Snackbar from '@material-ui/core/Snackbar'
-import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
+// import IconButton from '@material-ui/core/IconButton'
+// import CloseIcon from '@material-ui/icons/Close'
 import { AppContext } from '../../stateContext/indexContext'
 import { SET_ALERT_OPEN } from '../../stateContext/types'
-import { Button } from '@material-ui/core'
+// import { Button } from '@material-ui/core'
 
 
 
 export default function SnackBar() {
-    const [appState, dispatch] = useContext(AppContext)
+    const [dispatch] = useContext(AppContext)
 const alertOpen = false
 
     const handleClose = (event, reason) => {
