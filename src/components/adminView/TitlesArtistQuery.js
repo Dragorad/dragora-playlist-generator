@@ -1,7 +1,7 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { useMutation, useQuery } from '@apollo/react-hooks'
-import { TextField, Typography } from '@material-ui/core'
+import { useQuery } from '@apollo/react-hooks'
+// import { TextField, Typography } from '@material-ui/core'
 import UrlTitleForm from './UrlTitleForm'
 import Notifications from 'react-notify-toast'
 
@@ -57,22 +57,22 @@ mutation updateOneTitle_record ($titleMBID: String!, $genres:[String]){
       }}}
 `
 
-const UPDATE_TITLE = gql`
-mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
- updateOneTitle_record(
-    query: {titleMBID: $titleMBID}
-    set: { url: $url}
-    # skip: !$titleMBID
-    ){
-      titleName
-      url
-  }
-}
-`
+// const UPDATE_TITLE = gql`
+// mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
+//  updateOneTitle_record(
+//     query: {titleMBID: $titleMBID}
+//     set: { url: $url}
+//     # skip: !$titleMBID
+//     ){
+//       titleName
+//       url
+//   }
+// }
+// `
 
 export function TitlesArtistQuery() {
   const { loading, error, data } = useQuery(TITLE_DATA)
-  const { mutation_loading, mutation_error, mutation_data, refetch } = useMutation(UPDATE_TITLE_GENRES)
+  // const { mutation_loading, mutation_error, mutation_data, refetch } = useMutation(UPDATE_TITLE_GENRES)
   // const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE, {
   //   variables: { titleMBID: 'data.titleMBID' },
   //   skip: data == null
