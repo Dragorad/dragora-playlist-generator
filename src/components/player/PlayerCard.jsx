@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 // import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -9,45 +9,51 @@ import Typography from '@material-ui/core/Typography'
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
-import { Container } from '@material-ui/core'
+import { Container} from '@material-ui/core'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 // import PlayerDr from './Player'
 import TitlesList from './TitlesList'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import ReactPlayer from 'react-player'
 import { notify } from 'react-notify-toast'
+// import { maxWidth, minWidth } from '@material-ui/system'
 
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-around'
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  content: {
-    flex: '1 0 auto',
-    height: "15%"
-  },
-  cover: {
-    width: 151,
-  },
-  controls: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-  },
-  playIcon: {
-    height: 38,
-    width: 38,
-  },
-
-}))
 
 export default function PlayerCard(props) {
+  const queryMatches = useMediaQuery('(min-width:480px)')
+  
+  let flexDirection =  queryMatches ? 'row': 'column' 
+  const useStyles = makeStyles(theme => ({
+    root: {
+      display: 'flex',
+      justifyContent: 'space-around',
+      flexDirection: flexDirection
+    },
+    details: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    content: {
+      flex: '1 0 auto',
+      height: "15%"
+    },
+    cover: {
+      width: 151,
+    },
+    controls: {
+      display: 'flex',
+      alignItems: 'center',
+      paddingLeft: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
+    },
+    playIcon: {
+      height: 38,
+      width: 38,
+    },
+  }))
+  
+  const playerIsLight = queryMatches ? false : true
   const [appState, dispatch] = useContext(AppContext)
   const classes = useStyles()
   const theme = useTheme()
@@ -100,7 +106,8 @@ export default function PlayerCard(props) {
         <ReactPlayer
           url={stateUrls[appState.urlIdx]}
           playing={appState.playing}
-          // light={true}
+          light={playerIsLight}
+          playIcon={true}
           // playIcon={'none'}
           controls={false}
           // width={'100%'}

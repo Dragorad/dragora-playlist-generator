@@ -25,3 +25,4 @@ yarn-error.log*
 .vercel
 src/overmind
 src/overmind/operators.js
+composer.phar
