@@ -21,7 +21,7 @@ import { notify } from 'react-notify-toast'
 
 
 export default function PlayerCard(props) {
-  const queryMatches = useMediaQuery('(min-width:480px)')
+  const queryMatches = useMediaQuery('(min-width: 600px)')
   
   let flexDirection =  queryMatches ? 'row': 'column' 
   const useStyles = makeStyles(theme => ({
@@ -101,7 +101,9 @@ export default function PlayerCard(props) {
     <Container className={classes.root}>
       {appState.playlist.length < 1 ?
         <Typography variant={'h4'} color={"textSecondary"}>
-          You have to generate playlist </Typography>
+          Playlist is empty.<br/>
+          Please set "Diversity" to bigger value or add genres with dedicated buttons<br/>
+          Press "Generate Playlist Button" </Typography>
         :
         <ReactPlayer
           url={stateUrls[appState.urlIdx]}
@@ -116,7 +118,8 @@ export default function PlayerCard(props) {
       }
       <div className={classes.details}>
 
-        <div className={classes.controls}>
+        <div className={classes.controls}  //control icons
+        > 
           <IconButton aria-label="previous"
             onClick={changeUrlIndex('down')}>
             {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}

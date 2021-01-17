@@ -11,6 +11,7 @@ import { getNewPlayList } from '../../index'
 // import SnackBar from './SnackBar'
 import Notifications, { notify } from 'react-notify-toast'
 import { notifyOptions } from './notifyOptions'
+import PlayerCard from '../player/PlayerCard'
 
 
 
@@ -126,7 +127,7 @@ export default function SlidersForm() {
 
     const classes = useStyles()
     return (
-        <form style={{ padding: '1rem', margin: 'auto' }}>
+        <div style={{ padding: '1rem', margin: 'auto' }}>
             <Notifications
                 options={notifyOptions} />
             <Grid container
@@ -210,7 +211,7 @@ export default function SlidersForm() {
                             min={state.Diversity.min}
                             max={state.Diversity.max}
                             step={state.Diversity.step}
-                            aria-text={'Diversity'}
+                            // aria-text={'Diversity'}
                             name={'Diversity'}
                             onChange={onSliderChange('Diversity')}
                             onChangeComitted={handleCommit('Diversity')} />
@@ -226,8 +227,12 @@ export default function SlidersForm() {
                             type='submit'
                             fullWidth >Generate Playlist</Button>
                     </Grid>
+                    {/* <Grid item >
+                    <PlayerCard />
+
+                    </Grid> */}
                 </Grid>
             </Grid>
-        </form >
+        </div >
     )
 }
