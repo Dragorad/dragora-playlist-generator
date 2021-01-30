@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -38,7 +38,7 @@ export default function TitlesList(props) {
     <div className={classes.root}>
 
       <List component="nav" aria-label="playlist titles">
-        {props.dataArr.map((elem, index) => (
+        {appState.playlist.map((elem, index) => (
           <ListItem
             key={index}
             button

@@ -24,7 +24,7 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity'
 // import PlayerCard from '../player/PlayerCard'
 import InfoBox from '../navbar/InfoBox'
 import SlidersForm from '../UserView/SlidersForm'
-import { Paper, Grid, Box } from '@material-ui/core'
+import { Paper as Container, Grid, Box } from '@material-ui/core'
 // import PlayerDr from '../player/Player'
 // import { demoUrls } from '../player/demoUrls'
 // import ReactPlayer from 'react-player'
@@ -32,6 +32,11 @@ import { blueGrey, lightBlue, blue } from '@material-ui/core/colors'
 // import { LogButton } from '../authUsers/Login'
 import LoginInfoBox from '../authUsers/LoginModal'
 import Notifications from 'react-notify-toast'
+import GenresButtonsGroup from '../UserView/GenresButtonsGroup'
+import TitlesList from '../player/TitlesList'
+import PlayerControlButtons from '../player/PlayerControlButtons'
+import ReactPlayer from 'react-player'
+import PlayerDr from '../player/PlayerDr'
 
 const PlayerCard = React.lazy(() => import('../player/PlayerCard'))
 const drawerWidth = 240
@@ -39,9 +44,11 @@ const drawerWidth = 240
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: '1200px',
+    maxWidth: '1600px',
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'space-evently',
+    // marginLeft: '0.3rem',
+    padding: '1rem'
   },
   appBar: {
     display: 'flex',
@@ -78,19 +85,20 @@ const useStyles = makeStyles(theme => ({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(0, 1),
+    padding: 'theme.spacing(0, 1)',
     // ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    maxWidth: '1200px',
+    // maxWidth: '1200px',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
+    // backgroundColor: 'red'
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -115,8 +123,8 @@ export default function PersistentDrawerLeft() {
   }
 
   return (
-    <React.Fragment>
-      <Suspense fallback={<div> Loading...</div>}>
+    <>
+      <Suspense fallback={<img src='music-player-circle-start.svg' alt='Loading...' />}>
         <Grid spacing={1} lg={10} xl={6}>
           <AppBar
             position="fixed"
@@ -142,7 +150,8 @@ export default function PersistentDrawerLeft() {
                 position: 'relative', right: '1%',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                marginLeft: '20%'
+                marginLeft: '20%',
+                padding: '0.6 rem'
               }}>
                 {/* <LogButton /> */}
                 <LoginInfoBox />
@@ -192,31 +201,42 @@ export default function PersistentDrawerLeft() {
           <Notifications />
           <div className={classes.drawerHeader} />
         </main>
-        {/* <content> */}
-        {/* <div style={{
-          display: 'flex',
-          flexFlow: 'row wrap',
-          alignItems: 'flex-start',
-          justify: 'space-between'
-        }}> */}
 
-        {/* <Paper elevation={4}> */}
-        {/* <div style={{width: '60%'}}> */}
         <Grid container xs={12} spacing={1}
           lg={10} xl={9}
+          className={classes.root}
         >
-          <Grid item xs={12}
-          >
-            <SlidersForm />
-          </Grid>
-          <Grid item xs={12} lg={10} xl={9}>
-            <PlayerCard />
-          </Grid>
+          {/* <Container > */}
+            <Grid item sx={12} sm={3} md={2} lg={2}// genres buttons
+              // style={{ border: '1px solid red' }}
+              direction='row'>
+              <GenresButtonsGroup />
+            </Grid>
+            <Grid container item xs={12} sm={5} direction='row' //sliders form
+            // style={{border: '1px solid blue'}}
+            >
+              <Grid item >
+                {/* <Paper elevation={2} > */}
+                <SlidersForm />
+                {/* </Paper> */}
+              </Grid>
+
+              <Grid item xs={12} direction='column' //PlayerDr
+              >
+                {/* <Paper elevation={1} > */}
+                <PlayerDr />
+                {/* </Paper> */}
+              </Grid>
+            </Grid>
+            <Grid item xs={12} sm={4} lg={3} //titlesList
+            >
+              <TitlesList />
+            </Grid>
+          {/* </Container> */}
         </Grid>
       </Suspense>
-      {/* </div> */}
-      {/* </content> */}
-    </React.Fragment>
+
+    </>
 
   )
 }

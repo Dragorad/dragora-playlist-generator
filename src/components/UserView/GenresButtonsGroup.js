@@ -1,23 +1,47 @@
-import React, { useState, useReducer, useContext } from 'react'
+import { useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
-import SliderMUI from './SliderMUI'
-import {
-    Button, Grid, Slider,
-    Paper, Divider, makeStyles, Typography, Container
-} from '@material-ui/core'
+import { Button} from '@material-ui/core'
 import { genresList } from '../../workers/genresAndInstrumentsList'
-import { descriptorsList } from '../../workers/descriptorsList'
-import { GenreButton, ButtonsGroupMultiple } from './GenreButton'
+import { ButtonsGroupMultiple } from './GenreButton'
+import { blueGrey } from '@material-ui/core/colors'
 
 
 
 export default function GenresButtonsGroup() {
+    const [appState, dispatch] = useContext(AppContext)
+    const toggleAllGenres = e => {
+        e.preventDefault()
+        dispatch({
+            type: types.SET_GENRES,
+            payload: genresList
+        })
+    }
+    const deselectAllGenres = e => {
+        e.preventDefault()
+        dispatch({
+            type: types.SET_GENRES,
+            payload: []
+        })
+    }
     return (
-        // <div>
+        <>
+            <Button style={{
+                margin: '2% 0',
+                backgroundColor: blueGrey[400],
+                color: 'white'
+            }}
+                onClick={toggleAllGenres}
+                fullWidth  > Select All Genres</Button>
+
             <ButtonsGroupMultiple inputArr={genresList}
                 selected={true} sm={6}
             />
-        // </div>
+            <Button style={{ margin: '2% 0' }}
+                variant="outlined"
+                onClick={deselectAllGenres}
+                // type='submit'
+                fullWidth  > DeSelect All Genres</Button>
+        </>
     )
 }

@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom'
 import { AppContextProvider } from './stateContext/indexContext'
 import './index.css'
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import { setContext } from "apollo-link-context";
 import { ApolloProvider } from "@apollo/react-hooks";
-import App from './App'
 import * as serviceWorker from './serviceWorker'
 import * as RealmWeb from "realm-web"
 // import { setContext } from "apollo-link-context"
 // import * as initialState from './stateContext/initialState'
 // import {reducer} from './stateContext/reducers'
+// import AppLogo from './components/svg-icons/music-player-circle-start.svg'
 
 
+const App = lazy(() => import('./App'))
 const APP_ID = "dragoraselectortest-sveyc"
 
 
@@ -93,12 +94,25 @@ export const setTitleInstruments = async (instrumObj) => {
   return result
 }
 
+
+const ImgLoader = () => {
+  return (
+    <React.Fragment>
+
+      <img src='./svg-icons/busic-player-circle-start.svg'
+
+        alt='LLLLLLLLLLLLLLLoading...' />
+    </React.Fragment>
+  )
+}
 ReactDOM.render(
 
   <AppContextProvider >
     <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+      <Suspense fallback={ImgLoader}>
+          <App />
+        </Suspense>
+      </ApolloProvider>
   </AppContextProvider>
   , document.getElementById('root'))
 
