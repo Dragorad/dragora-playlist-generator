@@ -1,23 +1,23 @@
-import { useState, useContext } from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { useContext } from 'react'
+import { makeStyles, } from '@material-ui/core/styles'
 // import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 // import CardMedia from '@material-ui/core/CardMedia'
-import IconButton from '@material-ui/core/IconButton'
-import PauseIcon from '@material-ui/icons/Pause'
+// import IconButton from '@material-ui/core/IconButton'
+// import PauseIcon from '@material-ui/icons/Pause'
 import Typography from '@material-ui/core/Typography'
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
-import PlayArrowIcon from '@material-ui/icons/PlayArrow'
-import SkipNextIcon from '@material-ui/icons/SkipNext'
+// import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
+// import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+// import SkipNextIcon from '@material-ui/icons/SkipNext'
 import { Container } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 // import PlayerDr from './Player'
-import TitlesList from './TitlesList'
+// import TitlesList from './TitlesList'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import ReactPlayer from 'react-player'
 import { notify } from 'react-notify-toast'
-import PlayerControlButtons from './PlayerControlButtons'
+// import PlayerControlButtons from './PlayerControlButtons'
 // import { maxWidth, minWidth } from '@material-ui/system'
 
 
@@ -57,11 +57,11 @@ export default function PlayerCard(props) {
   const playerIsLight = queryMatches ? false : true
   const [appState, dispatch] = useContext(AppContext)
   const classes = useStyles()
-  const theme = useTheme()
-  const [state, setState] = useState({
-    playing: true,
-    urlIndex: 0
-  })
+  // const theme = useTheme()
+  // const [state, setState] = useState({
+  //   playing: true,
+  //   urlIndex: 0
+  // })
   const changeUrlIndex = direction => (event) => {
     const lastIdx = stateUrls.length - 1
     // const newIdx = 0
@@ -83,14 +83,14 @@ export default function PlayerCard(props) {
       // return setState({ ...state, urlIndex: direction })
     }
   }
-  const handlePlayPause = e => {
-    e.preventDefault()
-    dispatch({
-      type: types.TOGGLE_PLAY_PAUSE,
-      payload: !appState.playing
-    })
-    setState({ ...state, playing: !state.playing })
-  }
+  // const handlePlayPause = e => {
+  //   e.preventDefault()
+  //   dispatch({
+  //     type: types.TOGGLE_PLAY_PAUSE,
+  //     payload: !appState.playing
+  //   })
+  //   setState({ ...state, playing: !state.playing })
+  // }
   if (!appState) return <p>Loading playlist...</p>
   console.log(appState)
   const playlistArr = appState.playlist

@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import GenreButton from '../UserView/GenreButton'
 import Modal from '@material-ui/core/Modal';
-import { Paper, Button } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;

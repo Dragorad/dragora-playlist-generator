@@ -4,7 +4,7 @@ import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import ReactPlayer from 'react-player/lazy'
 import { notify } from 'react-notify-toast'
-import { Container } from '@material-ui/core'
+import { Container, Fade, Zoom } from '@material-ui/core'
 import PlayerControlButtons from './PlayerControlButtons'
 
 export default function PlayerDr(props) {
@@ -36,40 +36,42 @@ export default function PlayerDr(props) {
             // return setState({ ...state, urlIndex: direction })
         }
     }
-    const handlePlayPause = e => {
-        e.preventDefault()
-        dispatch({
-            type: types.TOGGLE_PLAY_PAUSE,
-            payload: !appState.playing
-        })
-        setState({ ...state, playing: !state.playing })
-    }
+    // const handlePlayPause = e => {
+    //     e.preventDefault()
+    //     dispatch({
+    //         type: types.TOGGLE_PLAY_PAUSE,
+    //         payload: !appState.playing
+    //     })
+    //     setState({ ...state, playing: !state.playing })
+    // }
     if (!appState) return <p>Loading playlist...</p>
-    console.log(appState)
+    // console.log(appState)
     const playlistArr = appState.playlist
 
     const stateUrls = playlistArr.map(elem => `https://youtu.be/${elem.url}`)
     console.log(stateUrls[appState.urlIdx])
 
     return (
-        <Container 
-        style={{marginTop: '2%'}}>
+        <Container
+            style={{ marginTop: '2%' }}>
             {appState.playlist.length < 1 ?
                 <p variant={'h4'} color={"textSecondary"}>
                     Playlist is empty.<br />
           Please set "Diversity" to bigger value or add genres with dedicated buttons<br />
-          Press "Generate Playlist Button" </p>
+          Then press "Generate Playlist Button" </p>
                 : <>
-                    <ReactPlayer
-                        url={stateUrls[appState.urlIdx]}
-                        playing={appState.playing}
-                        //   light={playerIsLight}
-                        playIcon={true}
-                        // playIcon={'none'}
-                        controls={false}
-                        width={'100%'}
-                        // height={'80%'}
-                        onEnded={changeUrlIndex('up')} />
+                    <Zoom in={true} style={{transitionDuration: '2800'}} >
+                        <ReactPlayer
+                            url={stateUrls[appState.urlIdx]}
+                            playing={appState.playing}
+                            playIcon={false}
+                            controls={false}
+                            width={'100%'}
+                            light={false}
+                            // height={'100%'}
+                            onEnded={changeUrlIndex('up')} />
+                    </Zoom>
+
                     <PlayerControlButtons />
                 </>
             }

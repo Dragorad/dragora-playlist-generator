@@ -1,7 +1,7 @@
 import { genresList } from '../workers/genresAndInstrumentsList'
-import { descriptorsList } from '../workers/descriptorsList'
-import { app } from '../index'
-import { firstPlaylist } from '../index'
+// import { descriptorsList } from '../workers/descriptorsList'
+// import { app } from '../index'
+// import { firstPlaylist } from '../index'
 import * as playLists from './preDefinedPlaylists'
 
 // const initalPlaylist = firstPlaylist

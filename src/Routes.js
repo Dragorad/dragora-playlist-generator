@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import PersistentDrawerLeft from './components/navbar/PersistDrawer'
+// import PersistentDrawerLeft from './components/navbar/PersistDrawer'
 import { TitlesArtistQuery } from './components/adminView/TitlesArtistQuery'
 import UrlTitleForm from './components/adminView/UrlTitleForm'
 

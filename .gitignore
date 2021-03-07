@@ -26,3 +26,4 @@ yarn-error.log*
 src/overmind
 src/overmind/operators.js
 composer.phar
+.eslintcache

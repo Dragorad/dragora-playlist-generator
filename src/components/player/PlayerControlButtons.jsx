@@ -1,10 +1,10 @@
-import { IconButton } from '@material-ui/core'
+import { Grow, IconButton } from '@material-ui/core'
 import PauseIcon from '@material-ui/icons/Pause'
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
-import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+// import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
 import { useState, useContext } from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles} from '@material-ui/core/styles'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import { notify } from 'react-notify-toast'
@@ -64,7 +64,7 @@ export default function PlayerControlButtons() {
         })
         setState({ ...state, playing: !state.playing })
     }
-    if (!appState) return <p style={{backgroundImage:' url("music-player-circle-start.svg")'}}
+    if (!appState) return <p style={{ backgroundImage: ' url("music-player-circle-start.svg")' }}
     >Loading playlist...</p>
     console.log(appState)
     const playlistArr = appState.playlist
@@ -73,26 +73,31 @@ export default function PlayerControlButtons() {
     console.log(stateUrls[appState.urlIdx])
 
     return (
-        <div className={classes.controls}  //control icons
-        >
-             <img src="music-player-circle-start.svg" alt='App Logo'
-             className={classes.playIcon} />
-            <IconButton aria-label="previous"
-                onClick={changeUrlIndex('down')}>
-                <SkipPreviousIcon />
-            </IconButton>
-            <IconButton aria-label="play/pause"
-                onClick={handlePlayPause}>
-                {!appState.playing ?
-                    // <img src="music-player-circle-start.svg" alt='App Logo' />
-                    <PlayArrowIcon className={classes.playIcon} />
-                    : <PauseIcon className={classes.playIcon} />
-                }
-            </IconButton>
-            <IconButton aria-label="next"
-                onClick={changeUrlIndex('up')}
+        <Grow in={true}
+            style={{ transformOrigin: '100 0 20' }}
+            timeout={2800} >
+            <div className={classes.controls}  //control icons
             >
-                <SkipNextIcon />
-            </IconButton>
-        </div>)
+                {/* <img src="music-player-circle-start.svg" alt='App Logo'
+             className={classes.playIcon} /> */}
+                <IconButton aria-label="previous"
+                    onClick={changeUrlIndex('down')}>
+                    <SkipPreviousIcon />
+                </IconButton>
+                <IconButton aria-label="play/pause"
+                    onClick={handlePlayPause}>
+                    {!appState.playing ?
+                        <img src="music-player-circle-start.svg" alt='App Logo'
+                            className={classes.playIcon} />
+                        // <PlayArrowIcon className={classes.playIcon} />
+                        : <PauseIcon className={classes.playIcon} />
+                    }
+                </IconButton>
+                <IconButton aria-label="next"
+                    onClick={changeUrlIndex('up')}
+                >
+                    <SkipNextIcon />
+                </IconButton>
+            </div>
+        </Grow>)
 }

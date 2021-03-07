@@ -2,19 +2,18 @@ import { useState, useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import SliderMUI from './SliderMUI'
-import { Button, Divider, Grid, makeStyles, Zoom } from '@material-ui/core'
-import { genresList } from '../../workers/genresAndInstrumentsList'
+import { Button, Divider, Grid, Grow, makeStyles } from '@material-ui/core'
+// import { genresList } from '../../workers/genresAndInstrumentsList'
 import { descriptorsList } from '../../workers/descriptorsList'
 import { ButtonsGroupMultiple } from './GenreButton'
-import { blueGrey } from '@material-ui/core/colors'
+// import { blueGrey } from '@material-ui/core/colors'
 import { getNewPlayList } from '../../index'
 // import SnackBar from './SnackBar'
 import Notifications, { notify } from 'react-notify-toast'
 import { notifyOptions } from './notifyOptions'
 // import PlayerCard from '../player/PlayerCard'
-import Fade from '@material-ui/core/Fade'
-import PlayerControlButtons from '../player/PlayerControlButtons'
-import PlayerCard from '../player/PlayerCard'
+// import PlayerControlButtons from '../player/PlayerControlButtons'
+// import PlayerCard from '../player/PlayerCard'
 
 
 const useStyles = makeStyles(theme => ({
@@ -99,7 +98,7 @@ export default function SlidersForm() {
     console.log(state[name])
     setState({ ...state, [name]: { ...state[name], value: value } })
   }
-  
+
   const onSubmit = async (e) => {
     e.preventDefault()
     console.log(customInput)
@@ -122,10 +121,8 @@ export default function SlidersForm() {
         justifyContent={'space-around'}
         alignItems={'baseline'}
         className={classes.root}
-        // style={{ border: '1px solid blue' }}
+      // style={{ border: '1px solid blue' }}
       >
-
-
         <Grid item container sm={6}//descriptor sliders
           direction={'column'}
           // justifyContent={'st'}
@@ -175,15 +172,18 @@ export default function SlidersForm() {
 
           <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false}
             classes={classes.buttonGroup} />
-
-          <Button size={'medium'}
-            style={{ margin: '2% 0' }}
-            variant="outlined"
-            onClick={onSubmit}
-            type='submit'
-            fullWidth >Generate Playlist</Button>
+          <Grow in={true} 
+          style={{transformOrigin: '100 0 20'}}
+          timeout={1800}>
+            <Button size={'medium'}
+              style={{ margin: '2% 0' }}
+              variant="outlined"
+              onClick={onSubmit}
+              type='submit'
+              fullWidth >Generate Playlist</Button>
+          </Grow>
         </Grid>
-        
+
       </Grid>
     </div >
   )

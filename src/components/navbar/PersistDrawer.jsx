@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import clsx from 'clsx'
-import { makeStyles, useTheme, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 // import CssBaseline from '@material-ui/core/CssBaseline'
 import AppBar from '@material-ui/core/AppBar'
@@ -24,7 +24,7 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity'
 // import PlayerCard from '../player/PlayerCard'
 import InfoBox from '../navbar/InfoBox'
 import SlidersForm from '../UserView/SlidersForm'
-import { Paper as Container, Grid, Box } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 // import PlayerDr from '../player/Player'
 // import { demoUrls } from '../player/demoUrls'
 // import ReactPlayer from 'react-player'
@@ -34,11 +34,11 @@ import LoginInfoBox from '../authUsers/LoginModal'
 import Notifications from 'react-notify-toast'
 import GenresButtonsGroup from '../UserView/GenresButtonsGroup'
 import TitlesList from '../player/TitlesList'
-import PlayerControlButtons from '../player/PlayerControlButtons'
-import ReactPlayer from 'react-player'
+// import PlayerControlButtons from '../player/PlayerControlButtons'
+// import ReactPlayer from 'react-player'
 import PlayerDr from '../player/PlayerDr'
 
-const PlayerCard = React.lazy(() => import('../player/PlayerCard'))
+// const PlayerCard = React.lazy(() => import('../player/PlayerCard'))
 const drawerWidth = 240
 
 
@@ -97,6 +97,7 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: 'black',
     marginLeft: -drawerWidth,
     // backgroundColor: 'red'
   },
@@ -133,6 +134,8 @@ export default function PersistentDrawerLeft() {
             })}
           >
             <Toolbar variant='dence'>
+              {/* <img src="music-player-circle-start.svg" alt='App Logo'
+             className={classes.playIcon} /> */}
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -140,6 +143,8 @@ export default function PersistentDrawerLeft() {
                 edge="start"
                 className={clsx(classes.menuButton, open && classes.hide)}
               >
+                <img src="music-player-circle-start.svg" alt='App Logo' />
+
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" noWrap flexShrink='2' >
@@ -207,31 +212,31 @@ export default function PersistentDrawerLeft() {
           className={classes.root}
         >
           {/* <Container > */}
-            <Grid item sx={12} sm={3} md={2} lg={2}// genres buttons
-              // style={{ border: '1px solid red' }}
-              direction='row'>
-              <GenresButtonsGroup />
+          <Grid item sx={12} sm={3} md={2} lg={2}// genres buttons
+            // style={{ border: '1px solid red' }}
+            direction='row'>
+            <GenresButtonsGroup />
+          </Grid>
+          <Grid container item xs={12} sm={5} direction='row' //sliders form
+          // style={{border: '1px solid blue'}}
+          >
+            <Grid item >
+              {/* <Paper elevation={2} > */}
+              <SlidersForm />
+              {/* </Paper> */}
             </Grid>
-            <Grid container item xs={12} sm={5} direction='row' //sliders form
-            // style={{border: '1px solid blue'}}
-            >
-              <Grid item >
-                {/* <Paper elevation={2} > */}
-                <SlidersForm />
-                {/* </Paper> */}
-              </Grid>
 
-              <Grid item xs={12} direction='column' //PlayerDr
-              >
-                {/* <Paper elevation={1} > */}
-                <PlayerDr />
-                {/* </Paper> */}
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm={4} lg={3} //titlesList
+            <Grid item xs={12} direction='column' //PlayerDr
             >
-              <TitlesList />
+              {/* <Paper elevation={1} > */}
+              <PlayerDr />
+              {/* </Paper> */}
             </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} lg={3} //titlesList
+          >
+            <TitlesList />
+          </Grid>
           {/* </Container> */}
         </Grid>
       </Suspense>

@@ -36,18 +36,13 @@ const theme = createMuiTheme({
 
 
 function App() {
-  // const [appState, dispatch] = useContext(AppContext)
-  // loginAnonymous()
-  // const [user, setUser] = React.useState(app.currentUser)
+  
   return (
 
     <BrowserRouter>
       <React.Fragment>
         <ThemeProvider theme={theme}>
           <Routes />
-          {/* <Notifications
-          options={notifyOptions}
-          /> */}
         </ThemeProvider>
       </React.Fragment>
     </BrowserRouter>
