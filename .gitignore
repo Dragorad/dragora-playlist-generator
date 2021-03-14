@@ -27,3 +27,6 @@ src/overmind
 src/overmind/operators.js
 composer.phar
 .eslintcache
+src/credential/AppId.js
+.gitsecret/keys/random_seed
+.eslintcache

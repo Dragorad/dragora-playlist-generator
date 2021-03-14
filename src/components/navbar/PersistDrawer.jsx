@@ -20,25 +20,17 @@ import ShareIcon from '@material-ui/icons/Share'
 import QueueMusicIcon from '@material-ui/icons/QueueMusic'
 import SettingsIcon from '@material-ui/icons/Settings'
 import PermIdentityIcon from '@material-ui/icons/PermIdentity'
-// import GenresList from '../GenresContainer/GenresContainer'
-// import PlayerCard from '../player/PlayerCard'
 import InfoBox from '../navbar/InfoBox'
 import SlidersForm from '../UserView/SlidersForm'
 import { Grid } from '@material-ui/core'
-// import PlayerDr from '../player/Player'
-// import { demoUrls } from '../player/demoUrls'
-// import ReactPlayer from 'react-player'
-import { blueGrey, lightBlue, blue } from '@material-ui/core/colors'
+import { blue } from '@material-ui/core/colors'
 // import { LogButton } from '../authUsers/Login'
 import LoginInfoBox from '../authUsers/LoginModal'
 import Notifications from 'react-notify-toast'
 import GenresButtonsGroup from '../UserView/GenresButtonsGroup'
 import TitlesList from '../player/TitlesList'
-// import PlayerControlButtons from '../player/PlayerControlButtons'
-// import ReactPlayer from 'react-player'
 import PlayerDr from '../player/PlayerDr'
 
-// const PlayerCard = React.lazy(() => import('../player/PlayerCard'))
 const drawerWidth = 240
 
 

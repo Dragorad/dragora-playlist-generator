@@ -7,6 +7,7 @@ import { setContext } from "apollo-link-context";
 import { ApolloProvider } from "@apollo/react-hooks";
 import * as serviceWorker from './serviceWorker'
 import * as RealmWeb from "realm-web"
+import { APP_ID } from './credential/AppId';
 // import { setContext } from "apollo-link-context"
 // import * as initialState from './stateContext/initialState'
 // import {reducer} from './stateContext/reducers'
@@ -14,7 +15,7 @@ import * as RealmWeb from "realm-web"
 
 
 const App = lazy(() => import('./App'))
-const APP_ID = "dragoraselectortest-sveyc"
+
 
 
 export const app = new RealmWeb.App({
