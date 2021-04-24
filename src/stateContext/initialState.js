@@ -18,6 +18,7 @@ const genresFilterList = genresList.join(' ').split(' ')
 
 export const initialState = {
   userId: '',
+  userName:'',
   playListParams: {
     Brightness: 30,
     Loudness: 10,

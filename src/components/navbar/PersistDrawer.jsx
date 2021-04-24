@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useContext } from 'react'
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -30,6 +30,7 @@ import Notifications from 'react-notify-toast'
 import GenresButtonsGroup from '../UserView/GenresButtonsGroup'
 import TitlesList from '../player/TitlesList'
 import PlayerDr from '../player/PlayerDr'
+import { AppContext } from '../../stateContext/indexContext'
 
 const drawerWidth = 240
 
@@ -106,7 +107,11 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
+  const [appstate] = useContext(AppContext)
+  // const userName = appstate.userName
+  const loggedAsText = appstate.userName !== '' ? `Logged as ${appstate.userName}` : ''
 
+  // console.log(userName)
   const handleDrawerOpen = () => {
     setOpen(true)
   }
@@ -126,8 +131,6 @@ export default function PersistentDrawerLeft() {
             })}
           >
             <Toolbar variant='dence'>
-              {/* <img src="music-player-circle-start.svg" alt='App Logo'
-             className={classes.playIcon} /> */}
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -140,8 +143,10 @@ export default function PersistentDrawerLeft() {
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" noWrap flexShrink='2' >
-                DrAgora Music Selector Beta  !
-          </Typography>
+                DrAgora Music Selector Beta  ! {loggedAsText}
+
+              </Typography>
+
               <div style={{
                 display: 'flex',
                 position: 'relative', right: '1%',

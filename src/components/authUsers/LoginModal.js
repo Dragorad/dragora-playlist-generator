@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Modal from '@material-ui/core/Modal';
 import {
-   Button, TextField, Typography, InputAdornment, IconButton,
+    Button, TextField, Typography, InputAdornment, IconButton,
     FormControl, InputLabel, OutlinedInput, ButtonGroup
 } from '@material-ui/core'
 import { blueGrey, grey } from '@material-ui/core/colors'
@@ -16,9 +16,6 @@ import { app } from '../../index'
 import * as types from '../../stateContext/types'
 import { AppContext } from '../../stateContext/indexContext'
 
-// function rand() {
-//     return Math.round(Math.random() * 20) - 10;
-// }
 const formStyles = {
     display: 'flex',
     flexDirection: 'column',
@@ -78,11 +75,13 @@ export default function LoginInfoBox() {
         showPassword: false,
         signIn: true
     })
+
     const registerUser = async (email, password) => {
         console.log('pass and rePass matching')
+        // const credentials = RealmWeb.credentials.emailPassword(email, password)
         // TODO: Register a new user with the specified email and password
         try {
-            const user = await app.auth.emailPassword.registerUser(email, password)
+            const user = await app.registerUser(email, password)
             console.log(user.id)
             logInEmailPass(email, password)
         }
@@ -95,13 +94,17 @@ export default function LoginInfoBox() {
         try {
             const credentials = RealmWeb.Credentials.emailPassword(email, password);
             const user = await app.logIn(credentials)
+            console.log("Successfully logged in with email!", user.currentUser)
+
             dispatch({
-                type: types.SET_USER_DATA,
-                payload: {
-                    userID: user.id,
-                }
+                type: types.SET_USER_ID,
+                payload: user.id.toString()
             })
-            console.log("Successfully logged in!", user)
+            dispatch({
+                type: types.SET_USER_NAME,
+                payload: state.userName
+            })
+            console.log(appState.userId)
             handleModalClose()
         } catch (err) {
             console.error("Failed to log in", err);
@@ -110,15 +113,29 @@ export default function LoginInfoBox() {
 
     // Let logged in users log out
     const logOut = async () => {
-        // TODO: Log the current user out
-        await app.logOut()
-        dispatch({
-            type: types.SET_USER_DATA,
-            payload: ''
-        })
-        // setUser(app.currentUser);
+        console.log('logging out')
+        const userId = appState.userId
+        console.log(userId)
+
+        try {
+            app.currentUser.logOut()
+                .then(result => {
+                    dispatch({
+                        type: types.SET_USER_ID,
+                        payload: ''
+                    })
+                    dispatch({
+                        type: types.SET_USER_NAME,
+                        payload: ''
+                    })
+                    console.log(appState.userId)
+                })
+        }
+        catch (error) { console.log(error.message) }
+        // setUs)er(app.currentUser);
     }
-const loginAnonymous = async () => {
+
+    const loginAnonymous = async () => {
 
         try {
             const credentials = RealmWeb.Credentials.anonymous();
@@ -126,10 +143,8 @@ const loginAnonymous = async () => {
             const user = await app.logIn(credentials)
 
             dispatch({
-                type: types.SET_USER_DATA,
-                payload: {
-                    userID: user.id,
-                }
+                type: types.SET_USER_ID,
+                payload: user.id.toString()
             })
             handleModalClose()
             console.log("Successfully logged in!", user)
@@ -186,9 +201,7 @@ const loginAnonymous = async () => {
                         <form key={'loginForm'} style={formStyles}
                             onSubmit={() => {
                                 console.log(state)
-                                // handleUpdateGenres(valueStr)
-                                // h4String = " field updated"
-                                // setUrlString('')
+
                             }}>
                             {/* <Typography component={"h4"} align={"left"} gutterBottom={true}>{h4String}</Typography> */}
 
@@ -204,7 +217,6 @@ const loginAnonymous = async () => {
                                 }}
                             />
                             <FormControl
-                                //  className={classes.textField}
                                 variant='outlined'>
                                 <InputLabel htmlFor="password">Password</InputLabel>
                                 <OutlinedInput
@@ -247,10 +259,9 @@ const loginAnonymous = async () => {
 
                                     <Button name='signUp' onClick={() => {
                                         const { userName, passWord, rePassWord } = state
-                                        {
-                                            passWord !== rePassWord && alert(`Password and Retype don't match`)
-                                        }
-                                        registerUser(userName, passWord)
+
+                                        passWord !== rePassWord ? alert(`Password and Retype don't match`)
+                                            : registerUser(userName, passWord)
                                     }}
                                         variant='contained' style={{
                                             backgroundColor: blueGrey[900], color: 'white',

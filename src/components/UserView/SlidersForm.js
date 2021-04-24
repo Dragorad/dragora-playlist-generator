@@ -7,7 +7,7 @@ import { Button, Divider, Grid, Grow, makeStyles } from '@material-ui/core'
 import { descriptorsList } from '../../workers/descriptorsList'
 import { ButtonsGroupMultiple } from './GenreButton'
 // import { blueGrey } from '@material-ui/core/colors'
-import { getNewPlayList } from '../../index'
+import { app, getNewPlayList } from '../../index'
 // import SnackBar from './SnackBar'
 import Notifications, { notify } from 'react-notify-toast'
 import { notifyOptions } from './notifyOptions'
@@ -101,10 +101,11 @@ export default function SlidersForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    console.log(customInput)
-    !appState.genresArr.length ?
-      notify.show('You have to select at last one genre button or select all genres', "error", 7000)
-      : setNewPlaylist(customInput)
+    !app.currentUser ?
+      notify.show('You have to log in', 'error', 7000)
+      : !appState.genresArr.length ?
+        notify.show('You have to select at last one genre button or select all genres', "error", 7000)
+        : setNewPlaylist(customInput)
   }
 
   const classes = useStyles()
@@ -172,9 +173,9 @@ export default function SlidersForm() {
 
           <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false}
             classes={classes.buttonGroup} />
-          <Grow in={true} 
-          style={{transformOrigin: '100 0 20'}}
-          timeout={1800}>
+          <Grow in={true}
+            style={{ transformOrigin: '100 0 20' }}
+            timeout={1800}>
             <Button size={'medium'}
               style={{ margin: '2% 0' }}
               variant="outlined"

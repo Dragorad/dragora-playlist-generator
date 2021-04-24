@@ -9,9 +9,12 @@ import PlayArrowIcon from '@material-ui/icons/PlayCircleOutline'
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined'
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined'
 import { AppContext } from '../../stateContext/indexContext'
+
 import * as types from '../../stateContext/types'
+import { Tooltip } from '@material-ui/core'
+import { app } from '../../../src/index.js'
 
-
+const user = app.currentUser
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,8 +29,21 @@ export default function TitlesList(props) {
   const classes = useStyles()
   const [appState, dispatch] = useContext(AppContext)
   console.log(appState)
+
+
+  const addLikeAndFaforit = index => (e) => {
+    e.preventDefault()
+    const userId = appState.userId  
+    const clientUserName = appState.userName
+    const titleId = appState.playlist[index]._id.toString()
+    const sendObj = {userId, titleId, clientUserName}
+    console.log('adding to favorits and likes', sendObj)
+
+    app.currentUser.callFunction('addToFavorits', sendObj)
+  }
   const setAppStateIdx = index => (e) => {
     e.preventDefault()
+    console.log(index)
     dispatch({
       type: types.SET_URL_IDX,
       payload: index
@@ -52,11 +68,17 @@ export default function TitlesList(props) {
               secondary={elem.titleName} />
             <Divider />
             <ListItemIcon>
-              <ThumbUpAltOutlinedIcon />
+              <Tooltip title='Like this title' placement='top-start' arrow
+                onClick = {addLikeAndFaforit(index)} >
+                <ThumbUpAltOutlinedIcon />
+              </Tooltip>
             </ListItemIcon>
-            <ListItemIcon>
-              < FavoriteOutlinedIcon />
-            </ListItemIcon>
+           { appState.userName !== '' &&  <ListItemIcon>
+              <Tooltip title='Add to personal favorits' placement='bottom' arrow >
+                < FavoriteOutlinedIcon
+                  onClick={addLikeAndFaforit(index)} />
+              </Tooltip>
+            </ListItemIcon>}
           </ListItem>
         ))}
       </List>

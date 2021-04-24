@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Routes from './Routes'
 import './App.css'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core'
+import { AppContext } from './stateContext/indexContext'
+import { app } from './index'
+import { SET_USER_ID } from './stateContext/types'
+
 
 const theme = createMuiTheme({
   breakpoints: {
@@ -36,7 +40,22 @@ const theme = createMuiTheme({
 
 
 function App() {
-  
+  const [appState, dispatch] = useContext(AppContext)
+  // console.log(app.currentUser)
+  const userId = app.currentUser ? app.currentUser.id : ''
+
+
+  // console.log('appstateUser', app.currentUser.id)
+
+  if (appState.userId === '' && app.currentUser) {
+    dispatch({
+      type: SET_USER_ID,
+      payload: userId
+    })
+  }
+
+
+
   return (
 
     <BrowserRouter>
