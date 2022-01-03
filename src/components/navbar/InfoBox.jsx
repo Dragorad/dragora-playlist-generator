@@ -1,12 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import ExpansionPanel from '@material-ui/core/ExpansionPanel'
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import Typography from '@material-ui/core/Typography'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import GenreButton from '../UserView/GenreButton'
-import Modal from '@material-ui/core/Modal';
+
+import Modal from '@material-ui/core/Modal'
 import { Button } from '@material-ui/core'
 
 function rand() {
@@ -34,10 +30,10 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(1, 4, 3),
         margin: theme.spacing(1)
     },
-    button:{
+    button: {
         backgroundColor: "#ff1166",
         // padding: '1rem, 0',
-        label:{
+        label: {
             color: "secondary",
             fontSize: '3rem'
         }
@@ -56,22 +52,21 @@ export default function InfoBox() {
 
     const handleClose = () => {
         setOpen(false);
-    };
+    }
 
     return (
-        <div>
-           {/* <div> */}
-             <Button
-              variant="outlined"
-            size='small'
-            color='inherit'
-            backgroundColor='#ff1133'
-            fontSize='0.8rem'
-            onClick={handleOpen}>
-               App Info
+        <div style={{ margin: '5%', marginRight: '10%' }}>
+            <Button
+                variant="outlined"
+                size='small'
+                color='inherit'
+                backgroundColor='#ff1133'
+                marginRight='1rem'
+                fontSize='0.8rem'
+                onClick={handleOpen}>
+                AppInfo
                 </Button>
-                {/* </div> */}
-                      <Modal
+            <Modal
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 open={open}
@@ -81,14 +76,14 @@ export default function InfoBox() {
                 <div style={modalStyle} className={classes.paper}>
                     <h2 id="simple-modal-title">How to use</h2>
                     <p id="simple-modal-description">
-                    <Typography>
-//          Всяка една от композициите е избрана лично от опитен музикален редактор с доказано добър вкус.<br/>
-//          Изберете жанр, средно темпо и средна гръмкост и ще получите първите пет предложения.<br/>
-//          С Diversity управлявате диапазон на темпо, гръмкост и усреднена честота на траковете вътре в плейлистата.<br/>
-//          Можете да харесвате и нехаресвате конкретен трак. <br/>
+                        <Typography>
+                            //          Всяка една от композициите е избрана лично от опитен музикален редактор с доказано добър вкус.<br />
+//          Изберете жанр, средно темпо и средна гръмкост и ще получите първите пет предложения.<br />
+//          С Diversity управлявате диапазон на темпо, гръмкост и усреднена честота на траковете вътре в плейлистата.<br />
+//          Можете да харесвате и нехаресвате конкретен трак. <br />
 //          Регистрираните потребители могат да следват хората, които предлагат траковете и да запазват плейлисти.
      </Typography>
-          </p>
+                    </p>
 
                 </div>
             </Modal>

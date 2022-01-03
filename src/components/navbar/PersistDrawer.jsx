@@ -143,19 +143,19 @@ export default function PersistentDrawerLeft() {
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" noWrap flexShrink='2' >
-                DrAgora Music Selector Beta  ! {loggedAsText}
+                DrAgora Music Selector Beta! {loggedAsText}
 
               </Typography>
 
               <div style={{
                 display: 'flex',
-                position: 'relative', right: '1%',
+                position: 'relative',
+                right: '1%',
                 alignItems: 'center',
-                justifyContent: 'space-between',
-                marginLeft: '20%',
+                justifyContent: 'right',
+                marginLeft: '5%',
                 padding: '0.6 rem'
               }}>
-                {/* <LogButton /> */}
                 <LoginInfoBox />
                 <InfoBox />
               </div>
