@@ -14,7 +14,7 @@ import * as types from '../../stateContext/types'
 import { Tooltip } from '@material-ui/core'
 import { app } from '../../../src/index.js'
 
-const user = app.currentUser
+// const user = app.currentUser
 
 
 const useStyles = makeStyles((theme) => ({
