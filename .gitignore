@@ -25,5 +25,12 @@ yarn-error.log*
 .vercel
 src/overmind
 src/overmind/operators.js
+<<<<<<< HEAD
 package-lock.json
+=======
+composer.phar
+.eslintcache
+.gitsecret/keys/random_seed
+.eslintcache
+>>>>>>> 8d5d9a0e7f099713a4ad5075aa84c0967ac411fe
 .eslintcache

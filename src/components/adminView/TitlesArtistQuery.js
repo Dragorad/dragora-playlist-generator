@@ -78,10 +78,10 @@ export function TitlesArtistQuery() {
   //   skip: data == null
   // })
 
-  const [url, setUrl] = useState(null)
-  const handleChange = (event) => {
-    setUrl(event.target.value);
-  }
+  // const [url, setUrl] = useState(null)
+  // const handleChange = (event) => {
+  //   setUrl(event.target.value);
+  // }
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( from TitleArtist Query {error.message} </p>

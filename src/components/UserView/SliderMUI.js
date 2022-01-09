@@ -43,6 +43,7 @@ export default function SliderMUI(props) {
             style={{height:'30%'}}>{props.sliderText}</Typography>
             <Slider
                 ValueLabelComponent={ValueLabelComponent}
+                min={5}
                 aria-label={props.sliderText}
                 defaultValue={props.defaultValue}
                 value={props.value}

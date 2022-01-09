@@ -1,40 +1,36 @@
-import React from 'react'
+import React, { Suspense, lazy, useContext } from 'react'
 import ReactDOM from 'react-dom'
-import { AppContextProvider } from './stateContext/indexContext'
+import { AppContextProvider, AppContext } from './stateContext/indexContext'
 import './index.css'
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import { setContext } from "apollo-link-context";
 import { ApolloProvider } from "@apollo/react-hooks";
-import App from './App'
 import * as serviceWorker from './serviceWorker'
 import * as RealmWeb from "realm-web"
-// import { setContext } from "apollo-link-context"
-// import * as initialState from './stateContext/initialState'
-// import {reducer} from './stateContext/reducers'
+import { APP_ID } from './credential/AppId';
 
-
-const APP_ID = "dragoraselectortest-sveyc"
-
+const App = lazy(() => import('./App'))
 
 export const app = new RealmWeb.App({
   id: APP_ID,
   // baseUrl: "https://realm.mongodb.com"
 });
+console.log(app.currentUser)
 
-const credentials = RealmWeb.Credentials.anonymous();
-try {
-  // Authenticate the user
-  const user = app.logIn(credentials)
-    .then(user => {
-      console.log('Loged anonimous ', user.id)
-    })
-  // `App.currentUser` updates to match the logged in user
-  // assert(user.id === app.currentUser.id)
-  // return user
-}
-catch (err) {
-  console.error("Failed to log in", err);
-}
+// const credentials = RealmWeb.Credentials.anonymous();
+// try {
+//   // Authenticate the user
+//   const user = app.logIn(credentials)
+//     .then(user => {
+//       console.log('Loged anonimous ', user.id)
+//     })
+//   // `App.currentUser` updates to match the logged in user
+//   // assert(user.id === app.currentUser.id)
+//   // return user
+// }
+// catch (err) {
+//   console.error("Failed to log in", err);
+// }
 // Add an Authorization header with a valid user access token to all GraphQL requests
 const authorizationHeaderLink = setContext(async (_, { headers }) => {
   if (app.currentUser) {
@@ -42,7 +38,9 @@ const authorizationHeaderLink = setContext(async (_, { headers }) => {
     await app.currentUser.refreshCustomData();
   } else {
     // If no user is logged in, log in an anonymous user
-    await app.logIn(RealmWeb.Credentials.anonymous());
+
+    // await app.logIn(RealmWeb.Credentials.anonymous());
+    console.log('from index.js', app.user)
   }
   // Get a valid access token for the current user
   const { accessToken } = app.currentUser;
@@ -69,35 +67,42 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-// export const firstPlaylist = app.functions.generatePlaylist({ bpm: 169, delta: 20 })
-//   .then(playlist => {
-//     return playlist
-
-//   })
-
 export const getNewPlayList = async (inputObj) => {
-  const playlist = await app.functions.generatePlaylist(inputObj)
+  const playlist = await app.currentUser.callFunction('generatePlaylist', inputObj)
   return playlist
 }
 
 export const setTitleUrl = async (urlObj) => {
-  const result = await app.functions.updateTitleUrl(urlObj)
+  const result = await app.currentUser.callFunction('updateTitleUrl', urlObj)
   return result
 }
 export const setTitleGenres = async (genreObj) => {
-  const result = await app.functions.updateTitleGenres(genreObj)
+  const result = await app.currentUser.callFunction('updateTitleGenres', genreObj)
   return result
 }
 export const setTitleInstruments = async (instrumObj) => {
-  const result = await app.functions.updateTitleInstruments(instrumObj)
+  const result = await app.currentUser.callFunction('updateTitleInstruments', instrumObj)
   return result
 }
 
+
+const ImgLoader = () => {
+  return (
+    <React.Fragment>
+
+      <img src='./svg-icons/busic-player-circle-start.svg'
+
+        alt='LLLLLLLLLLLLLLLoading...' />
+    </React.Fragment>
+  )
+}
 ReactDOM.render(
 
   <AppContextProvider >
     <ApolloProvider client={client}>
-      <App />
+      <Suspense fallback={ImgLoader}>
+        <App />
+      </Suspense>
     </ApolloProvider>
   </AppContextProvider>
   , document.getElementById('root'))
@@ -105,5 +110,5 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister()
+serviceWorker.register()
 

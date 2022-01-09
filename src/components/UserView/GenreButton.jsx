@@ -2,13 +2,13 @@ import React, {useContext } from 'react'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Paper} from '@material-ui/core'
-import { border, color } from '@material-ui/system'
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import {blueGrey, lightBlue } from '@material-ui/core/colors'
+// import { border, color } from '@material-ui/system'
+// import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import {blueGrey} from '@material-ui/core/colors'
 import { AppContext } from '../../stateContext/indexContext';
-import { StylesProvider } from '@material-ui/core'
+// import { StylesProvider } from '@material-ui/core'
 import { descriptorsList } from '../../workers/descriptorsList'
-import { TOGGLE_BTN_STATE } from '../../stateContext/types'
+// import { TOGGLE_BTN_STATE } from '../../stateContext/types'
 
 
 
@@ -64,7 +64,7 @@ export function ButtonsGroupMultiple(props) {
   const classes = useStyles()
   return (
     <Grid container alignItems='space-between'
-      alignItems='stretch'
+      // alignItems='stretch'
       // justify='space-evenly'
       // style={{ height: '20' }}
       spacing={1}>
