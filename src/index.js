@@ -1,6 +1,6 @@
-import React, { Suspense, lazy, useContext } from 'react'
+import React, { Suspense, lazy, } from 'react'
 import ReactDOM from 'react-dom'
-import { AppContextProvider, AppContext } from './stateContext/indexContext'
+import { AppContextProvider,  } from './stateContext/indexContext'
 import './index.css'
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import { setContext } from "apollo-link-context";

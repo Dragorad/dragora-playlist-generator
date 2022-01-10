@@ -1,4 +1,4 @@
-import {useState} from 'react'
+// import {useState} from 'react'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 // import { TextField, Typography } from '@material-ui/core'
@@ -78,7 +78,7 @@ export function TitlesArtistQuery() {
   //   skip: data == null
   // })
 
-  const [url, setUrl] = useState(null)
+  // const [url, setUrl] = useState(null)
   // const handleChange = (event) => {
   //   setUrl(event.target.value);
   // }
