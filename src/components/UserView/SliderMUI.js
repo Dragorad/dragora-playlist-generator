@@ -1,9 +1,9 @@
 // import React from 'react'
 // import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
-import Slider from '@material-ui/core/Slider'
-import Typography from '@material-ui/core/Typography'
-import Tooltip from '@material-ui/core/Tooltip'
+import makeStyles from '@mui/styles/makeStyles';
+import Slider from '@mui/material/Slider'
+import Typography from '@mui/material/Typography'
+import Tooltip from '@mui/material/Tooltip'
 
 const useStyles = makeStyles((theme) => ({
     root: {

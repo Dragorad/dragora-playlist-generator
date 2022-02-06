@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Modal from '@material-ui/core/Modal';
+import makeStyles from '@mui/styles/makeStyles';
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import Modal from '@mui/material/Modal';
 import {
     Button, TextField, Typography, InputAdornment, IconButton,
     FormControl, InputLabel, OutlinedInput, ButtonGroup
-} from '@material-ui/core'
-import { blueGrey, grey } from '@material-ui/core/colors'
-// import PermIdentityIcon from '@material-ui/icons/PermIdentity'
-import MailIcon from '@material-ui/icons/Mail'
-import Visibility from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
+} from '@mui/material'
+import { blueGrey, grey } from '@mui/material/colors'
+// import PermIdentityIcon from '@mui/icons-material/PermIdentity'
+import MailIcon from '@mui/icons-material/Mail'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import * as RealmWeb from 'realm-web'
 import { app } from '../../index'
 import * as types from '../../stateContext/types'
@@ -229,9 +229,9 @@ export default function LoginInfoBox() {
                                         <InputAdornment position="end">
                                             <IconButton
                                                 aria-label="toggle password visibility"
+                                                // onMouseDown={handleMouseDownPassword}
                                                 onClick={handleClickShowPassword}
-                                            // onMouseDown={handleMouseDownPassword}
-                                            >
+                                                size="large">
                                                 {state.showPassword ? <Visibility /> : <VisibilityOff />}
                                             </IconButton>
                                         </InputAdornment>
@@ -251,7 +251,8 @@ export default function LoginInfoBox() {
                                             endAdornment: <InputAdornment position="end">
                                                 <IconButton
                                                     aria-label="toggle password visibility"
-                                                    onClick={handleClickShowPassword}  >
+                                                    onClick={handleClickShowPassword}
+                                                    size="large">
                                                     {state.showPassword ? <Visibility /> : <VisibilityOff />}
                                                 </IconButton>
                                             </InputAdornment>

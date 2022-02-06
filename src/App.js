@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Routes from './Routes'
 import './App.css'
-import { ThemeProvider, createMuiTheme } from '@material-ui/core'
+import { ThemeProvider, StyledEngineProvider, createTheme, adaptV4Theme } from '@mui/material';
 import { AppContext } from './stateContext/indexContext'
 import { app } from './index'
 import { SET_USER_ID } from './stateContext/types'
 
 
-const theme = createMuiTheme({
+const theme = createTheme(adaptV4Theme({
   breakpoints: {
     values: {
       xs: 0,
@@ -36,7 +36,7 @@ const theme = createMuiTheme({
       }
     }
   }
-})
+}))
 
 
 function App() {
@@ -57,15 +57,16 @@ function App() {
 
 
   return (
-
     <BrowserRouter>
       <React.Fragment>
-        <ThemeProvider theme={theme}>
-          <Routes />
-        </ThemeProvider>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <Routes />
+          </ThemeProvider>
+        </StyledEngineProvider>
       </React.Fragment>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App

@@ -1,13 +1,13 @@
-import { Grow, IconButton } from '@material-ui/core'
-import PauseIcon from '@material-ui/icons/Pause'
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
-// import PlayArrowIcon from '@material-ui/icons/PlayArrow'
-import SkipNextIcon from '@material-ui/icons/SkipNext'
+import { Grow, IconButton } from '@mui/material'
+import PauseIcon from '@mui/icons-material/Pause'
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
+// import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import SkipNextIcon from '@mui/icons-material/SkipNext'
 import { useState, useContext } from 'react'
-import { makeStyles} from '@material-ui/core/styles'
+import makeStyles from '@mui/styles/makeStyles';
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
-import { notify } from 'react-notify-toast'
+// import { notify } from 'react-notify-toast'
 
 
 
@@ -80,12 +80,10 @@ export default function PlayerControlButtons() {
             >
                 {/* <img src="music-player-circle-start.svg" alt='App Logo'
              className={classes.playIcon} /> */}
-                <IconButton aria-label="previous"
-                    onClick={changeUrlIndex('down')}>
+                <IconButton aria-label="previous" onClick={changeUrlIndex('down')} size="large">
                     <SkipPreviousIcon />
                 </IconButton>
-                <IconButton aria-label="play/pause"
-                    onClick={handlePlayPause}>
+                <IconButton aria-label="play/pause" onClick={handlePlayPause} size="large">
                     {!appState.playing ?
                         <img src="music-player-circle-start.svg" alt='App Logo'
                             className={classes.playIcon} />
@@ -93,11 +91,10 @@ export default function PlayerControlButtons() {
                         : <PauseIcon className={classes.playIcon} />
                     }
                 </IconButton>
-                <IconButton aria-label="next"
-                    onClick={changeUrlIndex('up')}
-                >
+                <IconButton aria-label="next" onClick={changeUrlIndex('up')} size="large">
                     <SkipNextIcon />
                 </IconButton>
             </div>
-        </Grow>)
+        </Grow>
+    );
 }

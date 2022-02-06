@@ -1,9 +1,9 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
+import makeStyles from '@mui/styles/makeStyles';
+import Typography from '@mui/material/Typography'
 
-import Modal from '@material-ui/core/Modal'
-import { Button } from '@material-ui/core'
+import Modal from '@mui/material/Modal'
+import { Button } from '@mui/material'
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -108,15 +108,15 @@ export default function InfoBox() {
 
 //   return (
 //     <div className={classes.root}>
-//       <ExpansionPanel>
-//         <ExpansionPanelSummary
+//       <Accordion>
+//         <AccordionSummary
 //           expandIcon={<ExpandMoreIcon />}
 //           aria-controls="panel1a-content"
 //           id="panel1a-header"
 //         >
 //           <Typography className={classes.heading}>Expansion Panel 1</Typography>
-//         </ExpansionPanelSummary>
-//         <ExpansionPanelDetails>
+//         </AccordionSummary>
+//         <AccordionDetails>
 //           <Typography>
 //           <Typography paragraph>
 
@@ -131,32 +131,32 @@ export default function InfoBox() {
 //          <div className=""></div>
 //        </Typography>
 //           </Typography>
-//         </ExpansionPanelDetails>
-//       </ExpansionPanel>
-//       <ExpansionPanel>
-//         <ExpansionPanelSummary
+//         </AccordionDetails>
+//       </Accordion>
+//       <Accordion>
+//         <AccordionSummary
 //           expandIcon={<ExpandMoreIcon />}
 //           aria-controls="panel2a-content"
 //           id="panel2a-header"
 //         >
 //           <Typography className={classes.heading}>Expansion Panel 2</Typography>
-//         </ExpansionPanelSummary>
-//         <ExpansionPanelDetails>
+//         </AccordionSummary>
+//         <AccordionDetails>
 //           <Typography>
 //             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
 //             sit amet blandit leo lobortis eget.
 //           </Typography>
-//         </ExpansionPanelDetails>
-//       </ExpansionPanel>
-//       <ExpansionPanel disabled>
-//         <ExpansionPanelSummary
+//         </AccordionDetails>
+//       </Accordion>
+//       <Accordion disabled>
+//         <AccordionSummary
 //           expandIcon={<ExpandMoreIcon />}
 //           aria-controls="panel3a-content"
 //           id="panel3a-header"
 //         >
 //           <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
-//         </ExpansionPanelSummary>
-//       </ExpansionPanel>
+//         </AccordionSummary>
+//       </Accordion>
 //     </div>
 //   )
 // }

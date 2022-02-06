@@ -1,12 +1,12 @@
 import React, {useContext } from 'react'
-import ToggleButton from '@material-ui/lab/ToggleButton'
-import { makeStyles } from '@material-ui/core/styles'
-import { Grid, Paper} from '@material-ui/core'
-// import { border, color } from '@material-ui/system'
-// import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import {blueGrey} from '@material-ui/core/colors'
+import ToggleButton from '@mui/material/ToggleButton'
+import makeStyles from '@mui/styles/makeStyles';
+import { Grid, Paper} from '@mui/material'
+// import { border, color } from '@mui/system'
+// import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
+import {blueGrey} from '@mui/material/colors'
 import { AppContext } from '../../stateContext/indexContext';
-// import { StylesProvider } from '@material-ui/core'
+// import { StylesProvider } from '@mui/material'
 import { descriptorsList } from '../../workers/descriptorsList'
 // import { TOGGLE_BTN_STATE } from '../../stateContext/types'
 

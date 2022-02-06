@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
-import { Button} from '@material-ui/core'
+import { Button} from '@mui/material'
 import { genresList } from '../../workers/genresAndInstrumentsList'
 import { ButtonsGroupMultiple } from './GenreButton'
-import { blueGrey } from '@material-ui/core/colors'
+import { blueGrey } from '@mui/material/colors'
 
 
 

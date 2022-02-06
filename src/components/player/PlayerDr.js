@@ -1,17 +1,17 @@
 import { useContext } from 'react'
-// import useMediaQuery from '@material-ui/core/useMediaQuery'
+// import useMediaQuery from '@mui/material/useMediaQuery'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import ReactPlayer from 'react-player/lazy'
-import { notify } from 'react-notify-toast'
-import { Container, Zoom } from '@material-ui/core'
+// import { notify } from 'react-notify-toast'
+import { Container, Zoom } from '@mui/material'
 import PlayerControlButtons from './PlayerControlButtons'
 
 export default function PlayerDr(props) {
     // const queryMatches = useMediaQuery('(min-width: 600px)')
 
     const [appState, dispatch] = useContext(AppContext)
-   
+
     const changeUrlIndex = direction => (event) => {
         const lastIdx = stateUrls.length - 1
         // const newIdx = 0
@@ -46,8 +46,8 @@ export default function PlayerDr(props) {
             {appState.playlist.length < 1 ?
                 <p variant={'h4'} color={"textSecondary"}>
                     Playlist is empty.<br />
-          Please set "Diversity" to bigger value or add genres with dedicated buttons<br />
-          Then press "Generate Playlist Button" </p>
+                    Please set "Diversity" to bigger value or add genres with dedicated buttons<br />
+                    Then press "Generate Playlist Button" </p>
                 : <>
                     <Zoom in={true} style={{ transitionDuration: '2800' }} >
                         <ReactPlayer

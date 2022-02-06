@@ -1,9 +1,9 @@
 // import {useState} from 'react'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
-// import { TextField, Typography } from '@material-ui/core'
+// import gql from 'graphql-tag'
+import { gql, useQuery } from '@apollo/client'
+// import { TextField, Typography } from '@mui/material'
 import UrlTitleForm from './UrlTitleForm'
-import Notifications from 'react-notify-toast'
+// import Notifications from 'react-notify-toast'
 
 const TITLE_DATA = gql`
   query GetTitleData {

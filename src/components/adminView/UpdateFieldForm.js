@@ -1,6 +1,6 @@
 import React from 'react'
-import { TextField, Typography } from '@material-ui/core'
-import { notify } from 'react-notify-toast';
+import { TextField, Typography } from '@mui/material'
+// import { notify } from 'react-notify-toast';
 
 
 // props - nameStr   updateMutation
@@ -76,7 +76,7 @@ export function UpdateFieldForm(props) {
                         console.log(result)
                         //     const { genres, tags } = result
                     }).catch(error => {
-                        notify.show(error.message, "error")
+                        // notify.show(error.message, "error")
                         console.log(error.message)
                     })
                 // handleUpdateGenres(valueStr)

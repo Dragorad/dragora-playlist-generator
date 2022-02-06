@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost"
+import { gql } from "@apollo/client"
 
 export const UPDATE_TITLE_URL = gql`
 mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
@@ -17,10 +17,10 @@ mutation UpdateTitleRecord ($titleMBID: String!, $url: String!){
 // }
 
 export function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-  }
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
 
 // const randomBpm = getRandomInt(120)
 
@@ -49,9 +49,9 @@ query getFiveRecords( $randomBpm: Int){
 //         data.map
 //     )
 export const demoUrls = [
-    'https://youtu.be/1hzc8Do6Ius',
-    'https://youtu.be/oDdOYyGa41Q',
-    'https://youtu.be/DH7l880a-4M',
-    'https://youtu.be/e0ZF7FsiFE0',
-    // 'https://youtu.be/YCNCdcFJSkg',
+  'https://youtu.be/1hzc8Do6Ius',
+  'https://youtu.be/oDdOYyGa41Q',
+  'https://youtu.be/DH7l880a-4M',
+  'https://youtu.be/e0ZF7FsiFE0',
+  // 'https://youtu.be/YCNCdcFJSkg',
 ]

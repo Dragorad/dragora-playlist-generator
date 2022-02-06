@@ -1,17 +1,17 @@
 import { useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Divider from '@material-ui/core/Divider'
-import PlayArrowIcon from '@material-ui/icons/PlayCircleOutline'
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined'
-import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined'
+import makeStyles from '@mui/styles/makeStyles';
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import Divider from '@mui/material/Divider'
+import PlayArrowIcon from '@mui/icons-material/PlayCircleOutline'
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
 import { AppContext } from '../../stateContext/indexContext'
 
 import * as types from '../../stateContext/types'
-import { Tooltip } from '@material-ui/core'
+import { Tooltip } from '@mui/material'
 import { app } from '../../../src/index.js'
 
 // const user = app.currentUser
