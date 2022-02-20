@@ -2,9 +2,8 @@ import React, { Suspense, lazy, } from 'react'
 import ReactDOM from 'react-dom'
 import { AppContextProvider, } from './stateContext/indexContext'
 import './index.css'
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
-import { setContext } from "apollo-link-context";
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import * as serviceWorker from './serviceWorker'
 import * as RealmWeb from "realm-web"
 import { APP_ID } from './credential/AppId';

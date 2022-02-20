@@ -37,13 +37,13 @@ export default function UrlTitleForm(props) {
     setTitleUrl(variableObj)
       .then(result => {
         const newUrl = result[0].url
-        notify.show(`Title url is https://youtu.be/${newUrl} now`, 'success')
+        // notify.show(`Title url is https://youtu.be/${newUrl} now`, 'success')
         console.log(newUrl)
         // h4String[0] += " url updated"
         // // url = newUrl
         setUpdatedUrl(newUrl)
       }).catch(error => {
-        notify.show(error.message, "error")
+        // notify.show(error.message, "error")
         console.log(error.message)
       })
   }

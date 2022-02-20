@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 // import PropTypes from 'prop-types'
 import makeStyles from '@mui/styles/makeStyles';
 import Slider from '@mui/material/Slider'
@@ -7,8 +7,8 @@ import Tooltip from '@mui/material/Tooltip'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: 300 + theme.spacing(3) * 2,
-        maxWidth: "90%",
+        // width: 300 + theme.spacing(3) * 2,
+        width: "90%",
         // height: '10%'
 
     },
@@ -40,7 +40,7 @@ export default function SliderMUI(props) {
     return (
         <div className={classes.root}>
             <Typography gutterBottom
-            style={{height:'30%'}}>{props.sliderText}</Typography>
+                style={{ height: '30%' }}>{props.sliderText}</Typography>
             <Slider
                 ValueLabelComponent={ValueLabelComponent}
                 min={5}

@@ -3,15 +3,14 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 // import PersistentDrawerLeft from './components/navbar/PersistDrawer'
 import { TitlesArtistQuery } from './components/adminView/TitlesArtistQuery'
 import UrlTitleForm from './components/adminView/UrlTitleForm'
+export const ImgLoader = <img src="music-player-circle-start.svg" alt='Loading' />
 
+const LazyPersistDrawer = lazy(() => import('./components/navbar/PersistDrawer'))
 
-export const ImgLoader =  <img src="music-player-circle-start.svg" alt='Loading' />
-
-const LazyPersistedtDrawer = lazy(() => import('./components/navbar/PersistDrawer'))
 const Routes = (props) => (
   <Suspense fallback={ImgLoader} >
     <Switch>
-      <Route exact path='/' component={LazyPersistedtDrawer} />
+      <Route exact path='/' component={LazyPersistDrawer} />
       <Route exact path='/admin' component={TitlesArtistQuery} />
       {/* <Route exact path='/login' component={UserForm} />
     <Route exact path='/signedIn' component={ControlForm} /> */}

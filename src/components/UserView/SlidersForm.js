@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import SliderMUI from './SliderMUI'
@@ -103,17 +103,22 @@ export default function SlidersForm() {
   const onSubmit = async (e) => {
     e.preventDefault()
     !app.currentUser ?
-      notify.show('You have to log in', 'error', 7000)
+    console.log('Yoy have to authenticate') 
+    // notify.show('You have to log in', 'error', 7000)
       : !appState.genresArr.length ?
-        notify.show('You have to select at last one genre button or select all genres', "error", 7000)
+      console.log('notify is not declared') 
+      // notify.show('You have to select at last one genre button or select all genres', "error", 7000)
         : setNewPlaylist(customInput)
   }
 
   const classes = useStyles()
   return (
     <div style={{ padding: '1rem', margin: 'auto' }}>
-      <Notifications
-        options={notifyOptions} />
+     <div>
+       notify
+     </div>
+      {/* <Notifications
+        options={notifyOptions} /> */}
       <Grid container
         // xs={12}
         // lg={10}

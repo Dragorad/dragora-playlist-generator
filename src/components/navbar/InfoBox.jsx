@@ -65,7 +65,7 @@ export default function InfoBox() {
                 fontSize='0.8rem'
                 onClick={handleOpen}>
                 AppInfo
-                </Button>
+            </Button>
             <Modal
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
@@ -82,7 +82,7 @@ export default function InfoBox() {
 //          С Diversity управлявате диапазон на темпо, гръмкост и усреднена честота на траковете вътре в плейлистата.<br />
 //          Можете да харесвате и нехаресвате конкретен трак. <br />
 //          Регистрираните потребители могат да следват хората, които предлагат траковете и да запазват плейлисти.
-     </Typography>
+                        </Typography>
                     </p>
 
                 </div>

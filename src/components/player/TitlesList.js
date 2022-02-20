@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -33,10 +33,10 @@ export default function TitlesList(props) {
 
   const addLikeAndFaforit = index => (e) => {
     e.preventDefault()
-    const userId = appState.userId  
+    const userId = appState.userId
     const clientUserName = appState.userName
     const titleId = appState.playlist[index]._id.toString()
-    const sendObj = {userId, titleId, clientUserName}
+    const sendObj = { userId, titleId, clientUserName }
     console.log('adding to favorits and likes', sendObj)
 
     app.currentUser.callFunction('addToFavorits', sendObj)
@@ -69,11 +69,11 @@ export default function TitlesList(props) {
             <Divider />
             <ListItemIcon>
               <Tooltip title='Like this title' placement='top-start' arrow
-                onClick = {addLikeAndFaforit(index)} >
+                onClick={addLikeAndFaforit(index)} >
                 <ThumbUpAltOutlinedIcon />
               </Tooltip>
             </ListItemIcon>
-           { appState.userName !== '' &&  <ListItemIcon>
+            {appState.userName !== '' && <ListItemIcon>
               <Tooltip title='Add to personal favorits' placement='bottom' arrow >
                 < FavoriteOutlinedIcon
                   onClick={addLikeAndFaforit(index)} />

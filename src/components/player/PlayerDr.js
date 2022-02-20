@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 // import useMediaQuery from '@mui/material/useMediaQuery'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
@@ -28,8 +28,8 @@ export default function PlayerDr(props) {
                     payload: appState.urlIdx > 0 ? appState.urlIdx - 1 : lastIdx
                 })
             }
-
-            default: notify.show("Tell me what to do", 'danger')
+                alert('Tell me what to do')
+            // default: notify.show("Tell me what to do", 'danger')
             // return setState({ ...state, urlIndex: direction })
         }
     }
@@ -49,17 +49,16 @@ export default function PlayerDr(props) {
                     Please set "Diversity" to bigger value or add genres with dedicated buttons<br />
                     Then press "Generate Playlist Button" </p>
                 : <>
-                    <Zoom in={true} style={{ transitionDuration: '2800' }} >
-                        <ReactPlayer
-                            url={stateUrls[appState.urlIdx]}
-                            playing={appState.playing}
-                            playIcon={false}
-                            controls={false}
-                            width={'100%'}
-                            light={false}
-                            // height={'100%'}
-                            onEnded={changeUrlIndex('up')} />
-                    </Zoom>
+                    <ReactPlayer
+                        url={stateUrls[appState.urlIdx]}
+                        playing={appState.playing}
+                        playIcon={false}
+                        controls={false}
+                        width={'100%'}
+                        light={false}
+                        // height={'100%'}
+                        onEnded={changeUrlIndex('up')} />
+
 
                     <PlayerControlButtons />
                 </>

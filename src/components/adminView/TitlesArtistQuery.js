@@ -1,4 +1,4 @@
-// import {useState} from 'react'
+import React, { useState } from 'react'
 // import gql from 'graphql-tag'
 import { gql, useQuery } from '@apollo/client'
 // import { TextField, Typography } from '@mui/material'
@@ -98,7 +98,7 @@ export function TitlesArtistQuery() {
         display: 'flex', flexDirection: 'column', paddingLeft: '3%',
         borderBottom: '1px solid gray', maxWidth: '600 px'
       }}>
-        <Notifications />
+        {/* <Notifications /> */}
         <p style={{ "color": "blue" }}>
           {artist}: {titleName}
           <p style={{ "color": "red" }} >

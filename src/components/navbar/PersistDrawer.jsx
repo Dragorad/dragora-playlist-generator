@@ -200,7 +200,7 @@ export default function PersistentDrawerLeft() {
           [classes.contentShift]: open,
         })}
       >
-        <Notifications />
+        {/* <Notifications /> */}
         <div className={classes.drawerHeader} />
       </main>
 

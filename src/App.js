@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Routes from './Routes'
 import './App.css'
-import { ThemeProvider, StyledEngineProvider, createTheme, adaptV4Theme } from '@mui/material';
+import { ThemeProvider, StyledEngineProvider, createTheme, } from '@mui/material';
 import { AppContext } from './stateContext/indexContext'
 import { app } from './index'
 import { SET_USER_ID } from './stateContext/types'
 
 
-const theme = createTheme(adaptV4Theme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -19,7 +19,7 @@ const theme = createTheme(adaptV4Theme({
       xl: 1920,
     },
   },
-  overrides: {
+  components: {
     typography: {
       fontSize: 12,
       h6: {
@@ -36,8 +36,7 @@ const theme = createTheme(adaptV4Theme({
       }
     }
   }
-}))
-
+})
 
 function App() {
   const [appState, dispatch] = useContext(AppContext)

@@ -1,16 +1,13 @@
+import React, { useState, useContext } from 'react'
 import { Grow, IconButton } from '@mui/material'
 import PauseIcon from '@mui/icons-material/Pause'
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 // import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
-import { useState, useContext } from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 // import { notify } from 'react-notify-toast'
-
-
-
 
 const useStyles = makeStyles({
     controls: {
@@ -51,9 +48,9 @@ export default function PlayerControlButtons() {
                     payload: appState.urlIdx > 0 ? appState.urlIdx - 1 : lastIdx
                 })
             }
-
-            default: notify.show("Tell me what to do", 'danger')
-            // return setState({ ...state, urlIndex: direction })
+            default:
+                // default: notify.show("Tell me what to do", 'danger')
+                setState({ ...state, urlIndex: direction })
         }
     }
     const handlePlayPause = e => {

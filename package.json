@@ -48,7 +48,6 @@
     ]
   },
   "devDependencies": {
-    "apollo": "^2.33.9",
     "eslint-plugin-baseui": "^9.106.3"
   }
 }
