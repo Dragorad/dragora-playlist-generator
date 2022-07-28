@@ -4,7 +4,6 @@ import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import ReactPlayer from 'react-player/lazy'
 import { notify } from 'react-notify-toast'
-import { Container } from '@mui/material'
 import PlayerControlButtons from './PlayerControlButtons'
 
 export default function PlayerDr(props) {
@@ -41,9 +40,8 @@ export default function PlayerDr(props) {
     console.log(stateUrls[appState.urlIdx])
 
     return (
+        <div style={{ marginTop: '2%' }}>
 
-        <Container
-            style={{ marginTop: '2%' }}>
             {appState.playlist.length < 1 ?
                 <p variant={'h4'} color={"textSecondary"}>
                     Playlist is empty.<br />
@@ -64,7 +62,7 @@ export default function PlayerDr(props) {
 
                 </>
             }
-        </Container >
+        </div>
     )
 }
 

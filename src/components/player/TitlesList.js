@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { makeStyles } from '@mui/material/styles'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
@@ -16,17 +15,7 @@ import { app } from '../../../src/index.js'
 
 // const user = app.currentUser
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 460,
-    backgroundColor: theme.palette.background.paper,
-  },
-}))
-
 export default function TitlesList(props) {
-  const classes = useStyles()
   const [appState, dispatch] = useContext(AppContext)
   console.log(appState)
 
@@ -51,7 +40,11 @@ export default function TitlesList(props) {
   }
 
   return (
-    <div className={classes.root}>
+    <div sx={theme => ({
+      width: '100%',
+      maxWidth: 460,
+      backgroundColor: theme.palette.background.paper,
+    })}>
 
       <List component="nav" aria-label="playlist titles">
         {appState.playlist.map((elem, index) => (
@@ -99,6 +92,6 @@ export default function TitlesList(props) {
           <ListItemText primary="Spam" />
         </ListItem>
       </List> */}
-    </div>
+    </div >
   )
 }
