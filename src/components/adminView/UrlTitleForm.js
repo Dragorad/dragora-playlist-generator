@@ -1,6 +1,6 @@
 import React from 'react'
 // import { useMutation } from '@apollo/react-hooks'
-import { TextField, Typography, div, Divider } from '@material-ui/core'
+import { TextField, Typography, Divider } from '@mui/material'
 import { UpdateFieldForm } from './UpdateFieldForm'
 // import { UPDATE_TITLE_URL } from '../../graphql/Mutations'
 import { setTitleUrl, setTitleGenres, setTitleInstruments } from '../../index'
@@ -44,7 +44,8 @@ export default function UrlTitleForm(props) {
         setUpdatedUrl(newUrl)
       }).catch(error => {
         notify.show(error.message, "error")
-        console.log(error.message)})
+        console.log(error.message)
+      })
   }
 
 
@@ -75,7 +76,7 @@ export default function UrlTitleForm(props) {
           >Update Title URL</button>
         </form>
         {/* <ItemsList arr={genresList} title='Genres' /> */}
-        
+
         <UpdateFieldForm nameStr='Genres' style={formStyles}
           titleMBID={titleMBID}
           MBGenres={props.MBGenres}

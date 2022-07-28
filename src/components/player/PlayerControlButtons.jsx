@@ -1,10 +1,8 @@
-import { Grow, IconButton } from '@material-ui/core'
-import PauseIcon from '@material-ui/icons/Pause'
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
-// import PlayArrowIcon from '@material-ui/icons/PlayArrow'
-import SkipNextIcon from '@material-ui/icons/SkipNext'
+import { Grow, IconButton } from '@mui/material'
+import PauseIcon from '@mui/icons-material/Pause'
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
+import SkipNextIcon from '@mui/icons-material/SkipNext'
 import { useState, useContext } from 'react'
-import { makeStyles} from '@material-ui/core/styles'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import { notify } from 'react-notify-toast'
@@ -12,24 +10,19 @@ import { notify } from 'react-notify-toast'
 
 
 
-const useStyles = makeStyles({
-    controls: {
-        display: 'flex',
-        alignItems: 'center',
-        // paddingLeft: theme.spacing(1),
-        // paddingBottom: theme.spacing(1),
-    },
-    playIcon: {
-        height: 38,
-        width: 38,
-        backgroundImage: 'music-player-circle-start.svg'
-    }
-})
+// const useStyles = makeStyles({
+//     controls:,
+//     playIcon: {
+//         height: 38,
+//         width: 38,
+//         backgroundImage: 'music-player-circle-start.svg'
+//     }
+// })
 
 export default function PlayerControlButtons() {
 
     const [appState, dispatch] = useContext(AppContext)
-    const classes = useStyles()
+    // const classes = useStyles()
     //   const theme = useTheme()
     const [state, setState] = useState({
         playing: true,
@@ -76,7 +69,12 @@ export default function PlayerControlButtons() {
         <Grow in={true}
             style={{ transformOrigin: '100 0 20' }}
             timeout={2800} >
-            <div className={classes.controls}  //control icons
+            <div sx={{
+                display: 'flex',
+                alignItems: 'center',
+                // paddingLeft: theme.spacing(1),
+                // paddingBottom: theme.spacing(1),
+            }}
             >
                 {/* <img src="music-player-circle-start.svg" alt='App Logo'
              className={classes.playIcon} /> */}
@@ -88,9 +86,19 @@ export default function PlayerControlButtons() {
                     onClick={handlePlayPause}>
                     {!appState.playing ?
                         <img src="music-player-circle-start.svg" alt='App Logo'
-                            className={classes.playIcon} />
-                        // <PlayArrowIcon className={classes.playIcon} />
-                        : <PauseIcon className={classes.playIcon} />
+                            style={{
+                                height: 38,
+                                width: 38,
+                            }}
+
+                        />
+
+                        :
+                        <PauseIcon sx={{
+                            height: 38,
+                            width: 38,
+                            //         backgroundImage: 'music-player-circle-start.svg'
+                        }} />
                     }
                 </IconButton>
                 <IconButton aria-label="next"

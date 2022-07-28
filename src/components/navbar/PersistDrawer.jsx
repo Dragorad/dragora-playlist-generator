@@ -1,29 +1,29 @@
 import React, { Suspense, useContext } from 'react'
 import clsx from 'clsx'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
-// import CssBaseline from '@material-ui/core/CssBaseline'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import List from '@material-ui/core/List'
-import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-// import InboxIcon from '@material-ui/icons/MoveToInbox'
-import ShareIcon from '@material-ui/icons/Share'
-import QueueMusicIcon from '@material-ui/icons/QueueMusic'
-import SettingsIcon from '@material-ui/icons/Settings'
-import PermIdentityIcon from '@material-ui/icons/PermIdentity'
+// import { makeStyles, useTheme } from '@mui/material/styles'
+import Drawer from '@mui/material/Drawer'
+// import CssBaseline from '@mui/material/CssBaseline'
+import MuiAppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import List from '@mui/material/List'
+import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+// import InboxIcon from '@mui/icons-material/MoveToInbox'
+import ShareIcon from '@mui/icons-material/Share'
+import QueueMusicIcon from '@mui/icons-material/QueueMusic'
+import SettingsIcon from '@mui/icons-material/Settings'
+import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 import InfoBox from '../navbar/InfoBox'
 import SlidersForm from '../UserView/SlidersForm'
-import { Grid } from '@material-ui/core'
-import { blue } from '@material-ui/core/colors'
+import { Grid } from '@mui/material'
+import { blue } from '@mui/material/colors'
 // import { LogButton } from '../authUsers/Login'
 import LoginInfoBox from '../authUsers/LoginModal'
 import Notifications from 'react-notify-toast'
@@ -35,76 +35,76 @@ import { AppContext } from '../../stateContext/indexContext'
 const drawerWidth = 240
 
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    maxWidth: '1600px',
-    display: 'flex',
-    justifyContent: 'space-evently',
-    // marginLeft: '0.3rem',
-    padding: '1rem'
-  },
-  appBar: {
-    display: 'flex',
-    backgroundColor: blue[900],
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     maxWidth: '1600px',
+//     display: 'flex',
+//     justifyContent: 'space-evently',
+//     // marginLeft: '0.3rem',
+//     padding: '1rem'
+//   },
+//   appBar: {
+//     display: 'flex',
+//     backgroundColor: blue[900],
 
-    fontSize: "1rem",
-    justifyContent: 'space-between',
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(1),
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: 'theme.spacing(0, 1)',
-    // ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    // maxWidth: '1200px',
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    backgroundColor: 'black',
-    marginLeft: -drawerWidth,
-    // backgroundColor: 'red'
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-}))
+//     fontSize: "1rem",
+//     justifyContent: 'space-between',
+//     transition: theme.transitions.create(['margin', 'width'], {
+//       easing: theme.transitions.easing.sharp,
+//       duration: theme.transitions.duration.leavingScreen,
+//     }),
+//   },
+//   appBarShift: {
+//     width: `calc(100% - ${drawerWidth}px)`,
+//     marginLeft: drawerWidth,
+//     transition: theme.transitions.create(['margin', 'width'], {
+//       easing: theme.transitions.easing.easeOut,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//   },
+//   menuButton: {
+//     marginRight: theme.spacing(1),
+//   },
+//   hide: {
+//     display: 'none',
+//   },
+//   drawer: {
+//     width: drawerWidth,
+//     flexShrink: 0,
+//   },
+//   drawerPaper: {
+//     width: drawerWidth,
+//   },
+//   drawerHeader: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     padding: 'theme.spacing(0, 1)',
+//     // ...theme.mixins.toolbar,
+//     justifyContent: 'flex-end',
+//   },
+//   content: {
+//     flexGrow: 1,
+//     padding: theme.spacing(3),
+//     // maxWidth: '1200px',
+//     transition: theme.transitions.create('margin', {
+//       easing: theme.transitions.easing.sharp,
+//       duration: theme.transitions.duration.leavingScreen,
+//     }),
+//     backgroundColor: 'black',
+//     marginLeft: -drawerWidth,
+//     // backgroundColor: 'red'
+//   },
+//   contentShift: {
+//     transition: theme.transitions.create('margin', {
+//       easing: theme.transitions.easing.easeOut,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//     marginLeft: 0,
+//   },
+// }))
 
 export default function PersistentDrawerLeft() {
-  const classes = useStyles()
+  // const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
   const [appstate] = useContext(AppContext)
@@ -206,7 +206,7 @@ export default function PersistentDrawerLeft() {
 
         <Grid container xs={12} spacing={1}
           lg={10} xl={9}
-          className={classes.root}
+        // className={classes.root}
         >
           {/* <Container > */}
           <Grid item sx={12} sm={3} md={2} lg={2}// genres buttons
@@ -218,9 +218,9 @@ export default function PersistentDrawerLeft() {
           // style={{border: '1px solid blue'}}
           >
             <Grid item >
-              {/* <Paper elevation={2} > */}
-              <SlidersForm />
-              {/* </Paper> */}
+              {/* <Paper elevation={2} >
+            <SlidersForm />
+            {/* </Paper> */}
             </Grid>
 
             <Grid item xs={12} direction='column' //PlayerDr

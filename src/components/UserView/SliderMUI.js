@@ -1,21 +1,9 @@
 // import React from 'react'
 // import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
-import Slider from '@material-ui/core/Slider'
-import Typography from '@material-ui/core/Typography'
-import Tooltip from '@material-ui/core/Tooltip'
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: 300 + theme.spacing(3) * 2,
-        maxWidth: "90%",
-        // height: '10%'
-
-    },
-    margin: {
-        height: theme.spacing(),
-    },
-}))
+// import { makeStyles } from '@mui/material/styles'
+import Slider from '@mui/material/Slider'
+import Typography from '@mui/material/Typography'
+import Tooltip from '@mui/material/Tooltip'
 
 function ValueLabelComponent(props) {
     const { children, open, value: val } = props
@@ -29,7 +17,7 @@ function ValueLabelComponent(props) {
 
 
 export default function SliderMUI(props) {
-    const classes = useStyles()
+
     // const [value, setValue] = React.useState({ [props.sliderText]: 0 })
     // const handleChange = (ev, newValue) => {
     //     setValue(newValue)
@@ -38,9 +26,13 @@ export default function SliderMUI(props) {
     //     alert(`${props.sliderText} : ${value}`)
     // }
     return (
-        <div className={classes.root}>
+        <div sx={theme => ({
+            width: 300 + theme.spacing(3) * 2,
+            maxWidth: "90%",
+            height: theme.spacing()
+        })} >
             <Typography gutterBottom
-            style={{height:'30%'}}>{props.sliderText}</Typography>
+                style={{ height: '30%' }}>{props.sliderText}</Typography>
             <Slider
                 ValueLabelComponent={ValueLabelComponent}
                 min={5}
@@ -52,6 +44,6 @@ export default function SliderMUI(props) {
                 onChangeCommitted={props.onChangeCommitted}
                 step={10}
             />
-        </div>
+        </div >
     )
 }
