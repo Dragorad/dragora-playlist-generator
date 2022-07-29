@@ -1,8 +1,8 @@
 // https://www.sitepoint.com/replace-redux-react-hooks-context-api/
 
-import React, { useReducer, createContext} from "react";
-import {initialState} from './initialState'
-import {reducer} from './reducers'
+import React, { useReducer, createContext } from "react";
+import { initialState } from './initialState'
+import { reducer } from './reducers'
 
 
 export const AppContext = createContext(null)
@@ -18,15 +18,3 @@ export const AppContextProvider = props => {
     )
 }
 
-// export const AppContext = createContext()
-
-
-// export const AppContextProvider = props => {
-//     const [state, dispatch] = useReducer(reducer, initialState);
-
-//     return (
-//         <AppContext.Provider value={[state, dispatch]}>
-//             {props.children}
-//         </AppContext.Provider>
-//     )
-// }

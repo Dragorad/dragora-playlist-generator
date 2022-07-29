@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
 import Modal from '@mui/material/Modal'
@@ -20,28 +20,29 @@ function getModalStyle() {
     };
 }
 
-const useStyles = makeStyles(theme => ({
-    paper: {
-        position: 'absolute',
-        width: 350,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #ffffff',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(1, 4, 3),
-        margin: theme.spacing(1)
-    },
-    button: {
-        backgroundColor: "#ff1166",
-        // padding: '1rem, 0',
-        label: {
-            color: "secondary",
-            fontSize: '3rem'
-        }
-    }
-}));
+// const useStyles = makeStyles(theme => ({
+//     paper: {
+//         position: 'absolute',
+//         width: 350,
+//         backgroundColor: theme.palette.background.paper,
+//         border: '2px solid #ffffff',
+//         boxShadow: theme.shadows[5],
+//         padding: theme.spacing(1, 4, 3),
+//         margin: theme.spacing(1)
+//     },
+//     button: {
+//         backgroundColor: "#ff1166",
+//         // padding: '1rem, 0',
+//         label: {
+//             color: "secondary",
+//             fontSize: '3rem'
+//         }
+//     }
+// }));
 
 export default function InfoBox() {
-    const classes = useStyles();
+    // const classes = useStyles();
+    const theme = useTheme()
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
@@ -73,7 +74,18 @@ export default function InfoBox() {
                 onClose={handleClose}
                 onClick={handleClose}
             >
-                <div style={modalStyle} className={classes.paper}>
+                <div style={modalStyle}
+                    sx={theme => ({
+                        position: 'absolute',
+                        width: 350,
+                        backgroundColor: theme.palette.background.paper,
+                        border: '2px solid #ffffff',
+                        boxShadow: theme.shadows[5],
+                        padding: theme.spacing(1, 4, 3),
+                        margin: theme.spacing(1)
+                    })}
+                // className={classes.paper}
+                >
                     <h2 id="simple-modal-title">How to use</h2>
                     <p id="simple-modal-description">
                         <Typography>

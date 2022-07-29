@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { makeStyles } from '@mui/material/styles'
 // import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Modal from '@mui/material/Modal';
 import {
@@ -29,42 +28,41 @@ function getModalStyle() {
     return {
         top: `${top}%`,
         left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
+        // transform: `translate(-${top}%, -${left}%)`,
     };
 }
 
-const useStyles = makeStyles(theme => ({
-    paper: {
-        position: 'absolute',
-        width: 350,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #ffffff',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(1, 4, 3),
-        margin: theme.spacing(1)
-    },
-    button: {
-        backgroundColor: "#ff1166",
-        // padding: '1rem, 0',
-        label: {
-            color: "secondary",
-            fontSize: '3rem'
-        },
-        textInput: {
-            margin: '0 5%'
-        },
-        textField: {
-            color: 'blue'
-        }
-    }
-}))
+// const useStyles = makeStyles(theme => ({
+//     paper: {
+//         position: 'absolute',
+//         width: 350,
+//         backgroundColor: theme.palette.background.paper,
+//         border: '2px solid #ffffff',
+//         boxShadow: theme.shadows[5],
+//         padding: theme.spacing(1, 4, 3),
+//         margin: theme.spacing(1)
+//     },
+//     button: {
+//         backgroundColor: "#ff1166",
+//         // padding: '1rem, 0',
+//         label: {
+//             color: "secondary",
+//             fontSize: '3rem'
+//         },
+//         textInput: {
+//             margin: '0 5%'
+//         },
+//         textField: {
+//             color: 'blue'
+//         }
+//     }
+// }))
 
 
 // Let registered users log in
 
 export default function LoginInfoBox() {
     const [appState, dispatch] = useContext(AppContext)
-    const classes = useStyles()
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false)
@@ -178,7 +176,7 @@ export default function LoginInfoBox() {
                 variant="outlined"
                 size='small'
                 color='inherit'
-                backgroundColor={blueGrey[200]}
+                backgroundColor={'#1b304a'}
                 fontSize='0.8rem'
                 onClick={handleModalOpen}> Login/SignUp </Button> :
                 <Button name='LogOut' onClick={logOut} variant='outlined' size='small'
@@ -191,7 +189,17 @@ export default function LoginInfoBox() {
                 open={open}
                 onClose={handleModalClose}
             >
-                <div style={modalStyle} className={classes.paper}>
+                <div style={modalStyle}
+                    sx={theme => ({
+                        position: 'absolute',
+                        width: 350,
+                        backgroundColor: theme.palette.background.paper,
+                        border: '2px solid #ffffff',
+                        boxShadow: theme.shadows[5],
+                        padding: theme.spacing(1, 4, 3),
+                        margin: theme.spacing(1)
+                    })}
+                >
                     <ButtonGroup variant='text' fullWidth >
                         <Button id='modalButton 0' onClick={onBtnClick(true)}>Log In</Button>
                         <Button id='modalButton 1' onClick={onBtnClick(false)}>Sign UP</Button>

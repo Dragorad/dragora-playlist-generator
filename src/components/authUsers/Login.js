@@ -1,4 +1,4 @@
-import { dispatch } from 'react'
+// import { dispatch } from 'react'
 import * as RealmWeb from "realm-web"
 import { app } from '../../index'
 import * as types from '../../stateContext/types'
@@ -6,10 +6,10 @@ import { AppContext } from '../../stateContext/indexContext'
 
 export const logOut = async () => {
     await app.logOut()
-    dispatch({
-        type: types.SET_USER_ID,
-        payload: ''
-    })
+    // dispatch({
+    //     type: types.SET_USER_ID,
+    //     payload: ''
+    // })
 }
 
 const credentials = (userName, password) => {
@@ -35,12 +35,12 @@ export const logIn = async (credentials) => {
 
         // const user = await app.logIn(credentials)
 
-        dispatch({
-            type: types.SET_USER_ID,
-            payload: {
-                userID: user.id,
-            }
-        })
+        // dispatch({
+        //     type: types.SET_USER_ID,
+        //     payload: {
+        //         userID: user.id,
+        //     }
+        // })
         console.log("Successfully logged in!", user)
     }
     catch (err) {
@@ -50,7 +50,9 @@ export const logIn = async (credentials) => {
 export const signUp = async (userName, password) => {
     const credentials = RealmWeb.Credentials.loginUserNamePassword(userName, password)
     try {
-        RealmWeb.registerUser(credentials)
+
+        app.emailPasswordAuth.registerUser({ userName, password })
+        // RealmWeb.registerUser(credentials)
         logIn(credentials)
     } catch (error) {
         console.log(error.message)
