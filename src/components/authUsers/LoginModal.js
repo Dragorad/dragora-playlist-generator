@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 // import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import Modal from '@mui/material/Modal';
+// import Modal from '@mui/material/Modal';
 import {
-    Button, TextField, Typography, InputAdornment, IconButton,
+    Dialog, Button, TextField, Typography, InputAdornment, IconButton,
     FormControl, InputLabel, OutlinedInput, ButtonGroup
 } from '@mui/material'
 import { blueGrey, grey } from '@mui/material/colors'
@@ -32,39 +32,24 @@ function getModalStyle() {
     };
 }
 
-// const useStyles = makeStyles(theme => ({
-//     paper: {
-//         position: 'absolute',
-//         width: 350,
-//         backgroundColor: theme.palette.background.paper,
-//         border: '2px solid #ffffff',
-//         boxShadow: theme.shadows[5],
-//         padding: theme.spacing(1, 4, 3),
-//         margin: theme.spacing(1)
-//     },
-//     button: {
-//         backgroundColor: "#ff1166",
-//         // padding: '1rem, 0',
-//         label: {
-//             color: "secondary",
-//             fontSize: '3rem'
-//         },
-//         textInput: {
-//             margin: '0 5%'
-//         },
-//         textField: {
-//             color: 'blue'
-//         }
-//     }
-// }))
-
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
 
 // Let registered users log in
 
 export default function LoginInfoBox() {
     const [appState, dispatch] = useContext(AppContext)
     // getModalStyle is not a pure function, we roll the style only on the first render
-    const [modalStyle] = React.useState(getModalStyle);
+    // const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false)
     const [state, setState] = React.useState({
         userName: '',
@@ -183,22 +168,14 @@ export default function LoginInfoBox() {
                     style={{ backgroundColor: grey[400], marginBottom: '2%' }} >
                     Log Out</Button>}
 
-            <Modal
+            <Dialog
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 open={open}
                 onClose={handleModalClose}
             >
-                <div style={modalStyle}
-                    sx={theme => ({
-                        position: 'absolute',
-                        width: 350,
-                        backgroundColor: theme.palette.background.paper,
-                        border: '2px solid #ffffff',
-                        boxShadow: theme.shadows[5],
-                        padding: theme.spacing(1, 4, 3),
-                        margin: theme.spacing(1)
-                    })}
+                <div
+                    sx={style}
                 >
                     <ButtonGroup variant='text' fullWidth >
                         <Button id='modalButton 0' onClick={onBtnClick(true)}>Log In</Button>
@@ -297,7 +274,7 @@ export default function LoginInfoBox() {
                     </p>
 
                 </div>
-            </Modal>
+            </Dialog>
         </div>
     );
 }
