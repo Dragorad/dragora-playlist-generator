@@ -48,17 +48,17 @@ export default function PlayerDr(props) {
                     Please set "Diversity" to bigger value or add genres with dedicated buttons<br />
                     Then press "Generate Playlist Button" </p>
                 : <>
+                    < PlayerControlButtons />
                     <ReactPlayer
                         url={stateUrls[appState.urlIdx]}
                         playing={appState.playing}
                         playIcon={false}
                         controls={false}
-                        width={'100%'}
+                        width={'90%'}
                         light={false}
-                        // height={'100%'}
+                        // height={'80%'}
                         onEnded={changeUrlIndex('up')} />
 
-                    < PlayerControlButtons />
 
                 </>
             }

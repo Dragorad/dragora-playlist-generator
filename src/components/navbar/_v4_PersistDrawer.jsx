@@ -98,7 +98,6 @@ export default function PersistentDrawerLeft() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar variant='dence'
           sx={{
@@ -115,7 +114,8 @@ export default function PersistentDrawerLeft() {
 
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap flexShrink='2' >
+          <Typography variant="h6" noWrap flexShrink='2'
+            sx={{ p: "0 4%" }}>
             DrAgora Music Selector Beta! {loggedAsText}
 
           </Typography>
@@ -172,41 +172,35 @@ export default function PersistentDrawerLeft() {
         </List>
       </Drawer>
 
-      <Main
-      // className={clsx(classes.content, {
-      //   [classes.contentShift]: open,
-      // })}
-      >
-        <Notifications />
-        {/* <div className={classes.drawerHeader} /> */}
-      </Main>
+      <Main >
+        <CssBaseline />
 
-      <Grid container xs={12} spacing={1} direction='row'
-      >
-        {/* <Container > */}
-        <Grid item sx={12} sm={3} md={5} lg={4}// genres buttons
-          // style={{ border: '1px solid red' }}
-          direction='row'>
-          <Paper elevation={2}>
-            <GenresButtonsGroup />
-          </Paper>
-          <Grid item sm={12}
-            sx={{ ml: '2px' }}>
-            <Paper elevation={2} >
-              <SlidersForm />
-            </Paper>
-          </Grid>
-        </Grid>
-        <Grid container item xs={12} sm={6} direction='row' //sliders form
-          style={{
-            // border: '1px solid blue',
-            margin: '2%',
-          }}
+        <Grid container xs={12} spacing={1} direction='row'
+          sx={{ mt: '2%' }}
         >
+          <Grid item sx={12} sm={3} md={2} lg={2}// genres buttons
+            // style={{ border: '1px solid red' }}
+            direction='row'>
+            <GenresButtonsGroup />
+          </Grid>
+          <Grid container item xs={12} sm={8} direction='row'
+            style={{
+              // border: '1px solid blue',
+              // margin: '2%',
+            }}
+          >
 
-          <Paper elevation={1} >
+            {/* <Paper elevation={1} > */}
+            <Grid item sm={12} //sliders form
+              sx={{ ml: '2px', h: '10%s', 'border': '1px' }}>
+              {/* <Paper elevation={1} > */}
+              <SlidersForm />
+              {/* </Paper > */}
+            </Grid>
             <Grid container item direction='row' //PlayerDr
+              sx={{ mt: '1%', w: '98%' }}
             >
+
               <Grid xs={12} md={7}>
                 <PlayerDr />
               </Grid>
@@ -216,11 +210,11 @@ export default function PersistentDrawerLeft() {
 
               </Grid>
             </Grid>
-          </Paper>
-        </Grid>
-        {/* </Container> */}
-      </Grid >
-    </Box>
+          </Grid>
+        </Grid >
+        <Notifications />
+      </Main>
+    </Box >
 
   )
 }

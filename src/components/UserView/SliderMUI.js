@@ -1,6 +1,3 @@
-// import React from 'react'
-// import PropTypes from 'prop-types'
-// import { makeStyles } from '@mui/material/styles'
 import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
@@ -29,11 +26,13 @@ export default function SliderMUI(props) {
         <div sx={theme => ({
             width: 300 + theme.spacing(3) * 2,
             maxWidth: "90%",
-            height: theme.spacing()
+            height: theme.spacing(),
+            color: theme.secondary.light
         })} >
             <Typography gutterBottom
                 style={{ height: '30%' }}>{props.sliderText}</Typography>
             <Slider
+                size='small'
                 ValueLabelComponent={ValueLabelComponent}
                 min={5}
                 aria-label={props.sliderText}

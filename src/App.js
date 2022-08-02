@@ -19,6 +19,20 @@ const theme = createTheme({
       xl: 1920,
     },
   },
+  palette: {
+    primary: {
+      light: '#718792',
+      main: '#455a64',
+      dark: '#1c313a',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#428e92',
+      main: '#006064',
+      dark: '#00363a',
+      // contrastText: '#fff',
+    }
+  },
   overrides: {
     typography: {
       fontSize: 12,

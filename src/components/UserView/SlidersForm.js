@@ -105,7 +105,6 @@ export default function SlidersForm() {
         : setNewPlaylist(customInput)
   }
 
-  // const classes = useStyles()
   return (
     <div style={{ padding: '1rem', margin: 'auto' }}>
       <Notifications
@@ -124,13 +123,10 @@ export default function SlidersForm() {
           overflow: 'hidden',
           // backgroundImage: 'url(music-player-circle-start.svg)',
         }}
-      // className={classes.root}
-      // style={{ border: '1px solid blue' }}
+
       >
-        <Grid item container sm={6}//descriptor sliders
+        <Grid item container sm={5}//descriptor sliders
           direction={'column'}
-          // justifyContent={'st'}
-          // alignItems={'center'}
           style={{ backgroundColor: 'none', height: '100%' }}>
           {descriptorsList.map((descriptor, key) => (
             <Grid item sm={12}>
@@ -156,30 +152,28 @@ export default function SlidersForm() {
           {/* </Paper> */}
         </Grid>
 
-        {/* <Divider orienta4tion='horizontal' flexItem /> */}
-
-        <Grid container item sm={6} //diversity
-        // style={{ backgroundColor: blueGrey[200], height: '100%' }}
+        <Grid container item sm={6} //diversity 
         >
-          <SliderMUI item
-            //  height='10%'
-            sliderText='Diversity'
-            value={state.Diversity.value}
-            defaultValue={state.Diversity.value}
-            min={state.Diversity.min}
-            max={state.Diversity.max}
-            step={state.Diversity.step}
-            // aria-text={'Diversity'}
-            name={'Diversity'}
-            onChange={onSliderChange('Diversity')}
-            onChangeComitted={handleCommit('Diversity')} />
+          <Grid item sm={11}>
 
+            <SliderMUI
+              sliderText='Diversity'
+              value={state.Diversity.value}
+              defaultValue={state.Diversity.value}
+              min={state.Diversity.min}
+              max={state.Diversity.max}
+              step={state.Diversity.step}
+              // aria-text={'Diversity'}
+              name={'Diversity'}
+              onChange={onSliderChange('Diversity')}
+              onChangeComitted={handleCommit('Diversity')} />
+
+          </Grid>
           <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false}
             style={{
               marginBottom: '1%',
               marginLeft: '0.3 rem'
             }}
-          // classes={classes.buttonGroup}
           />
           <Grow in={true}
             style={{ transformOrigin: '100 0 20' }}

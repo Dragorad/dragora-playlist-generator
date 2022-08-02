@@ -165,7 +165,7 @@ export default function LoginInfoBox() {
                 fontSize='0.8rem'
                 onClick={handleModalOpen}> Login/SignUp </Button> :
                 <Button name='LogOut' onClick={logOut} variant='outlined' size='small'
-                    style={{ backgroundColor: grey[400], marginBottom: '2%' }} >
+                    style={{ backgroundColor: grey[400], marginBottom: '2%', whiteSpace: 'nowrap' }} >
                     Log Out</Button>}
 
             <Dialog
