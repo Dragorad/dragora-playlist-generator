@@ -1,25 +1,43 @@
-import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import React, { Suspense, useContext } from 'react'
 
-const drawerWidth = 240;
+import Drawer from '@mui/material/Drawer'
+import { styled, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box'
+import CssBaseline from '@mui/material/CssBaseline'
+import MuiAppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import List from '@mui/material/List'
+import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemButton from '@mui/material/ListItemButton';
+// import InboxIcon from '@mui/icons-material/MoveToInbox'
+import ShareIcon from '@mui/icons-material/Share'
+import QueueMusicIcon from '@mui/icons-material/QueueMusic'
+import SettingsIcon from '@mui/icons-material/Settings'
+import PermIdentityIcon from '@mui/icons-material/PermIdentity'
+import Paper from '@mui/material/Paper'
+import SlidersForm from '../UserView/SlidersForm'
+import Grid from '@mui/material/Grid'
+// import { blue } from '@mui/material/colors'
+import InfoBox from './InfoBox'
+import LoginInfoBox from '../authUsers/LoginModal'
+import Notifications from 'react-notify-toast'
+import GenresButtonsGroup from '../UserView/GenresButtonsGroup'
+import TitlesList from '../player/TitlesList'
+import PlayerDr from '../player/PlayerDr'
+import { AppContext } from '../../stateContext/indexContext'
+import MailIcon from '@mui/icons-material/Mail'
+
+const drawerWidth = 240
+
+
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -56,7 +74,6 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
-
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -65,11 +82,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
-
 export default function PersistentDrawerLeft() {
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const theme = useTheme()
+  const [appstate] = useContext(AppContext)
+  const loggedAsText = appstate.userName !== '' ? `Logged as ${appstate.userName}` : ''
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -80,21 +97,41 @@ export default function PersistentDrawerLeft() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar variant='dence'
+        // sx={{
+        //   backgroundColor: '#404e55de'
+        // }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+          // className={clsx(classes.menuButton, open && classes.hide)}
           >
+            <img src="music-player-circle-start.svg" alt='App Logo' />
+
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+          <Typography variant="h6" noWrap flexShrink='2'
+            sx={{ p: "0 4%" }}>
+            DrAgora Music Selector Beta! {loggedAsText}
+
           </Typography>
+
+          <div style={{
+            display: 'flex',
+            position: 'relative',
+            right: '1%',
+            alignItems: 'center',
+            justifyContent: 'right',
+            marginLeft: '5%',
+            padding: '0.6 rem'
+          }}>
+            <LoginInfoBox />
+            <InfoBox />
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -117,61 +154,67 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+          {['Following', 'Playlists', 'Starred', 'Share'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <QueueMusicIcon /> : <ShareIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+          {['Login', 'Preferences'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <PermIdentityIcon /> : <SettingsIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
       </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+
+      <Main >
+        <CssBaseline />
+
+        <Grid container xs={12} spacing={1} direction='row'
+          sx={{ mt: '2%' }}
+        >
+          <Grid item sx={12} sm={3} md={2} lg={2}// genres buttons
+            // style={{ border: '1px solid red' }}
+            direction='row'>
+            <GenresButtonsGroup />
+          </Grid>
+          <Grid container item xs={12} sm={8} direction='row'
+            style={{
+              // border: '1px solid blue',
+              // margin: '2%',
+            }}
+          >
+
+            {/* <Paper elevation={1} > */}
+            <Grid item sm={12} //sliders form
+              sx={{ ml: '2px', h: '10%s', 'border': '1px' }}>
+              {/* <Paper elevation={1} > */}
+              <SlidersForm />
+              {/* </Paper > */}
+            </Grid>
+            <Grid container item direction='row' //PlayerDr
+              sx={{ mt: '1%', w: '98%' }}
+            >
+
+              <Grid xs={12} md={7}>
+                <PlayerDr />
+              </Grid>
+              <Grid xs={5} //titlesList
+              >
+                <TitlesList />
+
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid >
+        <Notifications />
       </Main>
-    </Box>
-  );
+    </Box >
+
+  )
 }

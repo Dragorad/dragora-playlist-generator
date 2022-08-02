@@ -157,6 +157,7 @@ export default function SlidersForm() {
           <Grid item sm={11}>
 
             <SliderMUI
+              color='#7f0000'
               sliderText='Diversity'
               value={state.Diversity.value}
               defaultValue={state.Diversity.value}

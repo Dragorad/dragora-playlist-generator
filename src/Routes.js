@@ -8,7 +8,7 @@ import UrlTitleForm from './components/adminView/UrlTitleForm'
 
 export const ImgLoader = <img src="music-player-circle-start.svg" alt='Loading' />
 
-const LazyPersistedtDrawer = lazy(() => import('./components/navbar/_v4_PersistDrawer'))
+const LazyPersistedtDrawer = lazy(() => import('./components/navbar/_v5_PersistDrawer'))
 
 const Routes = (props) => (
   <Suspense fallback={ImgLoader} >
