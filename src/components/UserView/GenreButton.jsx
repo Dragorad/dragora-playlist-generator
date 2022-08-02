@@ -1,44 +1,44 @@
-import React, {useContext } from 'react'
-import ToggleButton from '@material-ui/lab/ToggleButton'
-import { makeStyles } from '@material-ui/core/styles'
-import { Grid, Paper} from '@material-ui/core'
+import React, { useContext } from 'react'
+import ToggleButton from '@mui/material/ToggleButton'
+// import { makeStyles } from '@mui/material/styles'
+import { Grid, Paper } from '@mui/material'
 // import { border, color } from '@material-ui/system'
-// import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import {blueGrey} from '@material-ui/core/colors'
+// import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { blueGrey } from '@mui/material/colors'
 import { AppContext } from '../../stateContext/indexContext';
-// import { StylesProvider } from '@material-ui/core'
+// import { StylesProvider } from '@mui/material'
 import { descriptorsList } from '../../workers/descriptorsList'
 // import { TOGGLE_BTN_STATE } from '../../stateContext/types'
 
 
 
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    height: '100%',
-    padding: '7%',
-    '&:hover': {
-      backgroundColor: blueGrey[200]
-    },
-    '&$selected': {
-      backgroundColor: blueGrey[400],
-      color: 'white'
-    },
+// const useStyles = makeStyles({
+//   root: {
+//     width: '100%',
+//     height: '100%',
+//     padding: '7%',
+//     '&:hover': {
+//       backgroundColor: blueGrey[200]
+//     },
+//     '&$selected': {
+//       backgroundColor: blueGrey[400],
+//       color: 'white'
+//     },
 
-  },
-  selected: {},
-  // checked: {},
-  // hover: {},
-  label: {
-    padding: '1%',
-    // fontSize: '1 rem',
-    // textTransform: 'uppercase',
-    '&$:hover': {
-      textTransform: 'lowercase'
-    }
-  },
-})
+//   },
+//   selected: {},
+//   // checked: {},
+//   // hover: {},
+//   label: {
+//     padding: '1%',
+//     // fontSize: '1 rem',
+//     // textTransform: 'uppercase',
+//     '&$:hover': {
+//       textTransform: 'lowercase'
+//     }
+//   },
+// })
 
 
 export function ButtonsGroupMultiple(props) {
@@ -51,7 +51,6 @@ export function ButtonsGroupMultiple(props) {
 
   const onButtonClick = name => (event) => {
     const arrName = descriptorsList.includes(name) ? 'descriptorsArr' : 'genresArr'
-    // alert(arrName)
     const newArr = appState[arrName].includes(name) ?
       appState[arrName].filter(el => el !== name)
       : [...appState[arrName], name]
@@ -61,7 +60,7 @@ export function ButtonsGroupMultiple(props) {
       payload: [arrName, newArr]
     })
   }
-  const classes = useStyles()
+  // const classes = useStyles()
   return (
     <Grid container alignItems='space-between'
       // alignItems='stretch'
@@ -74,12 +73,28 @@ export function ButtonsGroupMultiple(props) {
             style={{ height: '100%' }}>
             <ToggleButton
               key={index}
-              classes={{
-                root: classes.root,
-                selected: classes.selected,
-                label: classes.label
+              sx={{
+                width: '100%',
+                height: '100%',
+                padding: '7%',
+                '&:hover': {
+                  backgroundColor: blueGrey[200]
+                },
+                '&:$selected': {
+                  backgroundColor: blueGrey[400],
+                  color: 'white'
+                },
+
+                label: {
+                  padding: '1%',
+                  // fontSize: '1 rem',
+                  // textTransform: 'uppercase',
+                  '&:hover': {
+                    textTransform: 'lowercase'
+                  }
+                },
               }}
-              aria-label={props.text}
+              aria- label={props.text}
               value={text}
               text={text}
               variant='outlined'
@@ -93,9 +108,10 @@ export function ButtonsGroupMultiple(props) {
             </ToggleButton>
           </Paper>
         </Grid>
-      ))}
+      ))
+      }
       {/* </React.Fragment> */}
-    </Grid>
+    </Grid >
 
 
   )

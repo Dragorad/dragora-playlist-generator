@@ -1,14 +1,24 @@
 import { useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
-import { Button} from '@material-ui/core'
+import MuiToggleButton from '@mui/material/ToggleButton'
+import { styled } from '@mui/material/styles'
 import { genresList } from '../../workers/genresAndInstrumentsList'
 import { ButtonsGroupMultiple } from './GenreButton'
-import { blueGrey } from '@material-ui/core/colors'
+import { blueGrey } from '@mui/material/colors'
+
+// copied from
+const ToggleButton = styled(MuiToggleButton)({
+    "&.Mui-selected, &.Mui-selected:hover": {
+        color: "white",
+        backgroundColor: '#00ff00'
+    }
+});
 
 
 
 export default function GenresButtonsGroup() {
+    console.log('buttons group in')
     const [appState, dispatch] = useContext(AppContext)
     const toggleAllGenres = e => {
         e.preventDefault()
@@ -26,22 +36,38 @@ export default function GenresButtonsGroup() {
     }
     return (
         <>
-            <Button style={{
-                margin: '2% 0',
-                backgroundColor: blueGrey[400],
-                color: 'white'
-            }}
+            <ToggleButton
+                sx={{
+                    margin: '2% 0',
+                    color: 'white',
+                    backgroundColor: blueGrey[400],
+                    '&:hover': {
+                        backgroundColor: blueGrey[600],
+                    },
+                    '&:active': {
+                        backgroundColor: blueGrey[900],
+                        color: 'red'
+                    }
+                }}
                 onClick={toggleAllGenres}
-                fullWidth  > Select All Genres</Button>
+                fullWidth  >
+                Select All Genres
+            </ToggleButton>
 
             <ButtonsGroupMultiple inputArr={genresList}
                 selected={true} sm={6}
             />
-            <Button style={{ margin: '2% 0' }}
+            <ToggleButton
+                style={{
+                    margin: '2% 0',
+                    backgroundColor: blueGrey[400],
+                    color: 'white'
+                }}
                 variant="outlined"
                 onClick={deselectAllGenres}
                 // type='submit'
-                fullWidth  > DeSelect All Genres</Button>
+                fullWidth  > DeSelect All Genres
+            </ToggleButton>
         </>
     )
 }

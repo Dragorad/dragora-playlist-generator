@@ -2,41 +2,38 @@ import { useState, useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import SliderMUI from './SliderMUI'
-import { Button, Divider, Grid, Grow, makeStyles } from '@material-ui/core'
+import { Button, Divider, Grid, Grow } from '@mui/material'
 // import { genresList } from '../../workers/genresAndInstrumentsList'
 import { descriptorsList } from '../../workers/descriptorsList'
 import { ButtonsGroupMultiple } from './GenreButton'
-// import { blueGrey } from '@material-ui/core/colors'
+// import { blueGrey } from '@mui/material/colors'
 import { app, getNewPlayList } from '../../index'
 // import SnackBar from './SnackBar'
 import Notifications, { notify } from 'react-notify-toast'
 import { notifyOptions } from './notifyOptions'
-// import PlayerCard from '../player/PlayerCard'
-// import PlayerControlButtons from '../player/PlayerControlButtons'
-// import PlayerCard from '../player/PlayerCard'
 
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    overflow: 'hidden',
-    // backgroundImage: 'url(music-player-circle-start.svg)',
-  },
-  gridList: {
-    width: 200,
-    height: 100
-  },
-  paper: {
-    padding: '2%',
-    margin: 'auto'
-  },
-  // buttonGroup: {
-  //     marginBottom: '1%',
-  //     marginLeft: '0.3 rem'
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     display: 'flex',
+//     justifyContent: 'space-between',
+//     overflow: 'hidden',
+//     // backgroundImage: 'url(music-player-circle-start.svg)',
+//   },
+//   gridList: {
+//     width: 200,
+//     height: 100
+//   },
+//   paper: {
+//     padding: '2%',
+//     margin: 'auto'
+//   },
+//   // buttonGroup: {
+//   //     marginBottom: '1%',
+//   //     marginLeft: '0.3 rem'
 
-  // }
-}))
+//   // }
+// }))
 
 const stateObj = {
   randomInt: { min: 120, max: 180, step: 5, value: 180 },
@@ -108,7 +105,6 @@ export default function SlidersForm() {
         : setNewPlaylist(customInput)
   }
 
-  const classes = useStyles()
   return (
     <div style={{ padding: '1rem', margin: 'auto' }}>
       <Notifications
@@ -121,13 +117,16 @@ export default function SlidersForm() {
         direction={'row'}
         justifyContent={'space-around'}
         alignItems={'baseline'}
-        className={classes.root}
-      // style={{ border: '1px solid blue' }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          overflow: 'hidden',
+          // backgroundImage: 'url(music-player-circle-start.svg)',
+        }}
+
       >
-        <Grid item container sm={6}//descriptor sliders
+        <Grid item container sm={5}//descriptor sliders
           direction={'column'}
-          // justifyContent={'st'}
-          // alignItems={'center'}
           style={{ backgroundColor: 'none', height: '100%' }}>
           {descriptorsList.map((descriptor, key) => (
             <Grid item sm={12}>
@@ -153,26 +152,30 @@ export default function SlidersForm() {
           {/* </Paper> */}
         </Grid>
 
-        {/* <Divider orienta4tion='horizontal' flexItem /> */}
-
-        <Grid container item sm={6} //diversity
-        // style={{ backgroundColor: blueGrey[200], height: '100%' }}
+        <Grid container item sm={6} //diversity 
         >
-          <SliderMUI item
-            //  height='10%'
-            sliderText='Diversity'
-            value={state.Diversity.value}
-            defaultValue={state.Diversity.value}
-            min={state.Diversity.min}
-            max={state.Diversity.max}
-            step={state.Diversity.step}
-            // aria-text={'Diversity'}
-            name={'Diversity'}
-            onChange={onSliderChange('Diversity')}
-            onChangeComitted={handleCommit('Diversity')} />
+          <Grid item sm={11}>
 
+            <SliderMUI
+              color='#7f0000'
+              sliderText='Diversity'
+              value={state.Diversity.value}
+              defaultValue={state.Diversity.value}
+              min={state.Diversity.min}
+              max={state.Diversity.max}
+              step={state.Diversity.step}
+              // aria-text={'Diversity'}
+              name={'Diversity'}
+              onChange={onSliderChange('Diversity')}
+              onChangeComitted={handleCommit('Diversity')} />
+
+          </Grid>
           <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false}
-            classes={classes.buttonGroup} />
+            style={{
+              marginBottom: '1%',
+              marginLeft: '0.3 rem'
+            }}
+          />
           <Grow in={true}
             style={{ transformOrigin: '100 0 20' }}
             timeout={1800}>

@@ -1,42 +1,31 @@
 import { useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Divider from '@material-ui/core/Divider'
-import PlayArrowIcon from '@material-ui/icons/PlayCircleOutline'
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined'
-import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import Divider from '@mui/material/Divider'
+import PlayArrowIcon from '@mui/icons-material/PlayCircleOutline'
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
 import { AppContext } from '../../stateContext/indexContext'
 
 import * as types from '../../stateContext/types'
-import { Tooltip } from '@material-ui/core'
+import { Tooltip } from '@mui/material'
 import { app } from '../../../src/index.js'
 
 // const user = app.currentUser
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 460,
-    backgroundColor: theme.palette.background.paper,
-  },
-}))
-
 export default function TitlesList(props) {
-  const classes = useStyles()
   const [appState, dispatch] = useContext(AppContext)
   console.log(appState)
 
 
   const addLikeAndFaforit = index => (e) => {
     e.preventDefault()
-    const userId = appState.userId  
+    const userId = appState.userId
     const clientUserName = appState.userName
     const titleId = appState.playlist[index]._id.toString()
-    const sendObj = {userId, titleId, clientUserName}
+    const sendObj = { userId, titleId, clientUserName }
     console.log('adding to favorits and likes', sendObj)
 
     app.currentUser.callFunction('addToFavorits', sendObj)
@@ -51,7 +40,11 @@ export default function TitlesList(props) {
   }
 
   return (
-    <div className={classes.root}>
+    <div sx={theme => ({
+      width: '100%',
+      maxWidth: 460,
+      backgroundColor: theme.palette.background.paper,
+    })}>
 
       <List component="nav" aria-label="playlist titles">
         {appState.playlist.map((elem, index) => (
@@ -69,11 +62,11 @@ export default function TitlesList(props) {
             <Divider />
             <ListItemIcon>
               <Tooltip title='Like this title' placement='top-start' arrow
-                onClick = {addLikeAndFaforit(index)} >
+                onClick={addLikeAndFaforit(index)} >
                 <ThumbUpAltOutlinedIcon />
               </Tooltip>
             </ListItemIcon>
-           { appState.userName !== '' &&  <ListItemIcon>
+            {appState.userName !== '' && <ListItemIcon>
               <Tooltip title='Add to personal favorits' placement='bottom' arrow >
                 < FavoriteOutlinedIcon
                   onClick={addLikeAndFaforit(index)} />
@@ -99,6 +92,6 @@ export default function TitlesList(props) {
           <ListItemText primary="Spam" />
         </ListItem>
       </List> */}
-    </div>
+    </div >
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
+import { useTheme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 
-import Modal from '@material-ui/core/Modal'
-import { Button } from '@material-ui/core'
+import Modal from '@mui/material/Modal'
+import { Button } from '@mui/material'
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -20,28 +20,29 @@ function getModalStyle() {
     };
 }
 
-const useStyles = makeStyles(theme => ({
-    paper: {
-        position: 'absolute',
-        width: 350,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #ffffff',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(1, 4, 3),
-        margin: theme.spacing(1)
-    },
-    button: {
-        backgroundColor: "#ff1166",
-        // padding: '1rem, 0',
-        label: {
-            color: "secondary",
-            fontSize: '3rem'
-        }
-    }
-}));
+// const useStyles = makeStyles(theme => ({
+//     paper: {
+//         position: 'absolute',
+//         width: 350,
+//         backgroundColor: theme.palette.background.paper,
+//         border: '2px solid #ffffff',
+//         boxShadow: theme.shadows[5],
+//         padding: theme.spacing(1, 4, 3),
+//         margin: theme.spacing(1)
+//     },
+//     button: {
+//         backgroundColor: "#ff1166",
+//         // padding: '1rem, 0',
+//         label: {
+//             color: "secondary",
+//             fontSize: '3rem'
+//         }
+//     }
+// }));
 
 export default function InfoBox() {
-    const classes = useStyles();
+    // const classes = useStyles();
+    const theme = useTheme()
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
@@ -65,7 +66,7 @@ export default function InfoBox() {
                 fontSize='0.8rem'
                 onClick={handleOpen}>
                 AppInfo
-                </Button>
+            </Button>
             <Modal
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
@@ -73,7 +74,18 @@ export default function InfoBox() {
                 onClose={handleClose}
                 onClick={handleClose}
             >
-                <div style={modalStyle} className={classes.paper}>
+                <div style={modalStyle}
+                    sx={theme => ({
+                        position: 'absolute',
+                        width: 350,
+                        backgroundColor: theme.palette.background.paper,
+                        border: '2px solid #ffffff',
+                        boxShadow: theme.shadows[5],
+                        padding: theme.spacing(1, 4, 3),
+                        margin: theme.spacing(1)
+                    })}
+                // className={classes.paper}
+                >
                     <h2 id="simple-modal-title">How to use</h2>
                     <p id="simple-modal-description">
                         <Typography>
@@ -82,7 +94,7 @@ export default function InfoBox() {
 //          С Diversity управлявате диапазон на темпо, гръмкост и усреднена честота на траковете вътре в плейлистата.<br />
 //          Можете да харесвате и нехаресвате конкретен трак. <br />
 //          Регистрираните потребители могат да следват хората, които предлагат траковете и да запазват плейлисти.
-     </Typography>
+                        </Typography>
                     </p>
 
                 </div>

@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Routes from './Routes'
 import './App.css'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { ThemeProvider } from ' @mui/core'
+import { createTheme } from ' @mui/core/styles'
 import { AppContext } from './stateContext/indexContext'
 import { app } from './index'
 import { SET_USER_ID } from './stateContext/types'
@@ -18,20 +19,6 @@ const theme = createTheme({
       lg: 1280,
       xl: 1920,
     },
-  },
-  palette: {
-    primary: {
-      light: '#718792',
-      main: '#455a64',
-      dark: '#1c313a',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#f05545',
-      main: '#b71c1c',
-      dark: '#7f0000',
-      // contrastText: '#fff',
-    }
   },
   overrides: {
     typography: {
