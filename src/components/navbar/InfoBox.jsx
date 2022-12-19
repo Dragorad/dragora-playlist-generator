@@ -1,23 +1,24 @@
-import React from 'react'
-import { useTheme } from '@mui/material/styles'
+import { useState } from 'react'
+// import { useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
 import Modal from '@mui/material/Modal'
 import { Button } from '@mui/material'
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 16
+    const left = 8;
 
     return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
+        border: 'none',
+        backgroundColor: "#455a64",
+        opacity: '0.8',
+        padding: '3%',
+        color: 'white',
+        margin: "20px auto",
+        width: '60%',
+        transform: `translate( ${left}%, ${top}%)`,
+    }
 }
 
 // const useStyles = makeStyles(theme => ({
@@ -42,10 +43,10 @@ function getModalStyle() {
 
 export default function InfoBox() {
     // const classes = useStyles();
-    const theme = useTheme()
+    // const theme = useTheme()
     // getModalStyle is not a pure function, we roll the style only on the first render
-    const [modalStyle] = React.useState(getModalStyle);
-    const [open, setOpen] = React.useState(false);
+    const [modalStyle] = useState(getModalStyle);
+    const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
         setOpen(true);
@@ -86,14 +87,17 @@ export default function InfoBox() {
                     })}
                 // className={classes.paper}
                 >
-                    <h2 id="simple-modal-title">How to use</h2>
+                    <h2 id="simple-modal-title">How to use / Начин на използване</h2>
                     <p id="simple-modal-description">
-                        <Typography>
-                            //          Всяка една от композициите е избрана лично от опитен музикален редактор с доказано добър вкус.<br />
-//          Изберете жанр, средно темпо и средна гръмкост и ще получите първите пет предложения.<br />
-//          С Diversity управлявате диапазон на темпо, гръмкост и усреднена честота на траковете вътре в плейлистата.<br />
-//          Можете да харесвате и нехаресвате конкретен трак. <br />
-//          Регистрираните потребители могат да следват хората, които предлагат траковете и да запазват плейлисти.
+                        <Typography variant='body1' gutterBottom component='p'>
+                            Всяка една от композициите е избрана лично от опитен музикален редактор с доказано добър вкус.<br />
+                            Изберете жанр, средно темпо и средна гръмкост и ще получите първите пет предложения.<br />
+                            С Diversity управлявате диапазон на темпо, гръмкост и усреднена честота на траковете вътре в плейлистата.<br />
+                            ** Можете да харесвате и нехаресвате конкретен трак. <br />
+                            **Регистрираните потребители могат да следват хората, които предлагат траковете и да запазват плейлисти.
+                        </Typography>
+                        <Typography variant='subtitle1' gutterBottom>
+                            Отбелязаните с ** възможности са в процес на разработка.
                         </Typography>
                     </p>
 
@@ -105,15 +109,6 @@ export default function InfoBox() {
 
 
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     width: '60%',
-//   },
-//   heading: {
-//     fontSize: theme.typography.pxToRem(15),
-//     fontWeight: theme.typography.fontWeightRegular,
-//   },
-// }))
 
 // export default function InfoBox() {
 //   const classes = useStyles()

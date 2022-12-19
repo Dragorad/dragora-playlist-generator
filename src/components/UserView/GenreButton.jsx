@@ -94,7 +94,7 @@ export function ButtonsGroupMultiple(props) {
                   }
                 },
               }}
-              aria- label={props.text}
+              aria-label={props.text}
               value={text}
               text={text}
               variant='outlined'
