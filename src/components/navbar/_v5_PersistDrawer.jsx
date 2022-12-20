@@ -1,4 +1,4 @@
-import React, { Suspense, useContext } from 'react'
+import React, { useContext } from 'react'
 
 import Drawer from '@mui/material/Drawer'
 import { styled, useTheme } from '@mui/material/styles';
@@ -16,13 +16,13 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import ListItemButton from '@mui/material/ListItemButton';
+// import ListItemButton from '@mui/material/ListItemButton';
 // import InboxIcon from '@mui/icons-material/MoveToInbox'
 import ShareIcon from '@mui/icons-material/Share'
 import QueueMusicIcon from '@mui/icons-material/QueueMusic'
 import SettingsIcon from '@mui/icons-material/Settings'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
-import Paper from '@mui/material/Paper'
+// import Paper from '@mui/material/Paper'
 import SlidersForm from '../UserView/SlidersForm'
 import Grid from '@mui/material/Grid'
 // import { blue } from '@mui/material/colors'
@@ -33,7 +33,7 @@ import GenresButtonsGroup from '../UserView/GenresButtonsGroup'
 import TitlesList from '../player/TitlesList'
 import PlayerDr from '../player/PlayerDr'
 import { AppContext } from '../../stateContext/indexContext'
-import MailIcon from '@mui/icons-material/Mail'
+// import MailIcon from '@mui/icons-material/Mail'
 
 const drawerWidth = 240
 
