@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, } from 'react'
-import ReactDOM from 'react-dom'
-import { AppContextProvider,  } from './stateContext/indexContext'
+import { createRoot } from 'react-dom/client'
+import { AppContextProvider, } from './stateContext/indexContext'
 import './index.css'
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import { setContext } from "apollo-link-context";
@@ -88,15 +88,19 @@ export const setTitleInstruments = async (instrumObj) => {
 
 const ImgLoader = () => {
   return (
-    <React.Fragment>
+    <>
 
       <img src='./svg-icons/busic-player-circle-start.svg'
 
         alt='LLLLLLLLLLLLLLLoading...' />
-    </React.Fragment>
+    </>
   )
 }
-ReactDOM.render(
+
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+
+root.render(
 
   <AppContextProvider >
     <ApolloProvider client={client}>
