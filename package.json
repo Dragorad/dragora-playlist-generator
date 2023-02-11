@@ -24,7 +24,7 @@
     "realm-web": "^2.0.0",
     "styled-components": "^5.3.5",
     "typeface-roboto": "^1.1.13",
-    "vercel": "^28.7.2"
+    "vercel": "^28.15.3"
   },
   "scripts": {
     "start": "react-scripts start",
