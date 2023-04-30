@@ -1,4 +1,4 @@
-import React, { Suspense, useContext } from 'react'
+import { Suspense, useContext } from 'react'
 import clsx from 'clsx'
 // import { makeStyles, useTheme } from '@mui/material/styles'
 import Drawer from '@mui/material/Drawer'
@@ -106,7 +106,7 @@ const drawerWidth = 240
 export default function PersistentDrawerLeft() {
   // const classes = useStyles()
   const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
   const [appstate] = useContext(AppContext)
   // const userName = appstate.userName
   const loggedAsText = appstate.userName !== '' ? `Logged as ${appstate.userName}` : ''

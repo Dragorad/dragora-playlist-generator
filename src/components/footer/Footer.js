@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState}from 'react'
 import { makeStyles } from '@mui/material/styles'
 import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 
 export default function SimpleBottomNavigation() {
   const classes = useStyles()
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = useState(0)
 
   return (
     <BottomNavigation
