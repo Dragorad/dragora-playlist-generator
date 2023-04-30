@@ -1,5 +1,5 @@
-import React from 'react'
 // import { useMutation } from '@apollo/react-hooks'
+import { useState } from 'react'
 import { TextField, Typography, Divider } from '@mui/material'
 import { UpdateFieldForm } from './UpdateFieldForm'
 // import { UPDATE_TITLE_URL } from '../../graphql/Mutations'
@@ -12,8 +12,8 @@ export default function UrlTitleForm(props) {
   // const titleMBID = props.titleMBID
   const { titleMBID, oldGenres, genres } = props
   // const updatedUrl = props.url
-  const [urlString, setUrlString] = React.useState('')
-  const [updatedUrl, setUpdatedUrl] = React.useState(props.url)
+  const [urlString, setUrlString] = useState('')
+  const [updatedUrl, setUpdatedUrl] = useState(props.url)
   // const [handleUpdateTitleRecordURL] = useMutation(UPDATE_TITLE_URL)
   console.log(oldGenres)
   const formStyles = {
@@ -51,7 +51,7 @@ export default function UrlTitleForm(props) {
 
   let h4String = ['Handle Title URL', 'Handle Genres']
   return (
-    <React.Fragment>
+    <>
       {updatedUrl != null ? <iframe width="180"
         title={props.url}
         src={`https://www.youtube.com/embed/${props.url}`}>
@@ -96,6 +96,6 @@ export default function UrlTitleForm(props) {
         {/* <ItemsList arr={instrumentsList} title='Instruments' /> */}
 
       </div >
-    </React.Fragment>
+    </>
   )
 }

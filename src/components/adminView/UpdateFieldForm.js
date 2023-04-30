@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import { TextField, Typography } from '@mui/material'
 import { notify } from 'react-notify-toast';
 
@@ -51,7 +51,7 @@ export function UpdateFieldForm(props) {
 
     const newGenresArr = props.oldGenres == undefined ? [] : getNewGenresArr(nameStr, props)
     const litNameStr = '${nameStr}'
-    const [valueStr, setValueStr] = React.useState('')
+    const [valueStr, setValueStr] = useState('')
     const h4String = (`Handle ${nameStr}`).toUpperCase()
     const submFunction = props.onSubmit
 

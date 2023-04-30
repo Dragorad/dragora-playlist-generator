@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react'
+import { Suspense, lazy } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import TestComponentV5 from './components/adminView/TestComponentV5'
 // import PersistentDrawerLeft from './components/navbar/PersistDrawer'

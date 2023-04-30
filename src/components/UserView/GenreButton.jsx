@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import ToggleButton from '@mui/material/ToggleButton'
 // import { makeStyles } from '@mui/material/styles'
 import { Grid, Paper } from '@mui/material'
@@ -46,7 +46,7 @@ export function ButtonsGroupMultiple(props) {
   // const {btnState} = appState
   // const {genresArr, descriptorsArr} = btnState
   const [appState, dispatch] = useContext(AppContext)
-  // const [selected, setSelected] = React.useState(props.selected)
+  // const [selected, setSelected] = useState(props.selected)
   const inputArr = props.inputArr
 
   const onButtonClick = name => (event) => {
@@ -110,7 +110,6 @@ export function ButtonsGroupMultiple(props) {
         </Grid>
       ))
       }
-      {/* </React.Fragment> */}
     </Grid >
 
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 import Drawer from '@mui/material/Drawer'
 import { styled, useTheme } from '@mui/material/styles';
@@ -83,7 +83,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 export default function PersistentDrawerLeft() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const theme = useTheme()
   const [appstate] = useContext(AppContext)
   const loggedAsText = appstate.userName !== '' ? `Logged as ${appstate.userName}` : ''
