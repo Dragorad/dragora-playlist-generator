@@ -15,22 +15,22 @@ export const app = new RealmWeb.App({
   id: APP_ID,
   // baseUrl: "https://realm.mongodb.com"
 });
-console.log(app.currentUser)
+// console.log(app.currentUser)
 
-// const credentials = RealmWeb.Credentials.anonymous();
-// try {
-//   // Authenticate the user
-//   const user = app.logIn(credentials)
-//     .then(user => {
-//       console.log('Loged anonimous ', user.id)
-//     })
-//   // `App.currentUser` updates to match the logged in user
-//   // assert(user.id === app.currentUser.id)
-//   // return user
-// }
-// catch (err) {
-//   console.error("Failed to log in", err);
-// }
+const credentials = RealmWeb.Credentials.anonymous();
+try {
+  // Authenticate the user
+  const user = app.logIn(credentials)
+    .then(user => {
+      console.log('Loged anonimous ', user.id)
+    })
+  // `App.currentUser` updates to match the logged in user
+  // assert(user.id === app.currentUser.id)
+  // return user
+}
+catch (err) {
+  console.error("Failed to log in", err);
+}
 // Add an Authorization header with a valid user access token to all GraphQL requests
 const authorizationHeaderLink = setContext(async (_, { headers }) => {
   if (app.currentUser) {
