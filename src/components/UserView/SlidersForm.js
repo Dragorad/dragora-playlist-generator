@@ -60,14 +60,8 @@ export default function SlidersForm() {
 
   const onSliderChange = name => (ev, value) => {
     setState({ ...state, [name]: { ...state[name], value: value } })
-    // setState({
-    //     ...state, [name]: value
-    // })
-    // alert(state[name])
   }
   const handleCommit = name => (ev, value) => {
-
-    console.log(state[name])
     setState({ ...state, [name]: { ...state[name], value: value } })
   }
 
@@ -103,10 +97,12 @@ export default function SlidersForm() {
         <Grid item container sm={5}//descriptor sliders
           direction={'column'}
           style={{ backgroundColor: 'none', height: '100%' }}>
-          <Grid item sm={12} sx={{ marginTop: '2rem' }}
-          order={{ xs: 5, md: 2 }}>
+          <Grid item sm={12} sx={{
+            marginTop: '2rem'
+          }}
+            order={{ xs: 3, md: 2 }}>
             <SliderMUI
-              color='#7f0000'
+              color='rgb(142, 37, 37)'
               sliderText='Diversity'
               value={state.Diversity.value}
               defaultValue={state.Diversity.value}
@@ -121,18 +117,22 @@ export default function SlidersForm() {
           </Grid>
 
           <Grow in={true}
-          order={{sm:5, md:2}}
+            order={{ sm: 5, md: 2 }}
             style={{ transformOrigin: '100 0 20' }}
             timeout={1800}>
-            <Button size={'medium'}
-              style={{ margin: '2% 0' }}
-              variant="outlined"
+            <Button
+              size={'medium'}
+              sx={{
+                margin: '5% 0',
+                backgroundColor: 'rgb(96, 52, 52)'
+              }}
+              variant="contained"
               onClick={onSubmit}
               type='submit'
               fullWidth >Generate Playlist</Button>
           </Grow>
           {descriptorsList.map((descriptor, key) => (
-            <Grid item sm={12}>
+            <Grid item sm={12} >
               < SliderMUI key={key}
                 value={state[descriptor].value}
                 defaultValue={state[descriptor].value}

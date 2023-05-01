@@ -1,4 +1,5 @@
 export const genresList = [
+    // 'active rock',
     'general rock and pop',
     'dance funk EDM',
     'lounge acid-jazz',
