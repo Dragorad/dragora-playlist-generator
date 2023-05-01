@@ -33,7 +33,7 @@ import GenresButtonsGroup from '../UserView/GenresButtonsGroup'
 import TitlesList from '../player/TitlesList'
 import PlayerDr from '../player/PlayerDr'
 import { AppContext } from '../../stateContext/indexContext'
-// import MailIcon from '@mui/icons-material/Mail'
+
 
 const drawerWidth = 240
 
