@@ -15,23 +15,17 @@ function ValueLabelComponent(props) {
 
 export default function SliderMUI(props) {
 
-    // const [value, setValue] = React.useState({ [props.sliderText]: 0 })
-    // const handleChange = (ev, newValue) => {
-    //     setValue(newValue)
-    // }
-    // const handleCommit = (ev, value) => {
-    //     alert(`${props.sliderText} : ${value}`)
-    // }
     return (
         <div sx={theme => ({
             width: 300 + theme.spacing(3) * 2,
             maxWidth: "90%",
             height: theme.spacing(),
-            color: theme.secondary.light
+            color: props.color || theme.secondary.light
         })} >
             <Typography gutterBottom
                 style={{ height: '30%' }}>{props.sliderText}</Typography>
             <Slider
+                
                 size='small'
                 ValueLabelComponent={ValueLabelComponent}
                 min={5}

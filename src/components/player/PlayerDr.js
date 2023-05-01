@@ -36,7 +36,7 @@ export default function PlayerDr(props) {
     if (!appState) return <p>Loading playlist...</p>
     const playlistArr = appState.playlist
 
-    const stateUrls = playlistArr.map(elem => `https://youtu.be/${elem.url}`)
+    const stateUrls = playlistArr.map(elem => elem.url.length < 22 ? `https://youtu.be/${elem.url}` : elem.url)
     console.log(stateUrls[appState.urlIdx])
 
     return (
@@ -48,7 +48,7 @@ export default function PlayerDr(props) {
                     Please set "Diversity" to bigger value or add genres with dedicated buttons<br />
                     Then press "Generate Playlist Button" </p>
                 : <>
-                    < PlayerControlButtons />
+
                     <ReactPlayer
                         url={stateUrls[appState.urlIdx]}
                         playing={appState.playing}
@@ -59,7 +59,7 @@ export default function PlayerDr(props) {
                         // height={'80%'}
                         onEnded={changeUrlIndex('up')} />
 
-
+                    < PlayerControlButtons />
                 </>
             }
         </div>

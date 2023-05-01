@@ -73,11 +73,10 @@ function App() {
   return (
 
     <BrowserRouter>
-      <React.Fragment>
-        <ThemeProvider theme={theme}>
-          <Routes />
-        </ThemeProvider>
-      </React.Fragment>
+      <ThemeProvider theme={theme}>
+
+        <Routes />
+      </ThemeProvider>
     </BrowserRouter>
   )
 }
