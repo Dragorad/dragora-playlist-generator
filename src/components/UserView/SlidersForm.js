@@ -2,38 +2,13 @@ import { useState, useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import SliderMUI from './SliderMUI'
-import { Button, Divider, Grid, Grow } from '@mui/material'
-// import { genresList } from '../../workers/genresAndInstrumentsList'
+import { Button, Divider, Grid, Grow, Typography } from '@mui/material'
 import { descriptorsList } from '../../workers/descriptorsList'
 import { ButtonsGroupMultiple } from './GenreButton'
-// import { blueGrey } from '@mui/material/colors'
 import { app, getNewPlayList } from '../../index'
-// import SnackBar from './SnackBar'
 import Notifications, { notify } from 'react-notify-toast'
 import { notifyOptions } from './notifyOptions'
 
-
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     display: 'flex',
-//     justifyContent: 'space-between',
-//     overflow: 'hidden',
-//     // backgroundImage: 'url(music-player-circle-start.svg)',
-//   },
-//   gridList: {
-//     width: 200,
-//     height: 100
-//   },
-//   paper: {
-//     padding: '2%',
-//     margin: 'auto'
-//   },
-//   // buttonGroup: {
-//   //     marginBottom: '1%',
-//   //     marginLeft: '0.3 rem'
-
-//   // }
-// }))
 
 const stateObj = {
   randomInt: { min: 120, max: 180, step: 5, value: 180 },
@@ -114,7 +89,7 @@ export default function SlidersForm() {
         // lg={10}
         // xl={6}
         spacing={1}
-        direction={'row'}
+        direction={'column'}
         justifyContent={'space-around'}
         alignItems={'baseline'}
         sx={{
@@ -128,6 +103,34 @@ export default function SlidersForm() {
         <Grid item container sm={5}//descriptor sliders
           direction={'column'}
           style={{ backgroundColor: 'none', height: '100%' }}>
+          <Grid item sm={12} sx={{ marginTop: '2rem' }}
+          order={{ xs: 5, md: 2 }}>
+            <SliderMUI
+              color='#7f0000'
+              sliderText='Diversity'
+              value={state.Diversity.value}
+              defaultValue={state.Diversity.value}
+              min={state.Diversity.min}
+              max={state.Diversity.max}
+              step={state.Diversity.step}
+              // aria-text={'Diversity'}
+              name={'Diversity'}
+              onChange={onSliderChange('Diversity')}
+              onChangeComitted={handleCommit('Diversity')} />
+
+          </Grid>
+
+          <Grow in={true}
+          order={{sm:5, md:2}}
+            style={{ transformOrigin: '100 0 20' }}
+            timeout={1800}>
+            <Button size={'medium'}
+              style={{ margin: '2% 0' }}
+              variant="outlined"
+              onClick={onSubmit}
+              type='submit'
+              fullWidth >Generate Playlist</Button>
+          </Grow>
           {descriptorsList.map((descriptor, key) => (
             <Grid item sm={12}>
               < SliderMUI key={key}
@@ -147,45 +150,16 @@ export default function SlidersForm() {
               />
             </Grid>
           ))}
-
-          {/* <Divider variant='middle' /> */}
-          {/* </Paper> */}
-        </Grid>
-
-        <Grid container item sm={6} //diversity 
-        >
-          <Grid item sm={11}>
-
-            <SliderMUI
-              color='#7f0000'
-              sliderText='Diversity'
-              value={state.Diversity.value}
-              defaultValue={state.Diversity.value}
-              min={state.Diversity.min}
-              max={state.Diversity.max}
-              step={state.Diversity.step}
-              // aria-text={'Diversity'}
-              name={'Diversity'}
-              onChange={onSliderChange('Diversity')}
-              onChangeComitted={handleCommit('Diversity')} />
-
-          </Grid>
+          <Typography align='center'> Lock Descriptor Value </Typography>
           <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false}
             style={{
-              marginBottom: '1%',
+              marginTop: '3%',
+              marginBottom: '8%',
               marginLeft: '0.3 rem'
             }}
           />
-          <Grow in={true}
-            style={{ transformOrigin: '100 0 20' }}
-            timeout={1800}>
-            <Button size={'medium'}
-              style={{ margin: '2% 0' }}
-              variant="outlined"
-              onClick={onSubmit}
-              type='submit'
-              fullWidth >Generate Playlist</Button>
-          </Grow>
+
+
         </Grid>
 
       </Grid>

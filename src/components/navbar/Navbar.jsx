@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import CssBaseline from '@mui/material/CssBaseline'
 import Divider from '@mui/material/Divider'
@@ -18,11 +18,12 @@ import GenresList from '../GenresContainer/GenresContainer'
 import Typography from '@mui/material/Typography'
 import { makeStyles, useTheme } from '@mui/material/styles'
 
-const drawerWidth = 240
+const drawerWidth = 260
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    with: '1200'
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -49,6 +50,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    maxWidth: '600px'
   },
 }))
 
@@ -89,6 +91,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
+
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -138,8 +141,10 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <GenresList />
-        <Footer />
+       
+          <GenresList />
+          <Footer />
+       
       </main>
     </div>
   )

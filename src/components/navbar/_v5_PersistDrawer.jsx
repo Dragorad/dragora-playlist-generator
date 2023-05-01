@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-
+import Container from '@mui/material/Container'
 import Drawer from '@mui/material/Drawer'
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box'
@@ -174,44 +174,41 @@ export default function PersistentDrawerLeft() {
 
       <Main >
         <CssBaseline />
-
-        <Grid container xs={12} spacing={1} direction='row'
-          sx={{ mt: '2%' }}
-        >
-          <Grid item sx={12} sm={3} md={2} lg={2}// genres buttons
-            // style={{ border: '1px solid red' }}
-            direction='row'>
-            <GenresButtonsGroup />
-          </Grid>
-          <Grid container item xs={12} sm={8} direction='row'
-            style={{
-              // border: '1px solid blue',
-              // margin: '2%',
-            }}
+        <Container fluid maxWidth='xl'>
+          <Grid container xs={12} spacing={1} direction='row'
+            sx={{ mt: '2%' }}
           >
-
-            {/* <Paper elevation={1} > */}
-            <Grid item sm={12} //sliders form
-              sx={{ ml: '2px', h: '10%s', 'border': '1px' }}>
-              {/* <Paper elevation={1} > */}
+            <Grid item sx={12} sm={6} md={4} lg={4}// genres buttons and sliders form
+              // style={{ border: '1px solid red' }}
+              direction='row'>
+              <GenresButtonsGroup />
               <SlidersForm />
-              {/* </Paper > */}
             </Grid>
-            <Grid container item direction='row' //PlayerDr
-              sx={{ mt: '1%', w: '98%' }}
+            <Grid container item xs={12} sm={8} direction='row'
+              style={{
+                // border: '1px solid blue',
+                // margin: '2%',
+              }}
             >
 
-              <Grid xs={12} md={7}>
-                <PlayerDr />
-              </Grid>
-              <Grid xs={5} //titlesList
+              {/* <Paper elevation={1} > */}
+              
+              <Grid container item direction='row' //PlayerDr
+                sx={{ mt: '1%', w: '98%' }}
               >
-                <TitlesList />
 
+                <Grid xs={12} md={7}>
+                  <PlayerDr />
+                </Grid>
+                <Grid xs={12} md={5} //titlesList
+                >
+                  <TitlesList />
+
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        </Grid >
+          </Grid >
+        </Container>
         <Notifications />
       </Main>
     </Box >
