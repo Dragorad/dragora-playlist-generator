@@ -20,11 +20,14 @@ export default function SliderMUI(props) {
             width: 300 + theme.spacing(3) * 2,
             maxWidth: "90%",
             height: theme.spacing(),
-            color: props.color || theme.secondary.dark
+            color: theme.secondary.dark
         })} >
             <Typography gutterBottom
                 style={{ height: '30%' }}>{props.sliderText}</Typography>
             <Slider
+                sx={theme => ({
+                    color: props.color || theme.secondary
+                })}
                 size='small'
                 ValueLabelComponent={ValueLabelComponent}
                 min={5}

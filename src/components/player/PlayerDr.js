@@ -55,7 +55,7 @@ export default function PlayerDr(props) {
                         playIcon={false}
                         controls={false}
                         width={'90%'}
-                        light={false}
+                        light={true}
                         // height={'80%'}
                         onEnded={changeUrlIndex('up')} />
 

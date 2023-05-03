@@ -2,6 +2,7 @@ import { useState, useContext } from 'react'
 import { AppContext } from '../../stateContext/indexContext'
 import * as types from '../../stateContext/types'
 import SliderMUI from './SliderMUI'
+import Slider from '@mui/material/Slider'
 import { Button, Divider, Grid, Grow, Typography } from '@mui/material'
 import { descriptorsList } from '../../workers/descriptorsList'
 import { ButtonsGroupMultiple } from './GenreButton'
@@ -94,15 +95,18 @@ export default function SlidersForm() {
         }}
 
       >
-        <Grid item container sm={5}//descriptor sliders
+        <Grid container item 
+          sm={5}
           direction={'column'}
+
           style={{ backgroundColor: 'none', height: '100%' }}>
           <Grid item sm={12} sx={{
-            marginTop: '2rem'
+            margin: '2rem 0'
           }}
-            order={{ xs: 3, md: 2 }}>
+          order={{sx:3, md:1}}
+            >
             <SliderMUI
-              color='rgb(142, 37, 37)'
+              color='#603434'
               sliderText='Diversity'
               value={state.Diversity.value}
               defaultValue={state.Diversity.value}
@@ -114,25 +118,24 @@ export default function SlidersForm() {
               onChange={onSliderChange('Diversity')}
               onChangeComitted={handleCommit('Diversity')} />
 
-          </Grid>
 
-          <Grow in={true}
-            order={{ sm: 5, md: 2 }}
-            style={{ transformOrigin: '100 0 20' }}
-            timeout={1800}>
-            <Button
-              size={'medium'}
-              sx={{
-                margin: '5% 0',
-                backgroundColor: 'rgb(96, 52, 52)'
-              }}
-              variant="contained"
-              onClick={onSubmit}
-              type='submit'
-              fullWidth >Generate Playlist</Button>
-          </Grow>
-          {descriptorsList.map((descriptor, key) => (
-            <Grid item sm={12} >
+            {/* <Grow in={true}
+              style={{ transformOrigin: '100 0 20' }}
+              timeout={1800}> */}
+              <Button
+                size={'medium'}
+                sx={{
+                  margin: '5% 0',
+                  backgroundColor: 'rgb(96, 52, 52)'
+                }}
+                variant="contained"
+                onClick={onSubmit}
+                type='submit'
+                fullWidth >Generate Playlist</Button>
+            {/* </Grow> */}
+          </Grid>
+          <Grid item sm={12} >           {/* descriptor sliders */}
+            {descriptorsList.map((descriptor, key) => (
               < SliderMUI key={key}
                 value={state[descriptor].value}
                 defaultValue={state[descriptor].value}
@@ -148,17 +151,18 @@ export default function SlidersForm() {
                 valueLabelFormat={descriptor === "Tempo" ?
                   state.Tempo.valueLabelFormat : (x) => x = x}
               />
-            </Grid>
-          ))}
-          <Typography align='center'> Lock Descriptor Value </Typography>
-          <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false}
-            style={{
-              marginTop: '3%',
-              marginBottom: '8%',
-              marginLeft: '0.3 rem'
-            }}
-          />
-
+            ))}
+          </Grid>
+          <Grid item sm={12}    >
+            <Typography align='center'> Lock Descriptor Value </Typography>
+            <ButtonsGroupMultiple sm={4} inputArr={descriptorsList} selected={false}
+              sx={{
+                marginTop: '3%',
+                marginBottom: '8%',
+                marginLeft: '0.3 rem'
+              }}
+            />
+          </Grid>
 
         </Grid>
 
