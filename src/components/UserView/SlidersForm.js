@@ -106,7 +106,7 @@ export default function SlidersForm() {
           order={{sx:3, md:1}}
             >
             <SliderMUI
-              color='#603434'
+              color='#531B1B'
               sliderText='Diversity'
               value={state.Diversity.value}
               defaultValue={state.Diversity.value}
@@ -126,7 +126,7 @@ export default function SlidersForm() {
                 size={'medium'}
                 sx={{
                   margin: '5% 0',
-                  backgroundColor: 'rgb(96, 52, 52)'
+                  backgroundColor: '#531B1B'
                 }}
                 variant="contained"
                 onClick={onSubmit}
