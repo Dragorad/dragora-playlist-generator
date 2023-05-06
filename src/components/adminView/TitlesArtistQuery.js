@@ -1,6 +1,6 @@
 // import {useState} from 'react'
 import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 // import { TextField, Typography } from '@mui/material'
 import UrlTitleForm from './UrlTitleForm'
 import Notifications from 'react-notify-toast'
