@@ -1,0 +1,6 @@
+{
+  "githubPullRequests.ignoredPullRequestBranches": [
+    "master"
+  ],
+  "Codegeex.EnableExtension": false
+}

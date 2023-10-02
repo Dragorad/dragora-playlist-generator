@@ -2,9 +2,9 @@ import React, { Suspense, lazy, } from 'react'
 import { createRoot } from 'react-dom/client'
 import { AppContextProvider, } from './stateContext/indexContext'
 import './index.css'
-import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
+import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { setContext } from "apollo-link-context";
-import { ApolloProvider } from "@apollo/react-hooks";
+// import { ApolloProvider } from "@apollo/react-hooks";
 import * as serviceWorker from './serviceWorker'
 import * as RealmWeb from "realm-web"
 import { APP_ID } from './credential/AppId';
@@ -109,7 +109,7 @@ root.render(
       </Suspense>
     </ApolloProvider>
   </AppContextProvider>
-  , document.getElementById('root'))
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
